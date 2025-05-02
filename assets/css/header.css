@@ -1,0 +1,70 @@
+/* Header */
+.header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  color: #27ae60;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Logo y navegación */
+.logo_nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo_blog {
+  width: 50px;
+  height: auto;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  color: #27ae60;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Redes sociales */
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-icons li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: fill 0.3s ease;
+}
+
+.social-icons li:hover {
+  color: #faa480;
+}
+
+.social-icons li :is(svg, .iconify) {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}

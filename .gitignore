@@ -1,0 +1,42 @@
+# Dependencias de Node.js
+node_modules/
+
+# Archivos de producción
+dist/
+build/
+
+# Archivos de configuración y logs
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Caché de Nuxt.js
+.nuxt/
+.nitro/
+.output/
+.data/
+.cache/
+logs/
+output/
+
+# Configuración de PyCharm
+.idea/
+.fleet/
+*.iml
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Otros archivos generados
+.vscode/
+*.swp
+*.swo
+/package-lock.json
