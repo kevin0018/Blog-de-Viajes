@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/icon',
     '@nuxt/fonts',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxtjs/tailwindcss'
   ],
 
   content: {
@@ -17,6 +18,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '@/assets/css/index.css'
+    '@/assets/css/index.css',
+    '@/assets/css/tailwind.css',
   ]
 });
