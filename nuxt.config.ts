@@ -16,7 +16,7 @@ export default defineNuxtConfig({
                 },
             ],
             link: [
-                {rel: 'icon', type: 'image/x-icon', href: '/assets/images/logo_blog.png'},
+                {rel: 'icon', type: 'image/png', href: 'assets/images/logo_blog.png'},
             ],
         },
     },
