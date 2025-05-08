@@ -27,7 +27,7 @@
             <img
                 src="/assets/images/about_us.jpg"
                 alt="Sobre nosotros"
-                class="mx-auto rounded-lg shadow-lg max-w-full h-auto"
+                class="mx-auto rounded-lg shadow-lg max-w-md h-auto"
             />
             <!-- Créditos de la imagen -->
             <div class="mt-4 text-center text-sm text-gray-500">

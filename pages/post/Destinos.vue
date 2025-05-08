@@ -45,21 +45,21 @@
             </div>
         </div>
 
-        <<!-- Botón flotante para subir -->
-            <button
-                v-if="mostrarBotonSubir"
-                @click="scrollToTop"
-                class="fixed bottom-20 right-6 bg-teal-500 text-white p-4 rounded-full shadow-lg hover:bg-teal-400 transition"
-            >
-                <Icon name="mdi:arrow-up" class="h-6 w-6"/>
-            </button>
+        <!-- Botón flotante para subir -->
+        <button
+            v-if="mostrarBotonSubir"
+            @click="scrollToTop"
+            class="fixed bottom-20 right-6 bg-teal-500 text-white p-4 rounded-full shadow-lg hover:bg-teal-400 transition"
+        >
+            <Icon name="mdi:arrow-up" class="h-6 w-6" />
+        </button>
     </section>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 
-// Obtén el baseURL desde la configuración del entorno
+// Obtén el baseURL desde la configuración del entorno (Nuxt 3)
 const { app: { baseURL } } = useRuntimeConfig();
 
 // Destinos de viaje
@@ -118,7 +118,7 @@ const scrollToTop = () => {
 
 // Escuchar el evento de scroll
 const manejarScroll = () => {
-    mostrarBoton.value = window.scrollY > 200;
+    mostrarBotonSubir.value = window.scrollY > 200;
 };
 
 // Agregar y eliminar el evento de scroll
