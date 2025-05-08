@@ -10,15 +10,17 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxtjs/tailwindcss'
   ],
-
+  fonts: {
+    google: {
+      families: ['Roboto', 'Open Sans']
+    }
+  },
   content: {
     highlight: {
       theme: 'github-dark',
     },
   },
-
   css: [
-    '@/assets/css/index.css',
     '@/assets/css/tailwind.css',
   ]
 });
