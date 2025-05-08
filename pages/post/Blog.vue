@@ -64,7 +64,7 @@ const posts = ref([
   {
     titulo: "10 Consejos para Viajar con Presupuesto Limitado",
     resumen: "Descubre cómo ahorrar en tus viajes sin sacrificar la experiencia. Estos consejos te ayudarán a disfrutar más por menos.",
-    imagen: "/assets/images/presupuesto.jpg",
+    imagen: "~/public/assets/images/presupuesto.jpg",
     enlace: "",
     autor: "Kelly Sikkema",
     creditoAutorUrl: "https://unsplash.com/es/@kellysikkema?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
@@ -73,7 +73,7 @@ const posts = ref([
   {
     titulo: "Los Mejores Destinos para el 2025",
     resumen: "Explora los destinos más recomendados para este año. Desde playas paradisíacas hasta ciudades vibrantes.",
-    imagen: "/assets/images/destinos.jpg",
+    imagen: "~/public/assets/images/destinos.jpg",
     enlace: "",
     autor: "Hennie Stander",
     creditoAutorUrl: "https://unsplash.com/es/@henniestander?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
@@ -82,7 +82,7 @@ const posts = ref([
   {
     titulo: "Cómo Empacar Ligero para Cualquier Viaje",
     resumen: "Aprende a empacar solo lo esencial y maximiza el espacio de tu maleta. Ideal para viajeros frecuentes.",
-    imagen: "/assets/images/empacar.jpg",
+    imagen: "~/public/assets/images/empacar.jpg",
     enlace: "",
     autor: "Raquel Brepohl",
     creditoAutorUrl: "https://unsplash.com/es/@rabrepohl?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",

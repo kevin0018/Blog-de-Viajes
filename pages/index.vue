@@ -76,7 +76,7 @@
             <section>
                 <div
                     class="bg-gray-100 py-16 px-4 relative bg-cover bg-center bg-no-repeat"
-                    style="background-image: url('/assets/images/about.jpg');"
+                    style="background-image: url('@/public/assets/images/about.jpg');"
                 >
                     <!-- Overlay para mejorar la legibilidad -->
                     <div class="absolute inset-0 bg-black bg-opacity-30"></div>
@@ -145,28 +145,28 @@ import {ref, onMounted, onBeforeUnmount} from "vue";
 const destinos = ref([
     {
         nombre: "Londres",
-        imagen: "/assets/images/londres.jpg",
+        imagen: "~/assets/images/londres.jpg",
         autor: "Luke Stackpoole",
         creditoAutorUrl: "https://unsplash.com/es/@withluke?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/torre-del-big-ben-mOEqOtmuPG8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
     },
     {
         nombre: "Roma",
-        imagen: "/assets/images/roma.jpg",
+        imagen: "~/assets/images/roma.jpg",
         autor: "David Köhler",
         creditoAutorUrl: "https://unsplash.com/es/@davidkhlr?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/colosseum-arena-photography-VFRTXGw1VjU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
     },
     {
         nombre: "París",
-        imagen: "/assets/images/paris.jpg",
+        imagen: "~/assets/images/paris.jpg",
         autor: "Anthony DELANOIX",
         creditoAutorUrl: "https://unsplash.com/es/@anthonydelanoix?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/eiffel-tower-during-daytime-Q0-fOL2nqZc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
     },
     {
         nombre: "Nueva York",
-        imagen: "/assets/images/nueva-york.jpg",
+        imagen: "~/assets/images/nueva-york.jpg",
         autor: "Timo Wagner",
         creditoAutorUrl: "https://unsplash.com/es/@timovaknar?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/empire-state-building-nueva-york-por-la-noche-fT6-YkB0nfg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",

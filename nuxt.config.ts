@@ -14,7 +14,15 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/assets/images/logo_blog.png' },
       ],
     },
-    baseURL: '/blog-de-viajes/',
+    baseURL: '/Blog-de-Viajes/',
+  },
+  generate: {
+    routes: [
+      '/post/blog',
+      '/post/about',
+      '/post/destinos',
+      '/post/contacto',
+    ],
   },
   modules: [
     '@nuxt/image',
