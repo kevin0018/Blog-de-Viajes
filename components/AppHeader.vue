@@ -1,6 +1,6 @@
 <template>
     <header class="relative bg-cover bg-center h-[50vh] shadow-lg"
-            style="background-image: url('/assets/images/header-bg.jpg');">
+            :style="{ backgroundImage: `url(${baseURL}assets/images/header-bg.jpg)` }">
         <div class="absolute inset-0 bg-black bg-opacity-40"></div>
 
         <!-- Contenido del header -->
@@ -15,10 +15,10 @@
                 </div>
 
                 <!-- Logo centrado -->
-                <a :href="$config.app.baseURL"
+                <a :href="baseURL"
                    class="absolute left-1/2 transform -translate-x-1/2 top-4 lg:top-1/2 lg:-translate-y-1/2">
                     <img
-                        src="/assets/images/logo_blog.png"
+                        :src="`${baseURL}assets/images/logo_blog.png`"
                         alt="Logo del blog"
                         class="h-16 w-auto"
                     />
@@ -108,7 +108,10 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
+
+// Obtén el baseURL desde la configuración del entorno
+const { app: { baseURL } } = useRuntimeConfig();
 
 const isMenuOpen = ref(false);
 
