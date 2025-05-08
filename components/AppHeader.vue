@@ -8,8 +8,8 @@
       <nav class="absolute top-0 left-0 w-full flex justify-between items-center px-8 lg:px-16 py-4 text-white lg:text-xl font-medium">
         <!-- Menú de la izquierda -->
         <div class="hidden lg:flex space-x-8 items-center">
-          <nuxt-link to="/" class="hover:text-blue-400">Blog</nuxt-link>
-          <nuxt-link to="/post/about" class="hover:text-blue-400">About</nuxt-link>
+          <nuxt-link to="/post/blog" class="hover:text-green-400">Blog</nuxt-link>
+          <nuxt-link to="/post/about" class="hover:text-green-400">About</nuxt-link>
         </div>
 
         <!-- Logo centrado -->
@@ -23,8 +23,8 @@
 
         <!-- Menú de la derecha -->
         <div class="hidden lg:flex space-x-8 items-center">
-          <nuxt-link to="/post/destinos" class="hover:text-blue-400">Destinos</nuxt-link>
-          <nuxt-link to="/post/contacto" class="hover:text-blue-400">Contacto</nuxt-link>
+          <nuxt-link to="/post/destinos" class="hover:text-green-400">Destinos</nuxt-link>
+          <nuxt-link to="/post/contacto" class="hover:text-green-400">Contacto</nuxt-link>
           <!-- Redes sociales -->
           <a href="#" class="flex items-center hover:text-gray-300">
             <Icon name="mdi:facebook" class="h-6 w-6" />
@@ -55,16 +55,16 @@
         >
           <ul class="flex flex-col items-center space-y-4 py-4 text-sm font-medium">
             <li>
-              <nuxt-link to="/post/blog" class="hover:text-blue-500">Blog</nuxt-link>
+              <nuxt-link to="/post/blog" class="hover:text-green-400">Blog</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/post/about" class="hover:text-blue-500">About</nuxt-link>
+              <nuxt-link to="/post/about" class="hover:text-green-400">About</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/post/destinos" class="hover:text-blue-500">Destinos</nuxt-link>
+              <nuxt-link to="/post/destinos" class="hover:text-green-400">Destinos</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/post/contacto" class="hover:text-blue-500">Contacto</nuxt-link>
+              <nuxt-link to="/post/contacto" class="hover:text-green-400">Contacto</nuxt-link>
             </li>
           </ul>
 

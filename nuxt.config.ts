@@ -2,18 +2,30 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-
+  app: {
+    head: {
+      title: 'Blog de Viajes',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: 'Explora destinos únicos con nuestro Blog de Viajes' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/assets/images/logo_blog.png' }, // Cambié el icono aquí
+      ],
+    },
+  },
   modules: [
     '@nuxt/image',
     '@nuxt/icon',
     '@nuxt/fonts',
     '@nuxt/content',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
   ],
   fonts: {
     google: {
-      families: ['Roboto', 'Open Sans']
-    }
+      families: ['Roboto', 'Open Sans'],
+    },
   },
   content: {
     highlight: {
@@ -22,5 +34,5 @@ export default defineNuxtConfig({
   },
   css: [
     '@/assets/css/tailwind.css',
-  ]
+  ],
 });
