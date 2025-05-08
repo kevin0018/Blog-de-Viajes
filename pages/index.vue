@@ -65,7 +65,7 @@
                 <!-- Botón para ver todos los destinos -->
                 <div class="mt-8 flex justify-center">
                     <nuxt-link
-                        to="post/destinos"
+                        to="/post/destinos"
                         class="bg-gray-800 text-white py-2 px-8 rounded-full hover:bg-gray-600 transition"
                     >
                         Todos los destinos
