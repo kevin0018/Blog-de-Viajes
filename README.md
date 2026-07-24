@@ -48,9 +48,10 @@ El contenido estático se genera en la carpeta `.output/public/`.
 ## 🚢 Despliegue en GitHub Pages
 
 Cada push a `main` ejecuta GitHub Actions para validar el proyecto, generar el sitio
-estático y publicar el resultado en la rama `gh-pages`.
+estático y desplegarlo mediante el flujo oficial de GitHub Pages.
 
-También puedes desplegar manualmente:
+El despliegue también puede lanzarse manualmente desde la pestaña **Actions** de
+GitHub. Como alternativa, puedes seguir publicando en la rama `gh-pages` con:
 
 ```powershell
 pnpm generate
