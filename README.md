@@ -47,11 +47,15 @@ El contenido estático se genera en la carpeta `.output/public/`.
 
 ## 🚢 Despliegue en GitHub Pages
 
-1. Asegúrate de que el archivo `.nojekyll` existe en `.output/public/`.
-2. Despliega con:
-   ```powershell
-   pnpm deploy
-   ```
+Cada push a `main` ejecuta GitHub Actions para validar el proyecto, generar el sitio
+estático y publicar el resultado en la rama `gh-pages`.
+
+También puedes desplegar manualmente:
+
+```powershell
+pnpm generate
+pnpm deploy
+```
 
 Esto subirá el contenido de `.output/public/` a la rama `gh-pages`.
 

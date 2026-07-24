@@ -35,6 +35,14 @@ export default defineNuxtConfig({
         '@nuxt/icon',
         '@nuxt/fonts',
     ],
+    icon: {
+        serverBundle: {
+            collections: ['mdi'],
+        },
+        clientBundle: {
+            scan: true,
+        },
+    },
     fonts: {
         google: {
             families: ['Bodoni Moda', 'Atkinson Hyperlegible', 'IBM Plex Mono'],
