@@ -1,7 +1,7 @@
 <template>
-    <section class="py-12 px-4 bg-gray-100">
-        <h1 class="text-center text-3xl font-bold mb-8">Destinos</h1>
-        <p class="text-center text-gray-700 max-w-4xl mx-auto mb-12">
+    <section class="py-12 px-4 bg-spain-paper">
+        <h1 class="section-title text-center text-3xl font-bold mb-8">Destinos</h1>
+        <p class="text-center text-spain-ink max-w-4xl mx-auto mb-12">
             Explora los destinos más increíbles del mundo. Aquí encontrarás inspiración, consejos y experiencias únicas
             sobre
             lugares fascinantes que hemos visitado. ¡Prepárate para tu próxima aventura!
@@ -12,23 +12,23 @@
             <div
                 v-for="(destino, index) in destinos"
                 :key="index"
-                class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200"
+                class="bg-white shadow-md rounded-lg overflow-hidden border border-spain-sand"
             >
                 <!-- Imagen del destino -->
                 <img
                     :src="`${baseURL}${destino.imagen}`"
                     :alt="destino.nombre"
                     class="w-full h-48 object-cover"
-                />
+                >
                 <!-- Contenido del destino -->
                 <div class="p-6">
-                    <h2 class="text-xl font-bold text-gray-800">{{ destino.nombre }}</h2>
-                    <p class="text-sm text-gray-500">
+                    <h2 class="text-xl font-bold text-spain-ink">{{ destino.nombre }}</h2>
+                    <p class="text-sm text-spain-ink/65">
                         Foto de
                         <a
                             :href="destino.creditoAutorUrl"
                             target="_blank"
-                            class="underline hover:text-blue-500"
+                            class="underline hover:text-spain-red"
                         >
                             {{ destino.autor }}
                         </a>
@@ -36,7 +36,7 @@
                         <a
                             :href="destino.creditoUnsplashUrl"
                             target="_blank"
-                            class="underline hover:text-blue-500"
+                            class="underline hover:text-spain-red"
                         >
                             Unsplash
                         </a>
@@ -48,8 +48,8 @@
         <!-- Botón flotante para subir -->
         <button
             v-if="mostrarBotonSubir"
+            class="fixed bottom-20 right-6 bg-spain-red text-white p-4 rounded-full shadow-lg hover:bg-spain-yellow hover:text-spain-ink transition"
             @click="scrollToTop"
-            class="fixed bottom-20 right-6 bg-teal-500 text-white p-4 rounded-full shadow-lg hover:bg-teal-400 transition"
         >
             <Icon name="mdi:arrow-up" class="h-6 w-6" />
         </button>

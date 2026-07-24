@@ -1,3 +1,70 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bodoni Moda", Georgia, serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-utility: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-spain-red: #aa151b;
+  --color-spain-wine: #6f0d13;
+  --color-spain-yellow: #f1bf00;
+  --color-spain-gold: #d89e00;
+  --color-spain-paper: #fff9e8;
+  --color-spain-sand: #e8d8a8;
+  --color-spain-ink: #251a16;
+}
+
+@layer base {
+  html {
+    background: var(--color-spain-paper);
+  }
+
+  body {
+    background: var(--color-spain-paper);
+    color: var(--color-spain-ink);
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-spain-yellow);
+    color: var(--color-spain-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-spain-yellow);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .section-title {
+    color: var(--color-spain-wine);
+  }
+
+  .section-title::after {
+    display: block;
+    width: 4rem;
+    height: 0.25rem;
+    margin: 0.75rem auto 0;
+    background: var(--color-spain-yellow);
+    content: "";
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

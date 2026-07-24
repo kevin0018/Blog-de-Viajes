@@ -1,7 +1,7 @@
 <template>
-    <section class="py-12 px-4 bg-gray-100">
-        <h1 class="text-center text-3xl font-bold mb-8">Sobre Nosotros</h1>
-        <div class="max-w-4xl mx-auto text-gray-700 text-center">
+    <section class="py-12 px-4 bg-spain-paper">
+        <h1 class="section-title text-center text-3xl font-bold mb-8">Sobre Nosotros</h1>
+        <div class="max-w-4xl mx-auto text-spain-ink text-center">
             <p class="mb-6">
                 Somos un equipo apasionado por los viajes, la fotografía y la escritura. Nos encanta explorar nuevos
                 lugares, experimentar diferentes culturas y compartir nuestras aventuras con el mundo.
@@ -18,7 +18,7 @@
         <div class="mt-8 flex justify-center">
             <nuxt-link
                 to="/post/contacto"
-                class="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition-all"
+                class="bg-spain-red text-white py-2 px-6 rounded-md hover:bg-spain-wine transition-all"
             >
                 Contáctanos
             </nuxt-link>
@@ -28,13 +28,13 @@
                 src="/assets/images/about_us.jpg"
                 alt="Sobre nosotros"
                 class="mx-auto rounded-lg shadow-lg max-w-md h-auto"
-            />
+            >
             <!-- Créditos de la imagen -->
-            <div class="mt-4 text-center text-sm text-gray-500">
+            <div class="mt-4 text-center text-sm text-spain-ink/65">
                 Foto de
                 <a
                     href="https://unsplash.com/es/@derstudi?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                    class="underline hover:text-gray-700"
+                    class="underline hover:text-spain-red"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -43,7 +43,7 @@
                 en
                 <a
                     href="https://unsplash.com/es/fotos/seis-siluetas-de-personas-saltando-durante-la-salida-del-sol-BIk2ANMmNz4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                    class="underline hover:text-gray-700"
+                    class="underline hover:text-spain-red"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

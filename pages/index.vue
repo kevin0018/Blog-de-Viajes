@@ -4,18 +4,18 @@
         <main class="my-8">
             <!-- Carrusel -->
             <section class="py-8 px-4">
-                <h2 class="text-center text-2xl font-bold mb-6">Destinos</h2>
+                <h2 class="section-title text-center text-2xl font-bold mb-6">Destinos</h2>
                 <div class="relative">
                     <!-- Botones de navegación -->
                     <button
+                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-spain-wine text-white p-2 rounded-full hover:bg-spain-yellow hover:text-spain-ink z-10"
                         @click="scrollLeft"
-                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
                     >
                         <Icon name="mdi:chevron-left" class="w-6 h-6"/>
                     </button>
                     <button
+                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-spain-wine text-white p-2 rounded-full hover:bg-spain-yellow hover:text-spain-ink z-10"
                         @click="scrollRight"
-                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
                     >
                         <Icon name="mdi:chevron-right" class="w-6 h-6"/>
                     </button>
@@ -29,22 +29,22 @@
                         <div
                             v-for="(destino, index) in destinos"
                             :key="index"
-                            class="snap-center flex-shrink-0 w-72 bg-white shadow-lg rounded-2xl overflow-hidden border border-gray-300"
+                            class="snap-center flex-shrink-0 w-72 bg-white shadow-lg rounded-2xl overflow-hidden border border-spain-sand"
                         >
                             <img
                                 :src="`${baseURL}${destino.imagen}`"
                                 :alt="destino.nombre"
                                 class="w-full h-48 object-cover"
-                            />
+                            >
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-center">{{ destino.nombre }}</h3>
                                 <!-- Créditos -->
-                                <p class="text-sm text-gray-500 text-center mt-2">
+                                <p class="text-sm text-spain-ink/65 text-center mt-2">
                                     Foto de
                                     <a
                                         :href="destino.creditoAutorUrl"
                                         target="_blank"
-                                        class="underline hover:text-blue-500"
+                                        class="underline hover:text-spain-red"
                                     >
                                         {{ destino.autor }}
                                     </a>
@@ -52,7 +52,7 @@
                                     <a
                                         :href="destino.creditoUnsplashUrl"
                                         target="_blank"
-                                        class="underline hover:text-blue-500"
+                                        class="underline hover:text-spain-red"
                                     >
                                         Unsplash
                                     </a>
@@ -66,7 +66,7 @@
                 <div class="mt-8 flex justify-center">
                     <nuxt-link
                         to="/post/destinos"
-                        class="bg-gray-800 text-white py-2 px-8 rounded-full hover:bg-gray-600 transition"
+                        class="bg-spain-red text-white py-2 px-8 rounded-full hover:bg-spain-wine transition"
                     >
                         Todos los destinos
                     </nuxt-link>
@@ -75,16 +75,16 @@
 
             <section>
                 <div
-                    class="bg-gray-100 py-16 px-4 relative bg-cover bg-center bg-no-repeat"
+                    class="bg-spain-paper py-16 px-4 relative bg-cover bg-center bg-no-repeat"
                     :style="{ backgroundImage: `url(${baseURL}assets/images/about.jpg)` }"
                 >
                     <!-- Overlay para mejorar la legibilidad -->
-                    <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                    <div class="absolute inset-0 bg-spain-wine/55"/>
 
                     <!-- Contenido de la sección -->
                     <div class="relative z-10">
-                        <h2 class="text-center text-2xl font-bold text-white mb-6">Sobre mí</h2>
-                        <p class="text-center text-gray-200 max-w-2xl mx-auto">
+                        <h2 class="text-center text-2xl font-bold text-spain-yellow mb-6">Sobre mí</h2>
+                        <p class="text-center text-spain-paper max-w-2xl mx-auto">
                             Soy una persona apasionada por los viajes, la fotografía y la escritura.
                             A través de este blog, quiero compartir mis experiencias, consejos y recomendaciones
                             sobre los destinos que he visitado. Espero que encuentres inspiración y
@@ -97,18 +97,18 @@
                 <div class="mt-8 flex justify-center">
                     <nuxt-link
                         to="/post/about"
-                        class="bg-gray-800 text-white py-2 px-8 rounded-full hover:bg-gray-600 transition"
+                        class="bg-spain-red text-white py-2 px-8 rounded-full hover:bg-spain-wine transition"
                     >
                         ¿Quieres saber más?
                     </nuxt-link>
                 </div>
 
                 <!-- Créditos de la imagen -->
-                <div class="mt-4 text-center text-sm text-gray-500">
+                <div class="mt-4 text-center text-sm text-spain-ink/65">
                     Foto de
                     <a
                         href="https://unsplash.com/es/@urban_vintage?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                        class="underline hover:text-gray-700"
+                        class="underline hover:text-spain-red"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -117,7 +117,7 @@
                     en
                     <a
                         href="https://unsplash.com/es/fotos/fotografia-de-paisaje-de-montana-golpeada-por-los-rayos-del-sol-78A265wPiO4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                        class="underline hover:text-gray-700"
+                        class="underline hover:text-spain-red"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -129,8 +129,8 @@
             <!-- Botón flotante para subir -->
             <button
                 v-if="mostrarBotonSubir"
+                class="fixed bottom-20 right-6 bg-spain-red text-white p-4 rounded-full shadow-lg hover:bg-spain-yellow hover:text-spain-ink transition"
                 @click="scrollToTop"
-                class="fixed bottom-20 right-6 bg-teal-500 text-white p-4 rounded-full shadow-lg hover:bg-teal-400 transition"
             >
                 <Icon name="mdi:arrow-up" class="h-6 w-6"/>
             </button>

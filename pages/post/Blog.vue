@@ -1,7 +1,7 @@
 <template>
-  <section class="py-12 px-4 bg-gray-100">
-    <h1 class="text-center text-3xl font-bold mb-8">Blog</h1>
-    <p class="text-center text-gray-700 max-w-4xl mx-auto mb-12">
+  <section class="py-12 px-4 bg-spain-paper">
+    <h1 class="section-title text-center text-3xl font-bold mb-8">Blog</h1>
+    <p class="text-center text-spain-ink max-w-4xl mx-auto mb-12">
       Encuentra artículos interesantes, consejos de viaje y experiencias únicas en nuestro blog. ¡Prepárate para aprender y explorar!
     </p>
 
@@ -10,35 +10,35 @@
       <div
         v-for="(post, index) in posts"
         :key="index"
-        class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200"
+        class="bg-white shadow-md rounded-lg overflow-hidden border border-spain-sand"
       >
         <!-- Imagen de la publicación -->
         <img
           :src="`${baseURL}${post.imagen}`"
           :alt="post.titulo"
           class="w-full h-48 object-cover"
-        />
+        >
         <!-- Contenido de la publicación -->
         <div class="p-6">
-          <h2 class="text-xl font-bold text-gray-800">{{ post.titulo }}</h2>
-          <p class="text-sm text-gray-700 mt-2">
+          <h2 class="text-xl font-bold text-spain-ink">{{ post.titulo }}</h2>
+          <p class="text-sm text-spain-ink mt-2">
             {{ post.resumen }}
           </p>
           <nuxt-link
             :to="post.enlace"
-            class="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition"
+            class="mt-4 inline-block bg-spain-red text-white py-2 px-4 rounded-md hover:bg-spain-wine transition"
           >
             Leer más
           </nuxt-link>
         </div>
         <!-- Créditos de la imagen -->
-        <div class="p-4 bg-gray-50 text-center text-sm text-gray-500">
+        <div class="p-4 bg-spain-yellow/10 text-center text-sm text-spain-ink/65">
           Foto de
           <a
             :href="post.creditoAutorUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="underline hover:text-blue-500"
+            class="underline hover:text-spain-red"
           >
             {{ post.autor }}
           </a>
@@ -47,7 +47,7 @@
             :href="post.creditoUnsplashUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="underline hover:text-blue-500"
+            class="underline hover:text-spain-red"
           >
             Unsplash
           </a>
