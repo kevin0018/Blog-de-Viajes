@@ -6,11 +6,11 @@
     </p>
 
     <!-- Contenedor de tarjetas de blog -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <div
         v-for="(post, index) in posts"
         :key="index"
-        class="bg-white shadow-md rounded-lg overflow-hidden border border-spain-sand"
+        class="flex self-stretch flex-col overflow-hidden rounded-lg border border-spain-sand bg-white shadow-md"
       >
         <!-- Imagen de la publicación -->
         <img
@@ -19,17 +19,19 @@
           class="w-full h-48 object-cover"
         >
         <!-- Contenido de la publicación -->
-        <div class="p-6">
+        <div class="flex flex-1 flex-col p-6">
           <h2 class="text-xl font-bold text-spain-ink">{{ post.titulo }}</h2>
-          <p class="text-sm text-spain-ink mt-2">
+          <p class="mt-2 text-sm text-spain-ink">
             {{ post.resumen }}
           </p>
-          <nuxt-link
-            :to="post.enlace"
-            class="mt-4 inline-block bg-spain-red text-white py-2 px-4 rounded-md hover:bg-spain-wine transition"
-          >
-            Leer más
-          </nuxt-link>
+          <div class="mt-auto pt-4">
+            <nuxt-link
+              :to="post.enlace"
+              class="inline-block rounded-md bg-spain-red px-4 py-2 text-white transition hover:bg-spain-wine"
+            >
+              Leer más
+            </nuxt-link>
+          </div>
         </div>
         <!-- Créditos de la imagen -->
         <div class="p-4 bg-spain-yellow/10 text-center text-sm text-spain-ink/65">

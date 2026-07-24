@@ -1,6 +1,9 @@
 <template>
     <div class="app-wrapper">
-        <AppHeader />
+        <AppHeader
+            :compact="compactHeader"
+            :full-screen="contactPage"
+        />
         <main>
             <NuxtPage />
         </main>
@@ -11,6 +14,10 @@
 <script setup>
 import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
+
+const route = useRoute();
+const contactPage = computed(() => route.path === "/post/contacto");
+const compactHeader = computed(() => route.path !== "/" && !contactPage.value);
 </script>
 
 <style>

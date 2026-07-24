@@ -25,7 +25,7 @@
         </div>
         <div class="mt-12">
             <img
-                src="/assets/images/about_us.jpg"
+                :src="`${baseURL}assets/images/about_us.jpg`"
                 alt="Sobre nosotros"
                 class="mx-auto rounded-lg shadow-lg max-w-md h-auto"
             >
@@ -53,3 +53,7 @@
         </div>
     </section>
 </template>
+
+<script setup>
+const { app: { baseURL } } = useRuntimeConfig();
+</script>

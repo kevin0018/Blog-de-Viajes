@@ -1,5 +1,12 @@
 <template>
-    <header class="relative h-[50vh] min-h-80 overflow-hidden border-b-4 border-spain-yellow shadow-lg">
+    <header
+        class="relative overflow-hidden border-b-4 border-spain-yellow shadow-lg transition-[height] duration-500"
+        :class="fullScreen
+            ? 'h-screen min-h-[64rem] lg:min-h-[46rem]'
+            : compact
+                ? 'h-[28vh] min-h-56 lg:h-[32vh]'
+                : 'h-[50vh] min-h-80'"
+    >
         <picture class="absolute inset-0">
             <source
                 media="(max-width: 767px)"
@@ -18,7 +25,7 @@
         <div class="absolute inset-0 bg-spain-ink/55"/>
 
         <!-- Contenido del header -->
-        <div class="relative z-10 flex flex-col items-center h-full">
+        <div class="relative z-30 flex h-full flex-col items-center">
             <!-- Menú superior para escritorio y móviles -->
             <nav
                 class="absolute top-0 left-0 w-full flex justify-between items-center px-8 lg:px-16 py-4 text-white lg:text-xl font-medium">
@@ -109,7 +116,7 @@
 
         <!-- Créditos del autor -->
         <div
-            class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-white text-xs bg-spain-ink/75 px-4 py-2 rounded-md">
+            class="absolute bottom-2 left-1/2 z-30 -translate-x-1/2 rounded-md bg-spain-ink/75 px-4 py-2 text-xs text-white">
             Foto de
             <a
                 href="https://unsplash.com/es/@v2osk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
@@ -132,6 +139,17 @@
 
 <script setup>
 import { ref } from "vue";
+
+defineProps({
+    compact: {
+        type: Boolean,
+        default: false,
+    },
+    fullScreen: {
+        type: Boolean,
+        default: false,
+    },
+});
 
 // Obtén el baseURL desde la configuración del entorno
 const { app: { baseURL } } = useRuntimeConfig();
