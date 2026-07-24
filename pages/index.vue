@@ -99,37 +99,37 @@
                 </div>
             </section>
 
-            <section>
+            <section
+                class="relative flex min-h-[34rem] items-center overflow-hidden bg-cover bg-center bg-no-repeat px-4 py-20 sm:px-6 lg:min-h-[40rem]"
+                :style="{ backgroundImage: `url(${baseURL}assets/images/about.jpg)` }"
+            >
+                <div class="absolute inset-0 bg-spain-wine/65"/>
                 <div
-                    class="bg-spain-paper py-16 px-4 relative bg-cover bg-center bg-no-repeat"
-                    :style="{ backgroundImage: `url(${baseURL}assets/images/about.jpg)` }"
+                    class="relative z-10 mx-auto max-w-3xl text-center"
                 >
-                    <div class="absolute inset-0 bg-spain-wine/55"/>
-                    <div class="relative z-10">
-                        <h2 class="text-center text-2xl font-bold text-spain-yellow mb-6">Sobre mí</h2>
-                        <p class="text-center text-spain-paper max-w-2xl mx-auto">
-                            Soy una persona apasionada por los viajes, la fotografía y la escritura.
-                            A través de este blog, quiero compartir mis experiencias, consejos y recomendaciones
-                            sobre los destinos que he visitado. Espero que encuentres inspiración y
-                            útiles mis relatos para tus próximas aventuras.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mt-8 flex justify-center">
+                    <p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-spain-yellow">
+                        Detrás del cuaderno
+                    </p>
+                    <h2 class="text-4xl font-bold text-white sm:text-5xl">Sobre mí</h2>
+                    <p class="mx-auto mt-6 max-w-2xl text-base leading-7 text-spain-paper/90 sm:text-lg sm:leading-8">
+                        Soy una persona apasionada por los viajes, la fotografía y la escritura.
+                        En este blog comparto experiencias, consejos y recomendaciones de los destinos
+                        que he visitado para inspirar tu próxima aventura.
+                    </p>
                     <nuxt-link
                         to="/post/about"
-                        class="bg-spain-red text-white py-2 px-8 rounded-full hover:bg-spain-wine transition"
+                        class="mt-8 inline-flex items-center gap-2 rounded-full bg-spain-yellow px-8 py-3 font-semibold text-spain-ink transition hover:bg-white"
                     >
                         ¿Quieres saber más?
+                        <Icon name="mdi:arrow-right" class="h-5 w-5"/>
                     </nuxt-link>
                 </div>
 
-                <div class="mt-4 text-center text-sm text-spain-ink/65">
+                <div class="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap text-xs text-white/70">
                     Foto de
                     <a
                         href="https://unsplash.com/es/@urban_vintage?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                        class="underline hover:text-spain-red"
+                        class="underline hover:text-spain-yellow"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -138,7 +138,7 @@
                     en
                     <a
                         href="https://unsplash.com/es/fotos/fotografia-de-paisaje-de-montana-golpeada-por-los-rayos-del-sol-78A265wPiO4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                        class="underline hover:text-spain-red"
+                        class="underline hover:text-spain-yellow"
                         target="_blank"
                         rel="noopener noreferrer"
                     >

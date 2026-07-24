@@ -18,7 +18,7 @@ export default defineNuxtConfig({
                 },
             ],
             link: [
-                {rel: 'icon', type: 'image/png', href: 'assets/images/logo_blog.png'},
+                {rel: 'icon', type: 'image/svg+xml', href: '/Blog-de-Viajes/assets/images/favicon-viajes.svg'},
             ],
         },
     },
