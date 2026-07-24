@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title description">
+  <title id="title">Blog de Viajes</title>
+  <desc id="description">Rosa de los vientos minimalista</desc>
+  <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="32" r="25" stroke-width="2"/>
+    <path d="M32 7v5M57 32h-5M32 57v-5M7 32h5" stroke-width="2.5"/>
+    <path d="m32 13 5 19-5 19-5-19 5-19Z" stroke-width="2"/>
+    <path d="m13 32 19-5 19 5-19 5-19-5Z" stroke-width="1.5" opacity=".8"/>
+  </g>
+  <path d="m32 13 5 19-5-4.5-5 4.5 5-19Z" fill="#f1bf00" stroke="#ffffff" stroke-linejoin="round" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="2.5" fill="#ffffff"/>
+</svg>
