@@ -1,7 +1,20 @@
 <template>
-    <header
-class="relative bg-cover bg-center h-[50vh] border-b-4 border-spain-yellow shadow-lg"
-            :style="{ backgroundImage: `url(${baseURL}assets/images/header-bg.jpg)` }">
+    <header class="relative h-[50vh] min-h-80 overflow-hidden border-b-4 border-spain-yellow shadow-lg">
+        <picture class="absolute inset-0">
+            <source
+                media="(max-width: 767px)"
+                :srcset="`${baseURL}assets/images/header-bg-960.jpg`"
+            >
+            <img
+                :src="`${baseURL}assets/images/header-bg-1920.jpg`"
+                alt=""
+                width="1920"
+                height="1144"
+                fetchpriority="high"
+                decoding="async"
+                class="h-full w-full object-cover object-center"
+            >
+        </picture>
         <div class="absolute inset-0 bg-spain-ink/55"/>
 
         <!-- Contenido del header -->
@@ -17,11 +30,15 @@ class="relative bg-cover bg-center h-[50vh] border-b-4 border-spain-yellow shado
 
                 <!-- Logo centrado -->
                 <a
-:href="baseURL"
-                   class="absolute left-1/2 transform -translate-x-1/2 top-4 lg:top-1/2 lg:-translate-y-1/2">
+                    :href="baseURL"
+                    class="absolute left-1/2 transform -translate-x-1/2 top-4 lg:top-1/2 lg:-translate-y-1/2">
                     <img
                         :src="`${baseURL}assets/images/logo_blog.png`"
                         alt="Blog de Viajes"
+                        width="60"
+                        height="60"
+                        fetchpriority="high"
+                        decoding="sync"
                         class="h-16 w-auto"
                     >
                 </a>

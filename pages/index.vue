@@ -1,75 +1,101 @@
 <template>
     <div>
-        <!-- Contenido principal -->
-        <main class="my-8">
-            <!-- Carrusel -->
-            <section class="py-8 px-4">
-                <h2 class="section-title text-center text-2xl font-bold mb-6">Destinos</h2>
-                <div class="relative">
-                    <!-- Botones de navegación -->
-                    <button
-                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-spain-wine text-white p-2 rounded-full hover:bg-spain-yellow hover:text-spain-ink z-10"
-                        @click="scrollLeft"
-                    >
-                        <Icon name="mdi:chevron-left" class="w-6 h-6"/>
-                    </button>
-                    <button
-                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-spain-wine text-white p-2 rounded-full hover:bg-spain-yellow hover:text-spain-ink z-10"
-                        @click="scrollRight"
-                    >
-                        <Icon name="mdi:chevron-right" class="w-6 h-6"/>
-                    </button>
+        <main>
+            <section class="px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
+                <div class="mx-auto max-w-[90rem]">
+                    <div class="mb-9 flex flex-col gap-4 border-b border-spain-sand pb-6 lg:flex-row lg:items-end lg:justify-between">
+                        <div>
+                            <p class="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-spain-red">
+                                Próxima parada
+                            </p>
+                            <h2 class="section-title text-3xl font-bold sm:text-4xl">Destinos para perderse</h2>
+                        </div>
+                        <p class="max-w-xl text-sm leading-6 text-spain-ink/70 sm:text-base">
+                            Cuatro ciudades con ritmos muy distintos. Elige una y empieza a preparar
+                            la próxima escapada.
+                        </p>
+                    </div>
 
-                    <!-- Contenedor del carrusel -->
-                    <div
-                        ref="carousel"
-                        class="flex space-x-6 overflow-x-hidden snap-x snap-mandatory max-w-screen-lg mx-auto"
-                    >
-                        <!-- Tarjetas de destinos -->
-                        <div
-                            v-for="(destino, index) in destinos"
-                            :key="index"
-                            class="snap-center flex-shrink-0 w-72 bg-white shadow-lg rounded-2xl overflow-hidden border border-spain-sand"
+                    <div class="relative">
+                        <button
+                            aria-label="Ver destinos anteriores"
+                            class="absolute -left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-spain-wine p-2 text-white shadow-lg transition hover:bg-spain-yellow hover:text-spain-ink xl:hidden"
+                            @click="scrollLeft"
                         >
-                            <img
-                                :src="`${baseURL}${destino.imagen}`"
-                                :alt="destino.nombre"
-                                class="w-full h-48 object-cover"
+                            <Icon name="mdi:chevron-left" class="h-6 w-6"/>
+                        </button>
+                        <button
+                            aria-label="Ver más destinos"
+                            class="absolute -right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-spain-wine p-2 text-white shadow-lg transition hover:bg-spain-yellow hover:text-spain-ink xl:hidden"
+                            @click="scrollRight"
+                        >
+                            <Icon name="mdi:chevron-right" class="h-6 w-6"/>
+                        </button>
+
+                        <div
+                            ref="carousel"
+                            class="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-3 xl:grid xl:grid-cols-4 xl:gap-6 xl:overflow-visible xl:px-0"
+                        >
+                            <article
+                                v-for="(destino, index) in destinos"
+                                :key="index"
+                                class="group flex w-[82vw] max-w-80 flex-shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-spain-sand bg-white shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:w-80 xl:w-auto xl:max-w-none"
                             >
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-center">{{ destino.nombre }}</h3>
-                                <!-- Créditos -->
-                                <p class="text-sm text-spain-ink/65 text-center mt-2">
-                                    Foto de
-                                    <a
-                                        :href="destino.creditoAutorUrl"
-                                        target="_blank"
-                                        class="underline hover:text-spain-red"
+                                <div class="overflow-hidden">
+                                    <img
+                                        :src="`${baseURL}${destino.imagen}`"
+                                        :alt="destino.nombre"
+                                        width="640"
+                                        height="420"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="h-52 w-full object-cover transition duration-500 group-hover:scale-[1.03] xl:h-56"
                                     >
-                                        {{ destino.autor }}
-                                    </a>
-                                    en
-                                    <a
-                                        :href="destino.creditoUnsplashUrl"
-                                        target="_blank"
-                                        class="underline hover:text-spain-red"
-                                    >
-                                        Unsplash
-                                    </a>
-                                </p>
-                            </div>
+                                </div>
+                                <div class="flex flex-1 flex-col p-6">
+                                    <div class="mb-4 flex items-center justify-between gap-3">
+                                        <h3 class="text-xl font-bold">{{ destino.nombre }}</h3>
+                                        <span class="shrink-0 rounded-full bg-spain-yellow/25 px-3 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-wider text-spain-wine">
+                                            {{ destino.duracion }}
+                                        </span>
+                                    </div>
+                                    <p class="mb-5 text-sm leading-6 text-spain-ink/75">
+                                        {{ destino.descripcion }}
+                                    </p>
+                                    <p class="mt-auto border-t border-spain-sand pt-4 text-xs text-spain-ink/60">
+                                        Foto de
+                                        <a
+                                            :href="destino.creditoAutorUrl"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="underline hover:text-spain-red"
+                                        >
+                                            {{ destino.autor }}
+                                        </a>
+                                        en
+                                        <a
+                                            :href="destino.creditoUnsplashUrl"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="underline hover:text-spain-red"
+                                        >
+                                            Unsplash
+                                        </a>
+                                    </p>
+                                </div>
+                            </article>
                         </div>
                     </div>
-                </div>
 
-                <!-- Botón para ver todos los destinos -->
-                <div class="mt-8 flex justify-center">
-                    <nuxt-link
-                        to="/post/destinos"
-                        class="bg-spain-red text-white py-2 px-8 rounded-full hover:bg-spain-wine transition"
-                    >
-                        Todos los destinos
-                    </nuxt-link>
+                    <div class="mt-8 flex justify-center lg:justify-end">
+                        <nuxt-link
+                            to="/post/destinos"
+                            class="inline-flex items-center gap-2 rounded-full bg-spain-red px-8 py-3 font-semibold text-white transition hover:bg-spain-wine"
+                        >
+                            Todos los destinos
+                            <Icon name="mdi:arrow-right" class="h-5 w-5"/>
+                        </nuxt-link>
+                    </div>
                 </div>
             </section>
 
@@ -78,10 +104,7 @@
                     class="bg-spain-paper py-16 px-4 relative bg-cover bg-center bg-no-repeat"
                     :style="{ backgroundImage: `url(${baseURL}assets/images/about.jpg)` }"
                 >
-                    <!-- Overlay para mejorar la legibilidad -->
                     <div class="absolute inset-0 bg-spain-wine/55"/>
-
-                    <!-- Contenido de la sección -->
                     <div class="relative z-10">
                         <h2 class="text-center text-2xl font-bold text-spain-yellow mb-6">Sobre mí</h2>
                         <p class="text-center text-spain-paper max-w-2xl mx-auto">
@@ -93,7 +116,6 @@
                     </div>
                 </div>
 
-                <!-- Botón para más información -->
                 <div class="mt-8 flex justify-center">
                     <nuxt-link
                         to="/post/about"
@@ -103,7 +125,6 @@
                     </nuxt-link>
                 </div>
 
-                <!-- Créditos de la imagen -->
                 <div class="mt-4 text-center text-sm text-spain-ink/65">
                     Foto de
                     <a
@@ -126,9 +147,9 @@
                 </div>
             </section>
 
-            <!-- Botón flotante para subir -->
             <button
                 v-if="mostrarBotonSubir"
+                aria-label="Volver al inicio"
                 class="fixed bottom-20 right-6 bg-spain-red text-white p-4 rounded-full shadow-lg hover:bg-spain-yellow hover:text-spain-ink transition"
                 @click="scrollToTop"
             >
@@ -137,7 +158,6 @@
         </main>
     </div>
 </template>
-
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
@@ -149,6 +169,8 @@ const destinos = ref([
     {
         nombre: "Londres",
         imagen: "assets/images/londres.jpg",
+        duracion: "3–4 días",
+        descripcion: "Mercados, museos y barrios con carácter para recorrer sin mirar el reloj.",
         autor: "Luke Stackpoole",
         creditoAutorUrl: "https://unsplash.com/es/@withluke?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/torre-del-big-ben-mOEqOtmuPG8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
@@ -156,6 +178,8 @@ const destinos = ref([
     {
         nombre: "Roma",
         imagen: "assets/images/roma.jpg",
+        duracion: "3 días",
+        descripcion: "Historia a cielo abierto, plazas vivas y sobremesas que siempre se alargan.",
         autor: "David Köhler",
         creditoAutorUrl: "https://unsplash.com/es/@davidkhlr?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/colosseum-arena-photography-VFRTXGw1VjU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
@@ -163,6 +187,8 @@ const destinos = ref([
     {
         nombre: "París",
         imagen: "assets/images/paris.jpg",
+        duracion: "3–4 días",
+        descripcion: "Paseos junto al Sena, pequeñas galerías y cafés con vistas a la ciudad.",
         autor: "Anthony DELANOIX",
         creditoAutorUrl: "https://unsplash.com/es/@anthonydelanoix?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/eiffel-tower-during-daytime-Q0-fOL2nqZc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
@@ -170,6 +196,8 @@ const destinos = ref([
     {
         nombre: "Nueva York",
         imagen: "assets/images/nueva-york.jpg",
+        duracion: "5 días",
+        descripcion: "Rascacielos, barrios inagotables y una energía que cambia a cada esquina.",
         autor: "Timo Wagner",
         creditoAutorUrl: "https://unsplash.com/es/@timovaknar?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/empire-state-building-nueva-york-por-la-noche-fT6-YkB0nfg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
