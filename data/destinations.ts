@@ -34,7 +34,7 @@ export const destinations: readonly Destination[] = [
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/eiffel-tower-during-daytime-Q0-fOL2nqZc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
     },
     {
-        id: "roma",
+        id: "rome",
         nombre: "Roma",
         pais: "Italia",
         imagen: "assets/images/roma.webp",
@@ -66,7 +66,7 @@ export const destinations: readonly Destination[] = [
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/colosseum-arena-photography-VFRTXGw1VjU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
     },
     {
-        id: "tokio",
+        id: "tokyo",
         nombre: "Tokio",
         pais: "Japón",
         imagen: "assets/images/tokio.webp",
@@ -98,7 +98,7 @@ export const destinations: readonly Destination[] = [
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/foto-de-personas-cruzando-la-carretera-4HG5hlhmZg8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
     },
     {
-        id: "londres",
+        id: "london",
         nombre: "Londres",
         pais: "Reino Unido",
         imagen: "assets/images/londres.webp",
@@ -130,7 +130,7 @@ export const destinations: readonly Destination[] = [
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/torre-del-big-ben-mOEqOtmuPG8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
     },
     {
-        id: "nueva-york",
+        id: "new-york",
         nombre: "Nueva York",
         pais: "Estados Unidos",
         imagen: "assets/images/nueva-york.webp",
@@ -195,7 +195,7 @@ export const destinations: readonly Destination[] = [
     },
 ];
 
-const homeDestinationIds = ["londres", "roma", "paris", "nueva-york"];
+const homeDestinationIds = ["london", "rome", "paris", "new-york"];
 
 export const homeDestinations = homeDestinationIds.map((id) => {
     const destination = destinations.find((item) => item.id === id);

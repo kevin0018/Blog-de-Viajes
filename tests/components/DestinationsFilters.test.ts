@@ -1,6 +1,6 @@
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import { describe, expect, it } from "vitest";
-import DestinationsPage from "~/pages/post/destinos/index.vue";
+import DestinationsPage from "~/pages/destinations/index.vue";
 
 describe("destination filters", () => {
     it("shows a recoverable empty state for a combination without matches", async () => {

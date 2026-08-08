@@ -1,7 +1,7 @@
 <template>
     <header
         ref="headerElement"
-        class="relative overflow-hidden border-b-4 border-spain-yellow shadow-lg transition-[height] duration-500"
+        class="relative border-b-4 border-spain-yellow shadow-lg transition-[height] duration-500"
         :class="fullScreen
             ? 'h-screen min-h-[64rem] lg:min-h-[46rem]'
             : home
@@ -47,19 +47,19 @@
                 class="pointer-events-auto absolute top-0 left-0 w-full flex justify-between items-center px-8 lg:px-16 py-4 text-white lg:text-xl font-medium">
                 <!-- Menú de la izquierda -->
                 <div class="hidden lg:flex space-x-8 items-center">
-                    <nuxt-link to="/post/blog" class="hover:text-spain-yellow">Blog</nuxt-link>
-                    <nuxt-link to="/post/about" class="hover:text-spain-yellow">About</nuxt-link>
+                    <nuxt-link :to="localePath('/blog')" class="hover:text-spain-yellow">{{ $t('nav.blog') }}</nuxt-link>
+                    <nuxt-link :to="localePath('/about')" class="hover:text-spain-yellow">{{ $t('nav.about') }}</nuxt-link>
                 </div>
 
                 <!-- Logo centrado -->
                 <a
-                    :href="baseURL"
-                    aria-label="Ir a la página de inicio"
+                    :href="localePath('/')"
+                    :aria-label="$t('nav.home')"
                     class="absolute left-1/2 top-4 -translate-x-1/2 rounded-full opacity-95 transition-opacity duration-300 hover:opacity-75 lg:top-1/2 lg:-translate-y-1/2"
                 >
                     <img
                         :src="`${baseURL}assets/images/logo-viajes.svg`"
-                        alt="Blog de Viajes"
+                        :alt="$t('brand')"
                         width="56"
                         height="56"
                         fetchpriority="high"
@@ -70,80 +70,57 @@
 
                 <!-- Menú de la derecha -->
                 <div class="hidden lg:flex space-x-8 items-center">
-                    <nuxt-link to="/post/destinos" class="hover:text-spain-yellow">Destinos</nuxt-link>
-                    <nuxt-link to="/post/contacto" class="hover:text-spain-yellow">Contacto</nuxt-link>
+                    <nuxt-link :to="localePath('/destinations')" class="hover:text-spain-yellow">{{ $t('nav.destinations') }}</nuxt-link>
+                    <nuxt-link :to="localePath('/contact')" class="hover:text-spain-yellow">{{ $t('nav.contact') }}</nuxt-link>
+                    <nuxt-link :to="switchLocalePath(otherLocale)" class="rounded-full border border-white/40 px-3 py-1 font-mono text-xs" :aria-label="$t('language.switchTo')">{{ otherLocale.toUpperCase() }}</nuxt-link>
                 </div>
 
                 <!-- Botón hamburguesa para móviles -->
                 <button
                     ref="menuButton"
-                    aria-label="Abrir o cerrar la navegación"
-                    :aria-expanded="isMenuOpen"
+                    :aria-label="$t('nav.open')"
+                    :aria-expanded="mobileMenuOpen"
                     aria-controls="mobile-navigation"
-                    class="lg:hidden flex items-center justify-center h-10 w-10 text-white  absolute top-4 right-4"
-                    @click="toggleMenu"
+                    class="absolute right-4 top-3 flex h-12 w-12 touch-manipulation items-center justify-center rounded-full border border-white/25 bg-spain-ink/25 text-white backdrop-blur-sm active:bg-spain-ink/45 lg:hidden"
+                    @click="toggleMobileMenu"
                 >
                     <Icon
-                        :name="isMenuOpen ? 'mdi:close' : 'mdi:menu'"
+                        :name="mobileMenuOpen ? 'mdi:close' : 'mdi:menu'"
                         class="h-6 w-6 transition-transform duration-300"
                     />
                 </button>
             </nav>
 
-            <!-- Menú desplegable para móviles -->
-            <transition name="slide-down">
-                <div
-                    v-if="isMenuOpen"
-                    id="mobile-navigation"
-                    class="pointer-events-auto absolute bg-spain-surface text-spain-ink shadow-md w-full z-50 top-16 left-0 lg:hidden"
-                >
-                    <ul class="flex flex-col items-center space-y-4 py-4 text-sm font-medium">
-                        <li>
-                            <nuxt-link to="/post/blog" class="hover:text-spain-red">Blog</nuxt-link>
-                        </li>
-                        <li>
-                            <nuxt-link to="/post/about" class="hover:text-spain-red">About</nuxt-link>
-                        </li>
-                        <li>
-                            <nuxt-link to="/post/destinos" class="hover:text-spain-red">Destinos</nuxt-link>
-                        </li>
-                        <li>
-                            <nuxt-link to="/post/contacto" class="hover:text-spain-red">Contacto</nuxt-link>
-                        </li>
-                    </ul>
-                </div>
-            </transition>
-
             <section
                 v-if="home"
-                class="home-intro flex h-full w-full items-center px-6 pb-20 pt-28 sm:px-10 lg:px-16 lg:pb-24 lg:pt-32"
+                class="home-intro flex h-full w-full items-center px-5 pb-16 pt-24 sm:px-10 lg:px-16 lg:pb-24 lg:pt-32"
                 aria-labelledby="home-hero-title"
             >
                 <div class="mx-auto grid w-full max-w-[90rem] items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(26rem,1.08fr)]">
                     <div class="relative z-10 max-w-3xl text-white">
                         <p class="hero-kicker font-mono text-xs font-semibold uppercase tracking-[0.22em] text-spain-yellow">
-                            Cuaderno de rutas · seis ciudades
+                            {{ $t('hero.kicker') }}
                         </p>
-                        <h1 id="home-hero-title" class="mt-5 text-5xl font-bold leading-[0.92] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-                            <span class="hero-line block">Traza el viaje</span>
-                            <span class="hero-line hero-line-delayed block text-spain-yellow">antes de salir.</span>
+                        <h1 id="home-hero-title" class="mt-4 text-[2.85rem] font-bold leading-[0.92] sm:mt-5 sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+                            <span class="hero-line block">{{ $t('hero.title1') }}</span>
+                            <span class="hero-line hero-line-delayed block text-spain-yellow">{{ $t('hero.title2') }}</span>
                         </h1>
-                        <p class="hero-copy mt-7 max-w-xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8">
-                            Explora cada ciudad, elige tus paradas y guarda una ruta propia para llevarla contigo.
+                        <p class="hero-copy mt-5 max-w-xl text-base leading-7 text-white/80 sm:mt-7 sm:text-lg sm:leading-8">
+                            {{ $t('hero.copy') }}
                         </p>
-                        <div class="hero-actions pointer-events-auto mt-9 flex flex-wrap gap-3">
+                        <div class="hero-actions pointer-events-auto mt-7 grid gap-3 sm:mt-9 sm:flex sm:flex-wrap">
                             <nuxt-link
-                                to="/post/destinos"
+                                :to="localePath('/destinations')"
                                 class="inline-flex items-center gap-2 rounded-full bg-spain-yellow px-6 py-3 font-semibold text-spain-ink transition-colors hover:bg-spain-paper focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-spain-yellow"
                             >
-                                Empezar una ruta
+                                {{ $t('hero.route') }}
                                 <Icon name="mdi:arrow-right" class="h-5 w-5"/>
                             </nuxt-link>
                             <nuxt-link
-                                to="/post/blog"
+                                :to="localePath('/blog')"
                                 class="inline-flex items-center rounded-full border border-white/35 px-6 py-3 font-semibold text-white transition-colors hover:border-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                             >
-                                Leer el cuaderno
+                                {{ $t('hero.journal') }}
                             </nuxt-link>
                         </div>
                     </div>
@@ -164,10 +141,10 @@
                             <circle class="route-point route-point-three" cx="401" cy="104" r="7"/>
                             <circle class="route-point route-point-four" cx="642" cy="60" r="10"/>
                         </svg>
-                        <span class="route-label route-label-origin absolute bottom-[12%] left-0">Punto de partida</span>
-                        <span class="route-label route-label-destination absolute right-0 top-0">Próxima parada</span>
+                        <span class="route-label route-label-origin absolute bottom-[12%] left-0">{{ $t('hero.origin') }}</span>
+                        <span class="route-label route-label-destination absolute right-0 top-0">{{ $t('hero.next') }}</span>
                         <span class="route-distance absolute bottom-[36%] right-[16%] font-mono text-xs uppercase tracking-[0.18em] text-white/60">
-                            La ruta la decides tú
+                            {{ $t('hero.decide') }}
                         </span>
                     </div>
                 </div>
@@ -179,7 +156,7 @@
                     <span class="flex h-9 w-6 justify-center rounded-full border border-white/35 pt-2">
                         <span class="scroll-dot h-1.5 w-1.5 rounded-full bg-spain-yellow"/>
                     </span>
-                    Descubrir
+                    {{ $t('hero.discover') }}
                 </a>
             </section>
         </div>
@@ -188,7 +165,7 @@
         <div
             v-if="!slim"
             class="absolute bottom-2 left-1/2 z-30 -translate-x-1/2 rounded-md bg-spain-ink/75 px-4 py-2 text-xs text-white">
-            Foto de
+            {{ $t('common.photoBy') }}
             <a
                 href="https://unsplash.com/es/@v2osk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
                 target="_blank"
@@ -197,7 +174,7 @@
             >
                 v2osk
             </a>
-            en
+            {{ $t('common.on') }}
             <a
                 href="https://unsplash.com/es/fotos/foggy-mountain-summit-1Z2niiBPg5A?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
                 target="_blank"
@@ -238,8 +215,8 @@
 
             <nav class="relative mx-auto flex h-16 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:px-12">
                 <nuxt-link
-                    to="/"
-                    aria-label="Ir a la página de inicio"
+                    :to="localePath('/')"
+                    :aria-label="$t('nav.home')"
                     class="flex items-center gap-3 transition-opacity hover:opacity-75"
                 >
                     <img
@@ -249,7 +226,7 @@
                         height="40"
                         class="h-10 w-10"
                     >
-                    <span class="hidden font-display text-xl font-bold sm:block">Blog de Viajes</span>
+                    <span class="hidden font-display text-xl font-bold sm:block">{{ $t('brand') }}</span>
                 </nuxt-link>
 
                 <div class="hidden items-center gap-8 font-medium lg:flex">
@@ -261,43 +238,114 @@
                     >
                         {{ link.label }}
                     </nuxt-link>
+                    <nuxt-link :to="switchLocalePath(otherLocale)" class="rounded-full border border-white/40 px-3 py-1 font-mono text-xs" :aria-label="$t('language.switchTo')">{{ otherLocale.toUpperCase() }}</nuxt-link>
                 </div>
 
                 <button
-                    aria-label="Abrir o cerrar la navegación fija"
-                    :aria-expanded="isStickyMenuOpen"
-                    aria-controls="sticky-mobile-navigation"
-                    class="flex h-10 w-10 items-center justify-center lg:hidden"
-                    @click="isStickyMenuOpen = !isStickyMenuOpen"
+                    :aria-label="$t('nav.open')"
+                    :aria-expanded="mobileMenuOpen"
+                    aria-controls="mobile-navigation"
+                    class="flex h-12 w-12 touch-manipulation items-center justify-center rounded-full transition-colors active:bg-white/15 lg:hidden"
+                    @click="toggleMobileMenu"
                 >
                     <Icon
-                        :name="isStickyMenuOpen ? 'mdi:close' : 'mdi:menu'"
+                        :name="mobileMenuOpen ? 'mdi:close' : 'mdi:menu'"
                         class="h-6 w-6"
                     />
                 </button>
             </nav>
 
-            <transition name="slide-down">
-                <div
-                    v-if="isStickyMenuOpen"
-                    id="sticky-mobile-navigation"
-                    class="relative z-10 w-full border-t border-spain-yellow/30 bg-spain-ink/90 text-white shadow-lg backdrop-blur-md lg:hidden"
-                >
-                    <ul class="flex flex-col items-center gap-5 py-6 text-sm font-medium">
-                        <li v-for="link in navLinks" :key="link.to">
-                            <nuxt-link
-                                :to="link.to"
-                                class="transition-colors hover:text-spain-yellow"
-                                @click="isStickyMenuOpen = false"
-                            >
-                                {{ link.label }}
-                            </nuxt-link>
-                        </li>
-                    </ul>
-                </div>
-            </transition>
         </header>
     </transition>
+
+    <Teleport to="body">
+        <transition name="mobile-sheet">
+            <div
+                v-if="mobileMenuOpen"
+                class="fixed inset-0 z-[100] lg:hidden"
+                @keydown.esc="closeMobileMenu"
+            >
+                <button
+                    type="button"
+                    class="absolute inset-0 h-full w-full bg-spain-ink/70 backdrop-blur-[3px]"
+                    :aria-label="$t('nav.close')"
+                    @click="closeMobileMenu"
+                />
+
+                <section
+                    id="mobile-navigation"
+                    ref="mobileMenuPanel"
+                    class="mobile-menu-panel absolute inset-x-0 bottom-0 max-h-[92dvh] overflow-y-auto rounded-t-[2rem] border-t border-spain-sand bg-spain-paper px-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-3 text-spain-ink shadow-2xl"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="mobile-navigation-title"
+                    @keydown.tab="trapMobileMenuFocus"
+                >
+                    <span class="mx-auto block h-1 w-10 rounded-full bg-spain-sand" aria-hidden="true"/>
+
+                    <header class="mt-4 flex items-center gap-3 border-b border-spain-sand pb-5">
+                        <img
+                            :src="`${baseURL}assets/images/logo-viajes.svg`"
+                            alt=""
+                            width="44"
+                            height="44"
+                            class="h-11 w-11"
+                        >
+                        <div class="min-w-0 flex-1">
+                            <p class="font-mono text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-spain-red">
+                                {{ $t('nav.menuKicker') }}
+                            </p>
+                            <h2 id="mobile-navigation-title" class="mt-1 text-2xl font-bold leading-none text-spain-wine">
+                                {{ $t('nav.menuTitle') }}
+                            </h2>
+                        </div>
+                        <button
+                            ref="mobileMenuCloseButton"
+                            type="button"
+                            class="flex h-12 w-12 shrink-0 touch-manipulation items-center justify-center rounded-full border border-spain-sand bg-spain-surface text-spain-wine transition-colors active:bg-spain-yellow/25"
+                            :aria-label="$t('nav.close')"
+                            @click="closeMobileMenu"
+                        >
+                            <Icon name="mdi:close" class="h-6 w-6"/>
+                        </button>
+                    </header>
+
+                    <nav class="mt-4" :aria-label="$t('nav.menuTitle')">
+                        <ul class="grid gap-2">
+                            <li v-for="link in navLinks" :key="link.to">
+                                <nuxt-link
+                                    :to="link.to"
+                                    class="group flex min-h-[4.5rem] touch-manipulation items-center gap-4 rounded-2xl border border-spain-sand bg-spain-surface px-4 py-3 transition-[background-color,transform] active:scale-[0.985] active:bg-spain-yellow/15"
+                                    @click="closeMobileMenu"
+                                >
+                                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-spain-wine text-white">
+                                        <Icon :name="link.icon" class="h-6 w-6"/>
+                                    </span>
+                                    <span class="min-w-0 flex-1">
+                                        <span class="block text-lg font-bold leading-tight text-spain-wine">{{ link.label }}</span>
+                                        <span class="mt-1 block text-sm leading-5 text-spain-ink/60">{{ link.hint }}</span>
+                                    </span>
+                                    <Icon name="mdi:chevron-right" class="h-6 w-6 shrink-0 text-spain-red"/>
+                                </nuxt-link>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <nuxt-link
+                        :to="switchLocalePath(otherLocale)"
+                        class="mt-4 flex min-h-14 touch-manipulation items-center justify-between rounded-2xl bg-spain-yellow px-5 font-semibold text-spain-ink transition-transform active:scale-[0.985]"
+                        @click="closeMobileMenu"
+                    >
+                        <span class="inline-flex items-center gap-3">
+                            <Icon name="mdi:translate" class="h-6 w-6"/>
+                            {{ $t('language.switchTo') }}
+                        </span>
+                        <span class="font-mono text-xs uppercase tracking-[0.16em]">{{ otherLocale.toUpperCase() }}</span>
+                    </nuxt-link>
+                </section>
+            </div>
+        </transition>
+    </Teleport>
 </template>
 
 <script setup>
@@ -325,21 +373,50 @@ defineProps({
 // Obtén el baseURL desde la configuración del entorno
 const { app: { baseURL } } = useRuntimeConfig();
 const route = useRoute();
+const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
+const {locale, t} = useI18n();
+const otherLocale = computed(() => locale.value === "es" ? "en" : "es");
 
-const isMenuOpen = ref(false);
-const isStickyMenuOpen = ref(false);
+const mobileMenuOpen = ref(false);
 const showStickyHeader = ref(false);
 const headerElement = ref(null);
+const mobileMenuCloseButton = ref(null);
+const mobileMenuPanel = ref(null);
+const mobileMenuTrigger = ref(null);
 
-const navLinks = [
-    {label: "Blog", to: "/post/blog"},
-    {label: "Sobre mí", to: "/post/about"},
-    {label: "Destinos", to: "/post/destinos"},
-    {label: "Contacto", to: "/post/contacto"},
-];
+const navLinks = computed(() => [
+    {label: t("nav.destinations"), hint: t("nav.destinationsHint"), icon: "mdi:map-marker-path", to: localePath("/destinations")},
+    {label: t("nav.blog"), hint: t("nav.blogHint"), icon: "mdi:notebook-outline", to: localePath("/blog")},
+    {label: t("nav.about"), hint: t("nav.aboutHint"), icon: "mdi:account-outline", to: localePath("/about")},
+    {label: t("nav.contact"), hint: t("nav.contactHint"), icon: "mdi:message-text-outline", to: localePath("/contact")},
+]);
 
-const toggleMenu = () => {
-    isMenuOpen.value = !isMenuOpen.value;
+const closeMobileMenu = () => {
+    mobileMenuOpen.value = false;
+};
+
+const toggleMobileMenu = (event) => {
+    if (!mobileMenuOpen.value) {
+        mobileMenuTrigger.value = event.currentTarget;
+    }
+    mobileMenuOpen.value = !mobileMenuOpen.value;
+};
+
+const trapMobileMenuFocus = (event) => {
+    const focusable = [...(mobileMenuPanel.value?.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ) ?? [])];
+    const first = focusable[0];
+    const last = focusable.at(-1);
+
+    if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+    }
 };
 
 const updateStickyHeader = () => {
@@ -348,11 +425,6 @@ const updateStickyHeader = () => {
 
     showStickyHeader.value = shouldShow;
 
-    if (shouldShow) {
-        isMenuOpen.value = false;
-    } else {
-        isStickyMenuOpen.value = false;
-    }
 };
 
 onMounted(() => {
@@ -364,13 +436,28 @@ onMounted(() => {
 onBeforeUnmount(() => {
     window.removeEventListener("scroll", updateStickyHeader);
     window.removeEventListener("resize", updateStickyHeader);
+    document.body.style.overflow = "";
+    document.querySelector(".app-wrapper")?.removeAttribute("inert");
 });
 
 watch(() => route.path, async () => {
-    isMenuOpen.value = false;
-    isStickyMenuOpen.value = false;
+    closeMobileMenu();
     await nextTick();
     updateStickyHeader();
+});
+
+watch(mobileMenuOpen, async (isOpen) => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    const appWrapper = document.querySelector(".app-wrapper");
+    if (isOpen) {
+        appWrapper?.setAttribute("inert", "");
+        await nextTick();
+        mobileMenuCloseButton.value?.focus();
+    } else {
+        appWrapper?.removeAttribute("inert");
+        await nextTick();
+        mobileMenuTrigger.value?.focus();
+    }
 });
 </script>
 
@@ -474,30 +561,24 @@ watch(() => route.path, async () => {
     50% { transform: translateY(0.55rem); opacity: 0.35; }
 }
 
-/* Animación para el menú desplegable */
-.slide-down-enter-active,
-.slide-down-leave-active {
-    transition: all 0.3s ease;
+.mobile-sheet-enter-active,
+.mobile-sheet-leave-active {
+    transition: opacity 220ms ease-out;
 }
 
-.slide-down-enter-from {
-    transform: translateY(-10%);
+.mobile-sheet-enter-active .mobile-menu-panel,
+.mobile-sheet-leave-active .mobile-menu-panel {
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-sheet-enter-from,
+.mobile-sheet-leave-to {
     opacity: 0;
 }
 
-.slide-down-enter-to {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.slide-down-leave-from {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.slide-down-leave-to {
-    transform: translateY(-10%);
-    opacity: 0;
+.mobile-sheet-enter-from .mobile-menu-panel,
+.mobile-sheet-leave-to .mobile-menu-panel {
+    transform: translateY(100%);
 }
 
 .sticky-nav-enter-active,

@@ -8,7 +8,7 @@ An editorial travel experience for discovering cities and turning inspiration
 into a practical, persistent, and shareable itinerary.
 
 [Live demo](https://kevin0018.github.io/Blog-de-Viajes/) ·
-[Destination explorer](https://kevin0018.github.io/Blog-de-Viajes/post/destinos)
+[Destination explorer](https://kevin0018.github.io/Blog-de-Viajes/destinations)
 
 [![Blog de Viajes interface preview](./docs/blog-de-viajes-preview.jpg)](https://kevin0018.github.io/Blog-de-Viajes/)
 
@@ -113,7 +113,7 @@ http://localhost:3000/Blog-de-Viajes/
 pnpm lint             # ESLint
 pnpm typecheck        # Nuxt and Vue type checking
 pnpm test             # Six unit and component tests
-pnpm test:e2e         # Five Chromium end-to-end checks
+pnpm test:e2e         # Ten Chromium end-to-end checks
 pnpm images:optimize  # Regenerate AVIF and WebP assets from source JPGs
 pnpm generate         # Generate the complete static site
 ```

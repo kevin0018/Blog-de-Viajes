@@ -1,16 +1,16 @@
 <template>
     <section class="bg-spain-paper px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
         <div class="mx-auto mb-12 max-w-3xl text-center lg:mb-16">
-            <h1 class="section-title text-4xl font-bold sm:text-5xl">Destinos</h1>
+            <p class="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-spain-red">{{ $t('hero.kicker') }}</p>
+            <h1 class="section-title mt-3 text-[2.75rem] font-bold leading-none sm:text-5xl">{{ $t('destinations.title') }}</h1>
             <p class="mt-6 text-base leading-7 text-spain-ink/70 sm:text-lg">
-                Ciudades con ritmos, escalas y paisajes muy distintos. Recorre este mural
-                de postales y encuentra la inspiración para tu próxima aventura.
+                {{ $t('destinations.intro') }}
             </p>
         </div>
 
         <div class="mx-auto mb-8 max-w-[90rem] border-y border-spain-sand py-5">
-            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-[repeat(4,minmax(0,1fr))_auto] lg:items-end">
-                <label v-for="filter in filters" :key="filter.key" class="grid gap-2">
+            <div class="no-scrollbar flex snap-x gap-3 overflow-x-auto pb-2 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 lg:grid-cols-[repeat(4,minmax(0,1fr))_auto] lg:items-end">
+                <label v-for="filter in filters" :key="filter.key" class="grid min-w-[10.5rem] snap-start gap-2 md:min-w-0">
                     <span class="font-mono text-[0.68rem] font-semibold uppercase tracking-wider text-spain-red">{{ filter.label }}</span>
                     <select
                         v-model="filterModels[filter.key].value"
@@ -23,15 +23,15 @@
                 </label>
                 <button
                     type="button"
-                    class="h-11 rounded-full border border-spain-red px-5 text-sm font-semibold text-spain-red transition-colors hover:bg-spain-red hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+                    class="h-11 shrink-0 self-end rounded-full border border-spain-red px-5 text-sm font-semibold text-spain-red transition-colors hover:bg-spain-red hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
                     :disabled="!hasActiveFilters"
                     @click="resetFilters"
                 >
-                    Limpiar filtros
+                    {{ $t('destinations.clear') }}
                 </button>
             </div>
             <p class="mt-4 font-mono text-xs text-spain-ink/55" aria-live="polite">
-                {{ destinos.length }} {{ destinos.length === 1 ? "destino encontrado" : "destinos encontrados" }}
+                {{ destinos.length }} {{ destinos.length === 1 ? $t('destinations.foundOne') : $t('destinations.foundMany') }}
             </p>
         </div>
 
@@ -44,9 +44,9 @@
                 :key="destino.nombre"
                 type="button"
                 :class="destino.layout"
-                :aria-label="`Abrir guía rápida de ${destino.nombre}`"
+                :aria-label="$t('destinations.quickGuide', {name: destino.nombre})"
                 aria-haspopup="dialog"
-                class="group relative min-h-[22rem] overflow-hidden rounded-3xl border border-spain-sand/70 bg-spain-ink text-left shadow-lg transition-transform duration-300 active:scale-[0.99] md:min-h-0"
+                class="destination-card group relative min-h-[18rem] overflow-hidden rounded-3xl border border-spain-sand/70 bg-spain-ink text-left shadow-lg transition-transform duration-300 active:scale-[0.99] md:min-h-0"
                 @click="openDestination(destino)"
             >
                 <OptimizedImage
@@ -78,7 +78,7 @@
                         {{ destino.descripcion }}
                     </p>
                     <span class="mt-4 inline-flex items-center gap-2 border-t border-white/30 pt-3 text-sm font-semibold text-spain-yellow">
-                        Abrir guía
+                        {{ $t('destinations.open') }}
                         <Icon name="mdi:arrow-top-right" class="h-5 w-5"/>
                     </span>
                 </div>
@@ -87,16 +87,16 @@
 
         <div v-else class="mx-auto max-w-[90rem] border border-dashed border-spain-sand px-6 py-16 text-center">
             <Icon name="mdi:map-search-outline" class="mx-auto h-10 w-10 text-spain-red"/>
-            <h2 class="mt-4 text-3xl font-bold text-spain-wine">No hay una postal con esa combinación</h2>
-            <p class="mt-3 text-spain-ink/65">Prueba con otro ritmo de viaje o recupera el mural completo.</p>
+            <h2 class="mt-4 text-3xl font-bold text-spain-wine">{{ $t('destinations.emptyTitle') }}</h2>
+            <p class="mt-3 text-spain-ink/65">{{ $t('destinations.emptyCopy') }}</p>
             <button type="button" class="mt-6 rounded-full bg-spain-red px-6 py-3 font-semibold text-white hover:bg-spain-wine" @click="resetFilters">
-                Ver todos los destinos
+                {{ $t('destinations.all') }}
             </button>
         </div>
 
         <button
             v-if="mostrarBotonSubir"
-            aria-label="Volver al inicio"
+            :aria-label="$t('common.backTop')"
             class="fixed bottom-20 right-6 z-40 rounded-full bg-spain-red p-4 text-white shadow-lg transition hover:bg-spain-yellow hover:text-spain-ink"
             @click="scrollToTop"
         >
@@ -105,7 +105,7 @@
 
         <dialog
             ref="destinationDialog"
-            class="destination-dialog m-auto max-h-[calc(100dvh-2rem)] w-[min(72rem,calc(100%-2rem))] overflow-auto rounded-3xl border-0 bg-spain-paper p-0 text-spain-ink shadow-2xl"
+            class="destination-dialog m-auto max-h-[calc(100dvh-1rem)] w-[min(72rem,calc(100%-1rem))] overflow-auto rounded-3xl border-0 bg-spain-paper p-0 text-spain-ink shadow-2xl sm:max-h-[calc(100dvh-2rem)] sm:w-[min(72rem,calc(100%-2rem))]"
             :aria-labelledby="activeDestination ? `destination-title-${activeDestination.id}` : undefined"
             @close="activeDestination = null"
             @click="handleDialogClick"
@@ -116,7 +116,7 @@
             >
                 <button
                     type="button"
-                    aria-label="Cerrar guía del destino"
+                    :aria-label="$t('destinations.close')"
                     class="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-spain-wine text-white shadow-lg transition hover:bg-spain-red"
                     @click="closeDestination"
                 >
@@ -152,19 +152,19 @@
                     <dl class="mt-7 grid grid-cols-2 gap-3">
                         <div class="rounded-2xl border border-spain-sand bg-spain-surface p-4">
                             <dt class="font-mono text-[0.68rem] font-semibold uppercase tracking-wider text-spain-red">
-                                Estancia ideal
+                                {{ $t('destinations.idealStay') }}
                             </dt>
                             <dd class="mt-2 font-semibold">{{ activeDestination.estancia }}</dd>
                         </div>
                         <div class="rounded-2xl border border-spain-sand bg-spain-surface p-4">
                             <dt class="font-mono text-[0.68rem] font-semibold uppercase tracking-wider text-spain-red">
-                                Mejor momento
+                                {{ $t('destinations.bestTime') }}
                             </dt>
                             <dd class="mt-2 font-semibold">{{ activeDestination.mejorEpoca }}</dd>
                         </div>
                     </dl>
 
-                    <h3 class="mt-8 text-xl font-bold">Un plan para empezar</h3>
+                    <h3 class="mt-8 text-xl font-bold">{{ $t('destinations.starterPlan') }}</h3>
                     <ul class="mt-4 grid gap-3">
                         <li
                             v-for="plan in activeDestination.planes"
@@ -177,16 +177,16 @@
                     </ul>
 
                     <nuxt-link
-                        :to="`/post/destinos/${activeDestination.id}`"
+                        :to="localePath(`/destinations/${activeDestination.id}`)"
                         class="mt-8 inline-flex items-center gap-2 rounded-full bg-spain-red px-6 py-3 font-semibold text-white transition-colors hover:bg-spain-wine"
                         @click="closeDestination"
                     >
-                        Ver guía completa
+                        {{ $t('destinations.fullGuide') }}
                         <Icon name="mdi:arrow-right" class="h-5 w-5"/>
                     </nuxt-link>
 
                     <p class="mt-8 border-t border-spain-sand pt-4 text-xs text-spain-ink/65">
-                        Foto de
+                        {{ $t('common.photoBy') }}
                         <a
                             :href="activeDestination.creditoAutorUrl"
                             target="_blank"
@@ -195,7 +195,7 @@
                         >
                             {{ activeDestination.autor }}
                         </a>
-                        en
+                        {{ $t('common.on') }}
                         <a
                             :href="activeDestination.creditoUnsplashUrl"
                             target="_blank"
@@ -213,12 +213,14 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref } from "vue";
-import { destinations } from "~/data/destinations";
 import type { Destination, TravelBudget, TravelSeason, TravelStyle } from "~/types/destination";
 import { toSiteUrl } from "~/utils/site";
 
 // Obtén el baseURL desde la configuración del entorno (Nuxt 3)
 const { app: { baseURL } } = useRuntimeConfig();
+const localePath = useLocalePath();
+const {locale, t} = useI18n();
+const {destinations} = useTravelContent();
 const destinationDialog = ref<HTMLDialogElement | null>(null);
 const activeDestination = ref<Destination | null>(null);
 
@@ -246,36 +248,36 @@ const season = ref<FilterValue>("all");
 const budget = ref<FilterValue>("all");
 const style = ref<FilterValue>("all");
 const filterModels: Record<FilterKey, typeof duration> = { duration, season, budget, style };
-const filters: readonly { key: FilterKey; label: string; options: readonly { value: FilterValue; label: string }[] }[] = [
-    { key: "duration", label: "Duración", options: [
-        { value: "all", label: "Cualquier duración" },
-        { value: "short", label: "Hasta 3 días" },
-        { value: "medium", label: "4 días" },
-        { value: "long", label: "5 días o más" },
+const filters = computed<readonly { key: FilterKey; label: string; options: readonly { value: FilterValue; label: string }[] }[]>(() => [
+    { key: "duration", label: t("filters.duration"), options: [
+        { value: "all", label: t("filters.anyDuration") },
+        { value: "short", label: t("filters.short") },
+        { value: "medium", label: t("filters.medium") },
+        { value: "long", label: t("filters.long") },
     ] },
-    { key: "season", label: "Época", options: [
-        { value: "all", label: "Cualquier época" },
-        { value: "primavera", label: "Primavera" },
-        { value: "verano", label: "Verano" },
-        { value: "otono", label: "Otoño" },
-        { value: "invierno", label: "Invierno" },
+    { key: "season", label: t("filters.season"), options: [
+        { value: "all", label: t("filters.anySeason") },
+        { value: "primavera", label: t("filters.spring") },
+        { value: "verano", label: t("filters.summer") },
+        { value: "otono", label: t("filters.autumn") },
+        { value: "invierno", label: t("filters.winter") },
     ] },
-    { key: "budget", label: "Nivel de gasto", options: [
-        { value: "all", label: "Cualquier nivel" },
-        { value: "contenido", label: "Contenido" },
-        { value: "medio", label: "Medio" },
-        { value: "alto", label: "Alto" },
+    { key: "budget", label: t("filters.budget"), options: [
+        { value: "all", label: t("filters.anyBudget") },
+        { value: "contenido", label: t("filters.low") },
+        { value: "medio", label: t("filters.mid") },
+        { value: "alto", label: t("filters.high") },
     ] },
-    { key: "style", label: "Estilo", options: [
-        { value: "all", label: "Cualquier estilo" },
-        { value: "cultura", label: "Cultura" },
-        { value: "gastronomia", label: "Gastronomía" },
-        { value: "urbano", label: "Urbano" },
-        { value: "costa", label: "Costa" },
+    { key: "style", label: t("filters.style"), options: [
+        { value: "all", label: t("filters.anyStyle") },
+        { value: "cultura", label: t("filters.culture") },
+        { value: "gastronomia", label: t("filters.food") },
+        { value: "urbano", label: t("filters.urban") },
+        { value: "costa", label: t("filters.coast") },
     ] },
-] as const;
+]);
 
-const destinos = computed(() => destinations.filter((destination) => {
+const destinos = computed(() => destinations.value.filter((destination) => {
     const durationMatches = duration.value === "all"
         || (duration.value === "short" && destination.idealDays <= 3)
         || (duration.value === "medium" && destination.idealDays === 4)
@@ -288,10 +290,10 @@ const destinos = computed(() => destinations.filter((destination) => {
 }));
 
 useSeoMeta({
-    title: "Destinos y guías de ciudad · Blog de Viajes",
-    description: "Compara seis destinos por duración, época, nivel de gasto y estilo antes de construir tu itinerario.",
-    ogTitle: "Seis destinos, seis ritmos de viaje",
-    ogDescription: "Filtra ciudades y empieza una ruta que puedes adaptar, guardar y compartir.",
+    title: computed(() => locale.value === "en" ? "Destinations and city guides · Travel Journal" : "Destinos y guías de ciudad · Blog de Viajes"),
+    description: computed(() => locale.value === "en" ? "Compare six destinations by duration, season, budget and style before building an itinerary." : "Compara seis destinos por duración, época, nivel de gasto y estilo antes de construir tu itinerario."),
+    ogTitle: computed(() => locale.value === "en" ? "Six destinations, six travel rhythms" : "Seis destinos, seis ritmos de viaje"),
+    ogDescription: computed(() => locale.value === "en" ? "Filter cities and start a route you can adapt, save and share." : "Filtra ciudades y empieza una ruta que puedes adaptar, guardar y compartir."),
     ogImage: toSiteUrl("assets/images/londres.webp"),
     ogType: "website",
     twitterCard: "summary_large_image",
@@ -301,11 +303,11 @@ useJsonLd({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Destinos",
-    url: toSiteUrl("post/destinos"),
-    mainEntity: destinations.map((destination) => ({
+    url: toSiteUrl("destinations"),
+    mainEntity: destinations.value.map((destination) => ({
         "@type": "Place",
         name: destination.nombre,
-        url: toSiteUrl(`post/destinos/${destination.id}`),
+        url: toSiteUrl(`destinations/${destination.id}`),
     })),
 });
 
@@ -343,5 +345,23 @@ onUnmounted(() => {
 .destination-dialog::backdrop {
     background: rgb(37 26 22 / 72%);
     backdrop-filter: blur(5px);
+}
+
+.destination-card:nth-child(3n + 1) {
+    min-height: 25rem;
+}
+
+.no-scrollbar {
+    scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+@media (min-width: 48rem) {
+    .destination-card:nth-child(3n + 1) {
+        min-height: 0;
+    }
 }
 </style>

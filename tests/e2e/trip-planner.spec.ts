@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("builds and restores a shared London itinerary", async ({ page }) => {
-    await page.goto("post/destinos/londres?dias=5&paradas=westminster,greenwich");
+    await page.goto("destinations/london?dias=5&paradas=westminster,greenwich");
 
     const planner = page.getByRole("heading", { name: "Diseña tu escapada a Londres" }).locator("../..");
     await expect(planner).toContainText("2 paradas · 5 días");

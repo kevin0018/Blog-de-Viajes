@@ -1,9 +1,9 @@
 import { expect, test } from "@playwright/test";
 
 test("contact actions are not covered by the full-screen header", async ({ page }) => {
-    await page.goto("post/contacto");
+    await page.goto("contact");
 
-    for (const name of ["Ver perfil de Kevin", "Proponer un destino"]) {
+    for (const name of ["Ver mi perfil en GitHub", "Proponer un destino"]) {
         const link = page.getByRole("link", { name });
         await expect(link).toBeVisible();
 
