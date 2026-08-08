@@ -28,10 +28,10 @@
         <div class="absolute inset-0 bg-spain-ink/55"/>
 
         <!-- Contenido del header -->
-        <div class="relative z-30 flex h-full flex-col items-center">
+        <div class="pointer-events-none relative z-30 flex h-full flex-col items-center">
             <!-- Menú superior para escritorio y móviles -->
             <nav
-                class="absolute top-0 left-0 w-full flex justify-between items-center px-8 lg:px-16 py-4 text-white lg:text-xl font-medium">
+                class="pointer-events-auto absolute top-0 left-0 w-full flex justify-between items-center px-8 lg:px-16 py-4 text-white lg:text-xl font-medium">
                 <!-- Menú de la izquierda -->
                 <div class="hidden lg:flex space-x-8 items-center">
                     <nuxt-link to="/post/blog" class="hover:text-spain-yellow">Blog</nuxt-link>
@@ -82,7 +82,7 @@
                 <div
                     v-if="isMenuOpen"
                     id="mobile-navigation"
-                    class="absolute bg-white text-spain-ink shadow-md w-full z-50 top-16 left-0 lg:hidden"
+                    class="pointer-events-auto absolute bg-white text-spain-ink shadow-md w-full z-50 top-16 left-0 lg:hidden"
                 >
                     <ul class="flex flex-col items-center space-y-4 py-4 text-sm font-medium">
                         <li>
