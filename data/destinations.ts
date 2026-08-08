@@ -1,6 +1,6 @@
 import type { Destination } from "../types/destination";
 
-export const destinations = [
+export const destinations: readonly Destination[] = [
     {
         id: "paris",
         nombre: "París",
@@ -13,7 +13,11 @@ export const destinations = [
         destacado: true,
         layout: "md:row-span-2 lg:col-span-2 lg:row-span-4",
         estancia: "3–4 días",
+        idealDays: 4,
         mejorEpoca: "Primavera u otoño",
+        seasons: ["primavera", "otono"],
+        budget: "alto",
+        styles: ["cultura", "gastronomia", "urbano"],
         planes: [
             "Cruzar el Sena a pie y enlazar Île de la Cité con el Barrio Latino.",
             "Reservar una mañana para Montmartre antes de que se llenen sus calles.",
@@ -41,7 +45,11 @@ export const destinations = [
         destacado: false,
         layout: "lg:col-span-2 lg:row-span-2",
         estancia: "3 días",
+        idealDays: 3,
         mejorEpoca: "Abril, mayo u octubre",
+        seasons: ["primavera", "otono"],
+        budget: "medio",
+        styles: ["cultura", "gastronomia"],
         planes: [
             "Empezar temprano entre el Coliseo, el Foro y el monte Palatino.",
             "Caminar sin prisa desde Piazza Navona hasta el Panteón.",
@@ -69,7 +77,11 @@ export const destinations = [
         destacado: true,
         layout: "md:row-span-2 lg:col-span-2 lg:row-span-4",
         estancia: "5–6 días",
+        idealDays: 5,
         mejorEpoca: "Primavera u otoño",
+        seasons: ["primavera", "otono"],
+        budget: "alto",
+        styles: ["cultura", "gastronomia", "urbano"],
         planes: [
             "Contrastar los templos de Asakusa con el neón de Shinjuku.",
             "Recorrer Yanaka y sus pequeñas tiendas a primera hora.",
@@ -97,7 +109,11 @@ export const destinations = [
         destacado: true,
         layout: "md:col-span-2 md:row-span-2 lg:col-span-4 lg:row-span-4",
         estancia: "4 días",
+        idealDays: 4,
         mejorEpoca: "Mayo, junio o septiembre",
+        seasons: ["primavera", "verano", "otono"],
+        budget: "alto",
+        styles: ["cultura", "urbano"],
         planes: [
             "Seguir el Támesis desde Westminster hasta Borough Market.",
             "Elegir un gran museo y dejar espacio para descubrir un barrio cercano.",
@@ -125,7 +141,11 @@ export const destinations = [
         destacado: true,
         layout: "md:row-span-2 lg:col-span-2 lg:row-span-4",
         estancia: "5 días",
+        idealDays: 5,
         mejorEpoca: "Mayo, junio u octubre",
+        seasons: ["primavera", "otono"],
+        budget: "alto",
+        styles: ["cultura", "gastronomia", "urbano"],
         planes: [
             "Cruzar Brooklyn Bridge temprano y desayunar al otro lado.",
             "Dedicar una tarde a Central Park y a uno de sus grandes museos.",
@@ -153,7 +173,11 @@ export const destinations = [
         destacado: false,
         layout: "lg:col-span-2 lg:row-span-2",
         estancia: "3 días",
+        idealDays: 3,
         mejorEpoca: "Mayo, junio o septiembre",
+        seasons: ["primavera", "verano", "otono"],
+        budget: "medio",
+        styles: ["cultura", "gastronomia", "costa"],
         planes: [
             "Caminar por el Eixample siguiendo las fachadas modernistas.",
             "Perderse por el Born y continuar hasta el paseo marítimo.",
@@ -169,7 +193,7 @@ export const destinations = [
         creditoAutorUrl: "https://unsplash.com/es/@loganstrongarms?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         creditoUnsplashUrl: "https://unsplash.com/es/fotos/vista-aerea-de-los-edificios-de-la-ciudad-durante-el-dia-hVhfqhDYciU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
     },
-] as const satisfies readonly Destination[];
+];
 
 const homeDestinationIds = ["londres", "roma", "paris", "nueva-york"];
 

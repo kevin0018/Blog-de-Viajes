@@ -11,7 +11,35 @@
             </p>
         </div>
 
+        <div class="mx-auto mb-8 max-w-[90rem] border-y border-spain-sand py-5">
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-[repeat(4,minmax(0,1fr))_auto] lg:items-end">
+                <label v-for="filter in filters" :key="filter.key" class="grid gap-2">
+                    <span class="font-mono text-[0.68rem] font-semibold uppercase tracking-wider text-spain-red">{{ filter.label }}</span>
+                    <select
+                        v-model="filterModels[filter.key].value"
+                        class="h-11 w-full rounded-lg border border-spain-sand bg-white px-3 text-sm text-spain-ink"
+                    >
+                        <option v-for="option in filter.options" :key="option.value" :value="option.value">
+                            {{ option.label }}
+                        </option>
+                    </select>
+                </label>
+                <button
+                    type="button"
+                    class="h-11 rounded-full border border-spain-red px-5 text-sm font-semibold text-spain-red transition-colors hover:bg-spain-red hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+                    :disabled="!hasActiveFilters"
+                    @click="resetFilters"
+                >
+                    Limpiar filtros
+                </button>
+            </div>
+            <p class="mt-4 font-mono text-xs text-spain-ink/55" aria-live="polite">
+                {{ destinos.length }} {{ destinos.length === 1 ? "destino encontrado" : "destinos encontrados" }}
+            </p>
+        </div>
+
         <div
+            v-if="destinos.length"
             class="mx-auto grid max-w-[90rem] grid-cols-1 gap-4 md:auto-rows-[14rem] md:grid-cols-2 md:grid-flow-dense lg:auto-rows-[8.5rem] lg:grid-cols-6"
         >
             <button
@@ -57,6 +85,15 @@
                         <Icon name="mdi:arrow-top-right" class="h-5 w-5"/>
                     </span>
                 </div>
+            </button>
+        </div>
+
+        <div v-else class="mx-auto max-w-[90rem] border border-dashed border-spain-sand px-6 py-16 text-center">
+            <Icon name="mdi:map-search-outline" class="mx-auto h-10 w-10 text-spain-red"/>
+            <h2 class="mt-4 text-3xl font-bold text-spain-wine">No hay una postal con esa combinación</h2>
+            <p class="mt-3 text-spain-ink/65">Prueba con otro ritmo de viaje o recupera el mural completo.</p>
+            <button type="button" class="mt-6 rounded-full bg-spain-red px-6 py-3 font-semibold text-white hover:bg-spain-wine" @click="resetFilters">
+                Ver todos los destinos
             </button>
         </div>
 
@@ -178,9 +215,9 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, ref } from "vue";
+import { computed, nextTick, onMounted, onUnmounted, ref } from "vue";
 import { destinations } from "~/data/destinations";
-import type { Destination } from "~/types/destination";
+import type { Destination, TravelBudget, TravelSeason, TravelStyle } from "~/types/destination";
 
 // Obtén el baseURL desde la configuración del entorno (Nuxt 3)
 const { app: { baseURL } } = useRuntimeConfig();
@@ -203,7 +240,59 @@ const handleDialogClick = (event: MouseEvent) => {
     }
 };
 
-const destinos = destinations;
+type FilterValue = "all" | "short" | "medium" | "long" | TravelSeason | TravelBudget | TravelStyle;
+type FilterKey = "duration" | "season" | "budget" | "style";
+
+const duration = ref<FilterValue>("all");
+const season = ref<FilterValue>("all");
+const budget = ref<FilterValue>("all");
+const style = ref<FilterValue>("all");
+const filterModels: Record<FilterKey, typeof duration> = { duration, season, budget, style };
+const filters: readonly { key: FilterKey; label: string; options: readonly { value: FilterValue; label: string }[] }[] = [
+    { key: "duration", label: "Duración", options: [
+        { value: "all", label: "Cualquier duración" },
+        { value: "short", label: "Hasta 3 días" },
+        { value: "medium", label: "4 días" },
+        { value: "long", label: "5 días o más" },
+    ] },
+    { key: "season", label: "Época", options: [
+        { value: "all", label: "Cualquier época" },
+        { value: "primavera", label: "Primavera" },
+        { value: "verano", label: "Verano" },
+        { value: "otono", label: "Otoño" },
+        { value: "invierno", label: "Invierno" },
+    ] },
+    { key: "budget", label: "Nivel de gasto", options: [
+        { value: "all", label: "Cualquier nivel" },
+        { value: "contenido", label: "Contenido" },
+        { value: "medio", label: "Medio" },
+        { value: "alto", label: "Alto" },
+    ] },
+    { key: "style", label: "Estilo", options: [
+        { value: "all", label: "Cualquier estilo" },
+        { value: "cultura", label: "Cultura" },
+        { value: "gastronomia", label: "Gastronomía" },
+        { value: "urbano", label: "Urbano" },
+        { value: "costa", label: "Costa" },
+    ] },
+] as const;
+
+const destinos = computed(() => destinations.filter((destination) => {
+    const durationMatches = duration.value === "all"
+        || (duration.value === "short" && destination.idealDays <= 3)
+        || (duration.value === "medium" && destination.idealDays === 4)
+        || (duration.value === "long" && destination.idealDays >= 5);
+    const seasonMatches = season.value === "all" || destination.seasons.includes(season.value as TravelSeason);
+    const budgetMatches = budget.value === "all" || destination.budget === budget.value;
+    const styleMatches = style.value === "all" || destination.styles.includes(style.value as TravelStyle);
+
+    return durationMatches && seasonMatches && budgetMatches && styleMatches;
+}));
+
+const hasActiveFilters = computed(() => Object.values(filterModels).some((filter) => filter.value !== "all"));
+const resetFilters = () => Object.values(filterModels).forEach((filter) => {
+    filter.value = "all";
+});
 
 // Mostrar el botón de volver arriba
 const mostrarBotonSubir = ref(false);
