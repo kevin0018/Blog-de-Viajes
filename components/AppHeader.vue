@@ -4,6 +4,8 @@
         class="relative overflow-hidden border-b-4 border-spain-yellow shadow-lg transition-[height] duration-500"
         :class="fullScreen
             ? 'h-screen min-h-[64rem] lg:min-h-[46rem]'
+            : slim
+                ? 'h-20'
             : compact
                 ? 'h-[28vh] min-h-56 lg:h-[32vh]'
                 : 'h-[50vh] min-h-80'"
@@ -102,6 +104,7 @@
 
         <!-- Créditos del autor -->
         <div
+            v-if="!slim"
             class="absolute bottom-2 left-1/2 z-30 -translate-x-1/2 rounded-md bg-spain-ink/75 px-4 py-2 text-xs text-white">
             Foto de
             <a
@@ -200,6 +203,10 @@ defineProps({
         default: false,
     },
     fullScreen: {
+        type: Boolean,
+        default: false,
+    },
+    slim: {
         type: Boolean,
         default: false,
     },

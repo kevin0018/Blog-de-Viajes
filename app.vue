@@ -3,6 +3,7 @@
         <AppHeader
             :compact="compactHeader"
             :full-screen="contactPage"
+            :slim="articlePage"
         />
         <main>
             <NuxtPage />
@@ -17,6 +18,7 @@ import AppFooter from "@/components/AppFooter.vue";
 
 const route = useRoute();
 const contactPage = computed(() => route.path === "/post/contacto");
+const articlePage = computed(() => route.path.startsWith("/post/blog/"));
 const compactHeader = computed(() => route.path !== "/" && !contactPage.value);
 </script>
 
