@@ -2,9 +2,6 @@
     <section class="contact-stage relative z-20 flex items-start px-4 pb-20 pt-28 sm:px-6 lg:items-center lg:px-12">
         <div class="mx-auto grid min-w-0 w-full max-w-6xl items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <div class="min-w-0 text-white">
-                <p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-spain-yellow">
-                    Cuéntanos tu próxima ruta
-                </p>
                 <h1 class="max-w-xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
                     Hablemos de viajes
                 </h1>
@@ -68,6 +65,8 @@ useJsonLd({
 </script>
 
 <style scoped>
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 · genre: editorial travel notebook · macrostructure: split contact stage · design-system: design.md · designed-as-app */
+
 .contact-stage {
     min-height: max(100vh, 64rem);
     margin-top: calc(-1 * max(100vh, 64rem));

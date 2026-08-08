@@ -47,8 +47,7 @@
 
             <section class="mt-20 grid gap-10 border-t border-spain-sand pt-12 lg:grid-cols-[minmax(16rem,0.6fr)_minmax(0,1.4fr)]">
                 <div>
-                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-spain-red">Cómo está construido</p>
-                    <h2 class="mt-4 text-4xl font-bold text-spain-wine sm:text-5xl">Del contenido al producto</h2>
+                    <h2 class="text-4xl font-bold text-spain-wine sm:text-5xl">Del contenido al producto</h2>
                 </div>
 
                 <ol class="border-l border-spain-sand">
@@ -70,7 +69,7 @@
                     </p>
                 </div>
                 <div class="flex flex-wrap gap-3">
-                    <nuxt-link to="/post/destinos" class="inline-flex items-center gap-2 rounded-full bg-spain-yellow px-6 py-3 font-semibold text-spain-ink transition-colors hover:bg-white">
+                    <nuxt-link to="/post/destinos" class="inline-flex items-center gap-2 rounded-full bg-spain-yellow px-6 py-3 font-semibold text-spain-ink transition-colors hover:bg-spain-paper">
                         Explorar destinos
                         <Icon name="mdi:arrow-right" class="h-5 w-5"/>
                     </nuxt-link>

@@ -125,3 +125,7 @@ useJsonLd([
     },
 ]);
 </script>
+
+<style scoped>
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V4 · genre: editorial travel notebook · macrostructure: long document · design-system: design.md · designed-as-app */
+</style>

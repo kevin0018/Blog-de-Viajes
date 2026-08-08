@@ -4,9 +4,6 @@
                 <div class="mx-auto max-w-[90rem]">
                     <div class="mb-9 flex flex-col gap-4 border-b border-spain-sand pb-6 lg:flex-row lg:items-end lg:justify-between">
                         <div>
-                            <p class="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-spain-red">
-                                Próxima parada
-                            </p>
                             <h2 class="section-title text-3xl font-bold sm:text-4xl">Destinos para perderse</h2>
                         </div>
                         <p class="max-w-xl text-sm leading-6 text-spain-ink/70 sm:text-base">
@@ -38,7 +35,7 @@
                             <article
                                 v-for="(destino, index) in destinos"
                                 :key="index"
-                                class="group flex w-[82vw] max-w-80 flex-shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-spain-sand bg-white shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:w-80 xl:w-auto xl:max-w-none"
+                                class="group flex w-[82vw] max-w-80 flex-shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-spain-sand bg-spain-surface shadow-lg sm:w-80 xl:w-auto xl:max-w-none"
                             >
                                 <div class="overflow-hidden">
                                     <img
@@ -106,9 +103,6 @@
                 <div
                     class="relative z-10 mx-auto max-w-3xl text-center"
                 >
-                    <p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-spain-yellow">
-                        Detrás del cuaderno
-                    </p>
                     <h2 class="text-4xl font-bold text-white sm:text-5xl">Sobre mí</h2>
                     <p class="mx-auto mt-6 max-w-2xl text-base leading-7 text-spain-paper/90 sm:text-lg sm:leading-8">
                         Soy Kevin, desarrollador de este cuaderno digital. Aquí convierto ideas de viaje
@@ -117,7 +111,7 @@
                     </p>
                     <nuxt-link
                         to="/post/about"
-                        class="mt-8 inline-flex items-center gap-2 rounded-full bg-spain-yellow px-8 py-3 font-semibold text-spain-ink transition hover:bg-white"
+                        class="mt-8 inline-flex items-center gap-2 rounded-full bg-spain-yellow px-8 py-3 font-semibold text-spain-ink transition-colors hover:bg-spain-paper"
                     >
                         ¿Quieres saber más?
                         <Icon name="mdi:arrow-right" class="h-5 w-5"/>
@@ -219,6 +213,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · genre: editorial travel notebook · macrostructure: editorial landing · design-system: design.md · designed-as-app */
+
 /* Ocultar scrollbar en navegadores compatibles */
 .no-scrollbar::-webkit-scrollbar {
     display: none;

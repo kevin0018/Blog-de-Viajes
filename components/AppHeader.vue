@@ -82,7 +82,7 @@
                 <div
                     v-if="isMenuOpen"
                     id="mobile-navigation"
-                    class="pointer-events-auto absolute bg-white text-spain-ink shadow-md w-full z-50 top-16 left-0 lg:hidden"
+                    class="pointer-events-auto absolute bg-spain-surface text-spain-ink shadow-md w-full z-50 top-16 left-0 lg:hidden"
                 >
                     <ul class="flex flex-col items-center space-y-4 py-4 text-sm font-medium">
                         <li>

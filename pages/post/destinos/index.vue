@@ -1,9 +1,6 @@
 <template>
     <section class="bg-spain-paper px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
         <div class="mx-auto mb-12 max-w-3xl text-center lg:mb-16">
-            <p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-spain-red">
-                Seis formas de perderse
-            </p>
             <h1 class="section-title text-4xl font-bold sm:text-5xl">Destinos</h1>
             <p class="mt-6 text-base leading-7 text-spain-ink/70 sm:text-lg">
                 Ciudades con ritmos, escalas y paisajes muy distintos. Recorre este mural
@@ -17,7 +14,7 @@
                     <span class="font-mono text-[0.68rem] font-semibold uppercase tracking-wider text-spain-red">{{ filter.label }}</span>
                     <select
                         v-model="filterModels[filter.key].value"
-                        class="h-11 w-full rounded-lg border border-spain-sand bg-white px-3 text-sm text-spain-ink"
+                        class="h-11 w-full rounded-lg border border-spain-sand bg-spain-surface px-3 text-sm text-spain-ink"
                     >
                         <option v-for="option in filter.options" :key="option.value" :value="option.value">
                             {{ option.label }}
@@ -49,7 +46,7 @@
                 :class="destino.layout"
                 :aria-label="`Abrir guía rápida de ${destino.nombre}`"
                 aria-haspopup="dialog"
-                class="group relative min-h-[22rem] overflow-hidden rounded-3xl border border-spain-sand/70 bg-spain-ink text-left shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 active:scale-[0.99] md:min-h-0"
+                class="group relative min-h-[22rem] overflow-hidden rounded-3xl border border-spain-sand/70 bg-spain-ink text-left shadow-lg transition-transform duration-300 active:scale-[0.99] md:min-h-0"
                 @click="openDestination(destino)"
             >
                 <img
@@ -62,7 +59,7 @@
                     decoding="async"
                     class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 >
-                <div class="absolute inset-0 bg-gradient-to-t from-spain-ink via-spain-ink/20 to-transparent transition-colors group-hover:via-spain-ink/30"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-spain-ink via-spain-ink/25 to-transparent"/>
 
                 <div class="absolute left-5 top-5">
                     <span class="rounded-full bg-spain-yellow px-3 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-spain-ink shadow">
@@ -153,13 +150,13 @@
                     </p>
 
                     <dl class="mt-7 grid grid-cols-2 gap-3">
-                        <div class="rounded-2xl border border-spain-sand bg-white p-4">
+                        <div class="rounded-2xl border border-spain-sand bg-spain-surface p-4">
                             <dt class="font-mono text-[0.68rem] font-semibold uppercase tracking-wider text-spain-red">
                                 Estancia ideal
                             </dt>
                             <dd class="mt-2 font-semibold">{{ activeDestination.estancia }}</dd>
                         </div>
-                        <div class="rounded-2xl border border-spain-sand bg-white p-4">
+                        <div class="rounded-2xl border border-spain-sand bg-spain-surface p-4">
                             <dt class="font-mono text-[0.68rem] font-semibold uppercase tracking-wider text-spain-red">
                                 Mejor momento
                             </dt>
@@ -341,6 +338,8 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · genre: editorial travel notebook · macrostructure: bento destination mural · design-system: design.md · designed-as-app */
+
 .destination-dialog::backdrop {
     background: rgb(37 26 22 / 72%);
     backdrop-filter: blur(5px);

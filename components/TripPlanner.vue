@@ -3,10 +3,7 @@
         <div class="absolute right-0 top-0 h-44 w-44 translate-x-1/3 -translate-y-1/3 rounded-full border border-spain-yellow/30"/>
         <div class="relative grid gap-10 lg:grid-cols-[minmax(15rem,0.68fr)_minmax(0,1.32fr)]">
             <header>
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-spain-yellow">
-                    Cuaderno de ruta
-                </p>
-                <h2 class="mt-4 text-4xl font-bold leading-tight sm:text-5xl">
+                <h2 class="text-4xl font-bold leading-tight sm:text-5xl">
                     Diseña tu escapada a {{ destination.nombre }}
                 </h2>
                 <p class="mt-5 max-w-md leading-7 text-white/70">
@@ -37,7 +34,7 @@
                 <div class="mt-8 flex flex-wrap gap-3">
                     <button
                         type="button"
-                        class="inline-flex items-center gap-2 rounded-full bg-spain-red px-5 py-3 font-semibold transition-colors hover:bg-white hover:text-spain-ink"
+                        class="inline-flex items-center gap-2 rounded-full bg-spain-red px-5 py-3 font-semibold transition-colors hover:bg-spain-paper hover:text-spain-ink"
                         @click="shareItinerary"
                     >
                         <Icon name="mdi:link-variant" class="h-5 w-5"/>
@@ -70,7 +67,7 @@
                     <li
                         v-for="(stop, index) in selectedStops"
                         :key="stop.id"
-                        class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl bg-white p-4 text-spain-ink sm:p-5"
+                        class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl bg-spain-surface p-4 text-spain-ink sm:p-5"
                     >
                         <span class="flex h-10 w-10 items-center justify-center rounded-full bg-spain-yellow font-mono text-sm font-bold">
                             {{ index + 1 }}
@@ -117,7 +114,7 @@
                 </div>
 
                 <div v-if="suggestedStops.length" class="mt-8">
-                    <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-spain-yellow">
+                    <h3 class="text-sm font-semibold text-spain-yellow">
                         Ideas para añadir
                     </h3>
                     <div class="mt-3 flex flex-wrap gap-2">
@@ -158,3 +155,7 @@ const {
     shareItinerary,
 } = useItinerary(props.destination.id, props.destination.stops);
 </script>
+
+<style scoped>
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 · genre: editorial travel notebook · macrostructure: route workbench · design-system: design.md · designed-as-app */
+</style>

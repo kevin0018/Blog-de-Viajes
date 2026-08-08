@@ -56,7 +56,7 @@
                     <nuxt-link
                         :to="`/post/blog/${featuredPost.slug}`"
                         :aria-label="`Leer ${featuredPost.titulo}`"
-                        class="mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-spain-yellow px-6 py-3 font-semibold text-spain-ink transition-colors after:absolute after:inset-0 after:content-[''] hover:bg-white"
+                        class="mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-spain-yellow px-6 py-3 font-semibold text-spain-ink transition-colors after:absolute after:inset-0 after:content-[''] hover:bg-spain-paper"
                     >
                         Leer artículo
                         <Icon name="mdi:arrow-right" class="h-5 w-5"/>
