@@ -55,7 +55,7 @@
                                     <div class="mb-4 flex items-center justify-between gap-3">
                                         <h3 class="text-xl font-bold">{{ destino.nombre }}</h3>
                                         <span class="shrink-0 rounded-full bg-spain-yellow/25 px-3 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-wider text-spain-wine">
-                                            {{ destino.duracion }}
+                                            {{ destino.estancia }}
                                         </span>
                                     </div>
                                     <p class="mb-5 text-sm leading-6 text-spain-ink/75">
@@ -156,63 +156,26 @@
         </button>
     </div>
 </template>
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+<script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from "vue";
+import { homeDestinations } from "~/data/destinations";
 
 // Obtén el baseURL desde la configuración del entorno
 const { app: { baseURL } } = useRuntimeConfig();
 
-// Datos del carrusel
-const destinos = ref([
-    {
-        nombre: "Londres",
-        imagen: "assets/images/londres.jpg",
-        duracion: "3–4 días",
-        descripcion: "Mercados, museos y barrios con carácter para recorrer sin mirar el reloj.",
-        autor: "Luke Stackpoole",
-        creditoAutorUrl: "https://unsplash.com/es/@withluke?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
-        creditoUnsplashUrl: "https://unsplash.com/es/fotos/torre-del-big-ben-mOEqOtmuPG8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
-    },
-    {
-        nombre: "Roma",
-        imagen: "assets/images/roma.jpg",
-        duracion: "3 días",
-        descripcion: "Historia a cielo abierto, plazas vivas y sobremesas que siempre se alargan.",
-        autor: "David Köhler",
-        creditoAutorUrl: "https://unsplash.com/es/@davidkhlr?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
-        creditoUnsplashUrl: "https://unsplash.com/es/fotos/colosseum-arena-photography-VFRTXGw1VjU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
-    },
-    {
-        nombre: "París",
-        imagen: "assets/images/paris.jpg",
-        duracion: "3–4 días",
-        descripcion: "Paseos junto al Sena, pequeñas galerías y cafés con vistas a la ciudad.",
-        autor: "Anthony DELANOIX",
-        creditoAutorUrl: "https://unsplash.com/es/@anthonydelanoix?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
-        creditoUnsplashUrl: "https://unsplash.com/es/fotos/eiffel-tower-during-daytime-Q0-fOL2nqZc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
-    },
-    {
-        nombre: "Nueva York",
-        imagen: "assets/images/nueva-york.jpg",
-        duracion: "5 días",
-        descripcion: "Rascacielos, barrios inagotables y una energía que cambia a cada esquina.",
-        autor: "Timo Wagner",
-        creditoAutorUrl: "https://unsplash.com/es/@timovaknar?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
-        creditoUnsplashUrl: "https://unsplash.com/es/fotos/empire-state-building-nueva-york-por-la-noche-fT6-YkB0nfg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
-    },
-]);
+const destinos = homeDestinations;
 
 // Referencia al carrusel
-const carousel = ref(null);
+const carousel = ref<HTMLElement | null>(null);
 
 // Función para desplazar hacia la izquierda
 const scrollLeft = () => {
-    carousel.value.scrollBy({ left: -300, behavior: "smooth" });
+    carousel.value?.scrollBy({ left: -300, behavior: "smooth" });
 };
 
 // Función para desplazar hacia la derecha
 const scrollRight = () => {
-    carousel.value.scrollBy({ left: 300, behavior: "smooth" });
+    carousel.value?.scrollBy({ left: 300, behavior: "smooth" });
 };
 
 // Lógica del botón flotante
