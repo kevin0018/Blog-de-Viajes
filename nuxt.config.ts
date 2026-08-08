@@ -15,7 +15,6 @@ export default defineNuxtConfig({
                 {charset: 'utf-8'},
                 {name: 'viewport', content: 'width=device-width, initial-scale=1'},
                 {
-                    hid: 'description',
                     name: 'description',
                     content: 'Explora destinos únicos con nuestro Blog de Viajes'
                 },
@@ -48,9 +47,11 @@ export default defineNuxtConfig({
         },
     },
     fonts: {
-        google: {
-            families: ['Bodoni Moda', 'Atkinson Hyperlegible', 'IBM Plex Mono'],
-        },
+        families: [
+            {name: 'Bodoni Moda', provider: 'google'},
+            {name: 'Atkinson Hyperlegible', provider: 'google'},
+            {name: 'IBM Plex Mono', provider: 'google'},
+        ],
     },
     vite: {
         plugins: [tailwindcss()],

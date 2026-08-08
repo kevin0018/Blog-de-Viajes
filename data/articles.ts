@@ -1,6 +1,6 @@
 import type { TravelArticle } from "~/types/article";
 
-export const articles = [
+export const articles: readonly TravelArticle[] = [
     {
         slug: "viajar-con-presupuesto",
         titulo: "Viajar con presupuesto sin renunciar al viaje",
@@ -113,6 +113,6 @@ export const articles = [
             },
         ],
     },
-] as const satisfies readonly TravelArticle[];
+];
 
 export const findArticleBySlug = (slug: string) => articles.find((article) => article.slug === slug);

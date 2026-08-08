@@ -8,6 +8,9 @@
     "deploy": "gh-pages -d .output/public --dotfiles",
     "build": "nuxt build",
     "lint": "eslint .",
+    "typecheck": "nuxt typecheck",
+    "test": "TMPDIR=/tmp TEMP=/tmp TMP=/tmp vitest run",
+    "test:e2e": "TMPDIR=/tmp TEMP=/tmp TMP=/tmp playwright test",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "postgenerate": "echo > .output/public/.nojekyll",
@@ -23,11 +26,17 @@
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",
     "@nuxt/eslint": "^1.3.0",
+    "@nuxt/test-utils": "^4.1.0",
     "@parcel/watcher": "2.5.1",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/vite": "^4.3.3",
+    "@vue/test-utils": "^2.4.11",
     "eslint": "^9.25.1",
     "gh-pages": "^6.3.0",
+    "happy-dom": "^20.11.1",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.10",
+    "vue-tsc": "^3.3.9"
   }
 }

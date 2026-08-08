@@ -1,11 +1,13 @@
 import type { ItineraryStop, SavedItinerary, TripDuration } from "~/types/itinerary";
+import {
+    isTripDuration,
+    normalizeStopIds,
+    parseSavedItinerary,
+    parseSharedItinerary,
+    reorderStopIds,
+} from "~/utils/itinerary";
 
 const STORAGE_PREFIX = "blog-viajes:itinerary:";
-const VALID_DURATIONS: readonly TripDuration[] = [1, 3, 5];
-
-const isTripDuration = (value: number): value is TripDuration => (
-    VALID_DURATIONS.includes(value as TripDuration)
-);
 
 export const useItinerary = (
     destinationId: string,
@@ -25,50 +27,30 @@ export const useItinerary = (
     }));
     const suggestedStops = computed(() => availableStops.filter(({ id }) => !selectedStopIds.value.includes(id)));
 
-    const normalizeStopIds = (ids: readonly string[]) => (
-        [...new Set(ids)].filter((id) => availableIds.has(id)).slice(0, 5)
-    );
-
     const applyState = (duration: number, stopIds: readonly string[]) => {
         if (isTripDuration(duration)) {
             days.value = duration;
         }
 
-        const validIds = normalizeStopIds(stopIds);
-        if (validIds.length > 0) {
-            selectedStopIds.value = validIds;
-        }
+        const validIds = normalizeStopIds(stopIds, availableIds);
+        selectedStopIds.value = validIds;
     };
 
     const readSharedState = () => {
-        const duration = Number(route.query.dias);
-        const stops = typeof route.query.paradas === "string"
-            ? route.query.paradas.split(",")
-            : [];
-
-        if (isTripDuration(duration) && stops.length > 0) {
-            applyState(duration, stops);
-            return true;
-        }
-
-        return false;
+        const shared = parseSharedItinerary(route.query.dias, route.query.paradas, availableIds);
+        if (!shared) return false;
+        applyState(shared.days, shared.stopIds);
+        return true;
     };
 
     const readSavedState = () => {
         const rawValue = localStorage.getItem(`${STORAGE_PREFIX}${destinationId}`);
         if (!rawValue) return;
 
-        try {
-            const saved = JSON.parse(rawValue) as Partial<SavedItinerary>;
-            if (
-                saved.version === 1
-                && saved.destinationId === destinationId
-                && typeof saved.days === "number"
-                && Array.isArray(saved.stopIds)
-            ) {
-                applyState(saved.days, saved.stopIds.filter((id): id is string => typeof id === "string"));
-            }
-        } catch {
+        const saved = parseSavedItinerary(rawValue, destinationId, availableIds);
+        if (saved) {
+            applyState(saved.days, saved.stopIds);
+        } else {
             localStorage.removeItem(`${STORAGE_PREFIX}${destinationId}`);
         }
     };
@@ -105,12 +87,7 @@ export const useItinerary = (
     };
 
     const moveStop = (index: number, direction: -1 | 1) => {
-        const nextIndex = index + direction;
-        if (nextIndex < 0 || nextIndex >= selectedStopIds.value.length) return;
-
-        const reordered = [...selectedStopIds.value];
-        [reordered[index], reordered[nextIndex]] = [reordered[nextIndex]!, reordered[index]!];
-        selectedStopIds.value = reordered;
+        selectedStopIds.value = reorderStopIds(selectedStopIds.value, index, direction);
     };
 
     const resetItinerary = () => {
@@ -144,7 +121,18 @@ export const useItinerary = (
     });
 
     watch([days, selectedStopIds], () => {
-        if (ready.value) saveState();
+        if (!ready.value) return;
+        saveState();
+
+        if (typeof route.query.dias === "string" || typeof route.query.paradas === "string") {
+            void router.replace({
+                query: {
+                    ...route.query,
+                    dias: String(days.value),
+                    paradas: selectedStopIds.value.join(","),
+                },
+            });
+        }
     }, { deep: true });
 
     return {
