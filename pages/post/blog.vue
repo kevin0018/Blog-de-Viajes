@@ -10,7 +10,7 @@
       <article
         v-for="post in posts"
         :key="post.slug"
-        class="flex self-stretch flex-col overflow-hidden rounded-lg border border-spain-sand bg-white shadow-md"
+        class="relative flex self-stretch flex-col overflow-hidden rounded-lg border border-spain-sand bg-white shadow-md"
       >
         <!-- Imagen de la publicación -->
         <img
@@ -31,7 +31,8 @@
           <div class="mt-auto pt-4">
             <nuxt-link
               :to="`/post/blog/${post.slug}`"
-              class="inline-block rounded-md bg-spain-red px-4 py-2 text-white transition hover:bg-spain-wine"
+              :aria-label="`Leer ${post.titulo}`"
+              class="inline-block rounded-md bg-spain-red px-4 py-2 text-white transition-colors after:absolute after:inset-0 after:content-[''] hover:bg-spain-wine"
             >
               Leer más
             </nuxt-link>
@@ -44,7 +45,7 @@
             :href="post.creditoAutorUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="underline hover:text-spain-red"
+            class="relative z-10 underline hover:text-spain-red"
           >
             {{ post.autor }}
           </a>
@@ -53,7 +54,7 @@
             :href="post.creditoUnsplashUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="underline hover:text-spain-red"
+            class="relative z-10 underline hover:text-spain-red"
           >
             Unsplash
           </a>
