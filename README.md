@@ -31,7 +31,7 @@ cuentas ni backend.
 - **Accesibilidad:** controles nativos, foco visible, nombres accesibles,
   estados anunciados y reducción de movimiento.
 - **Entrega:** generación estática para GitHub Pages, canonical, Open Graph,
-  JSON-LD, sitemap y assets WebP reproducibles.
+  JSON-LD, sitemap y assets AVIF responsivos con fallback WebP reproducible.
 
 ## Arquitectura
 
@@ -60,9 +60,9 @@ pnpm generate      # salida estática completa
 ```
 
 El workflow de GitHub Actions ejecuta las cinco puertas antes de desplegar. La
-suite actual contiene seis pruebas de Vitest y un recorrido end-to-end en
-Chromium. No se publican métricas de rendimiento hasta disponer de una medición
-reproducible sobre la URL desplegada.
+suite actual contiene seis pruebas de Vitest y cinco comprobaciones end-to-end
+en Chromium. No se publican métricas de rendimiento hasta disponer de una
+medición reproducible sobre la URL desplegada.
 
 ## Desarrollo local
 
