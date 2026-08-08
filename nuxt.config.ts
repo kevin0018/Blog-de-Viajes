@@ -1,4 +1,7 @@
 import tailwindcss from '@tailwindcss/vite';
+import { destinations } from './data/destinations';
+
+const destinationRoutes = destinations.map(({ id }) => `/post/destinos/${id}`);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -7,12 +10,12 @@ export default defineNuxtConfig({
     app: {
         baseURL: '/Blog-de-Viajes/',
         head: {
+            htmlAttrs: {lang: 'es'},
             title: 'Blog de Viajes',
             meta: [
                 {charset: 'utf-8'},
                 {name: 'viewport', content: 'width=device-width, initial-scale=1'},
                 {
-                    hid: 'description',
                     name: 'description',
                     content: 'Explora destinos únicos con nuestro Blog de Viajes'
                 },
@@ -28,6 +31,8 @@ export default defineNuxtConfig({
             '/post/about',
             '/post/destinos',
             '/post/contacto',
+            '/sitemap.xml',
+            ...destinationRoutes,
         ],
     },
     modules: [
@@ -44,9 +49,11 @@ export default defineNuxtConfig({
         },
     },
     fonts: {
-        google: {
-            families: ['Bodoni Moda', 'Atkinson Hyperlegible', 'IBM Plex Mono'],
-        },
+        families: [
+            {name: 'Bodoni Moda', provider: 'google'},
+            {name: 'Atkinson Hyperlegible', provider: 'google'},
+            {name: 'IBM Plex Mono', provider: 'google'},
+        ],
     },
     vite: {
         plugins: [tailwindcss()],

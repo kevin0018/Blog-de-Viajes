@@ -1,2 +1,3 @@
 User-Agent: *
 Disallow:
+Sitemap: https://kevin0018.github.io/Blog-de-Viajes/sitemap.xml

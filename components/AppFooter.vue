@@ -14,7 +14,7 @@
               class="underline hover:text-spain-yellow"
             >Icons8</a>
           </p>
-          <p class="text-sm lg:text-base">&copy; 2025 Blog de Viajes - Todos los derechos reservados</p>
+          <p class="text-sm lg:text-base">&copy; {{ currentYear }} Blog de Viajes — Kevin Hernández</p>
         </div>
 
         <!-- Navegación -->
@@ -25,37 +25,27 @@
           <nuxt-link to="/post/contacto" class="text-sm lg:text-base hover:text-spain-yellow">Contacto</nuxt-link>
         </nav>
 
-        <!-- Redes sociales -->
-        <div class="flex space-x-6 justify-center">
+        <!-- Proyecto -->
+        <div class="flex justify-center">
           <a
-            href="#"
+            href="https://github.com/kevin0018/Blog-de-Viajes"
             target="_blank"
-            class="hover:text-spain-yellow"
-            aria-label="Facebook"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm transition-colors hover:text-spain-yellow lg:text-base"
+            aria-label="Ver el código fuente en GitHub"
           >
-            <Icon name="mdi:facebook" class="h-10 w-10 lg:h-6 lg:w-6" />
-          </a>
-          <a
-            href="#"
-            target="_blank"
-            class="hover:text-spain-yellow"
-            aria-label="Instagram"
-          >
-            <Icon name="mdi:instagram" class="h-10 w-10 lg:h-6 lg:w-6" />
-          </a>
-          <a
-            href="#"
-            target="_blank"
-            class="hover:text-spain-yellow"
-            aria-label="Twitter"
-          >
-            <Icon name="mdi:twitter" class="h-10 w-10 lg:h-6 lg:w-6" />
+            <Icon name="mdi:github" class="h-6 w-6" />
+            Código fuente
           </a>
         </div>
       </div>
     </div>
   </footer>
 </template>
+
+<script setup>
+const currentYear = new Date().getFullYear();
+</script>
 
 <style scoped>
 footer {

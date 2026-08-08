@@ -10,6 +10,7 @@
   --color-spain-yellow: #f1bf00;
   --color-spain-gold: #d89e00;
   --color-spain-paper: #fff9e8;
+  --color-spain-surface: #fffdf7;
   --color-spain-sand: #e8d8a8;
   --color-spain-ink: #251a16;
 }
@@ -17,12 +18,14 @@
 @layer base {
   html {
     background: var(--color-spain-paper);
+    overflow-x: clip;
   }
 
   body {
     background: var(--color-spain-paper);
     color: var(--color-spain-ink);
     font-family: var(--font-body);
+    overflow-x: clip;
   }
 
   h1,
@@ -30,6 +33,8 @@
   h3 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   ::selection {
@@ -48,14 +53,6 @@
     color: var(--color-spain-wine);
   }
 
-  .section-title::after {
-    display: block;
-    width: 4rem;
-    height: 0.25rem;
-    margin: 0.75rem auto 0;
-    background: var(--color-spain-yellow);
-    content: "";
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
