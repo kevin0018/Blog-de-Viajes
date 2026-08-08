@@ -1,4 +1,4 @@
-import type { Destination } from "~/types/destination";
+import type { Destination } from "../types/destination";
 
 export const destinations = [
     {
@@ -140,3 +140,5 @@ export const homeDestinations = homeDestinationIds.map((id) => {
 
     return destination;
 });
+
+export const findDestinationBySlug = (slug: string) => destinations.find((destination) => destination.id === slug);

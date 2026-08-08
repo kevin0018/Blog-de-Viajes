@@ -1,4 +1,7 @@
 import tailwindcss from '@tailwindcss/vite';
+import { destinations } from './data/destinations';
+
+const destinationRoutes = destinations.map(({ id }) => `/post/destinos/${id}`);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -28,6 +31,7 @@ export default defineNuxtConfig({
             '/post/about',
             '/post/destinos',
             '/post/contacto',
+            ...destinationRoutes,
         ],
     },
     modules: [

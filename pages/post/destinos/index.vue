@@ -142,6 +142,15 @@
                         </li>
                     </ul>
 
+                    <nuxt-link
+                        :to="`/post/destinos/${activeDestination.id}`"
+                        class="mt-8 inline-flex items-center gap-2 rounded-full bg-spain-red px-6 py-3 font-semibold text-white transition-colors hover:bg-spain-wine"
+                        @click="closeDestination"
+                    >
+                        Ver guía completa
+                        <Icon name="mdi:arrow-right" class="h-5 w-5"/>
+                    </nuxt-link>
+
                     <p class="mt-8 border-t border-spain-sand pt-4 text-xs text-spain-ink/65">
                         Foto de
                         <a
