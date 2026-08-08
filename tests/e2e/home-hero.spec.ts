@@ -31,3 +31,15 @@ test("keeps the home experience still when reduced motion is requested", async (
     expect(animationName).toBe("none");
     expect(routeOffset).toBe("0px");
 });
+
+test("does not reset a manual scroll after opening the travel journal", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("link", { name: "Leer el cuaderno" }).click();
+    await expect(page).toHaveURL(/\/post\/blog$/);
+    await expect(page.getByRole("heading", { name: "Antes de cerrar la maleta" })).toBeVisible();
+
+    await page.evaluate(() => window.scrollTo(0, 600));
+    await page.waitForTimeout(500);
+
+    expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(500);
+});
