@@ -9,14 +9,41 @@ const jpegFiles = files.filter((file) => [".jpg", ".jpeg"].includes(extname(file
 
 await Promise.all(jpegFiles.map(async (file) => {
     const source = new URL(file, imagesDirectory);
-    const output = new URL(file.replace(/\.jpe?g$/i, ".webp"), imagesDirectory);
-    await sharp(fileURLToPath(source)).webp({ quality: 78, effort: 5 }).toFile(fileURLToPath(output));
+    const basename = file.replace(/\.jpe?g$/i, "");
+
+    await Promise.all([
+        sharp(fileURLToPath(source))
+            .webp({ quality: 78, effort: 5 })
+            .toFile(fileURLToPath(new URL(`${basename}.webp`, imagesDirectory))),
+        sharp(fileURLToPath(source))
+            .avif({ quality: 50, effort: 5 })
+            .toFile(fileURLToPath(new URL(`${basename}.avif`, imagesDirectory))),
+    ]);
 }));
 
-await sharp(fileURLToPath(new URL("about.jpg", imagesDirectory)))
-    .resize({ width: 960, withoutEnlargement: true })
-    .webp({ quality: 76, effort: 5 })
-    .toFile(fileURLToPath(new URL("about-960.webp", imagesDirectory)));
+const responsiveImages = [
+    { source: "about.jpg", basename: "about-960", width: 960 },
+    { source: "about.jpg", basename: "about-1440", width: 1440 },
+    { source: "header-bg-1920.jpg", basename: "header-bg-640", width: 640 },
+    { source: "header-bg-1920.jpg", basename: "header-bg-1440", width: 1440 },
+];
 
-const generated = [...jpegFiles.map((file) => file.replace(/\.jpe?g$/i, ".webp")), "about-960.webp"];
+await Promise.all(responsiveImages.flatMap(({ source, basename, width }) => [
+    sharp(fileURLToPath(new URL(source, imagesDirectory)))
+        .resize({ width, withoutEnlargement: true })
+        .webp({ quality: 76, effort: 5 })
+        .toFile(fileURLToPath(new URL(`${basename}.webp`, imagesDirectory))),
+    sharp(fileURLToPath(new URL(source, imagesDirectory)))
+        .resize({ width, withoutEnlargement: true })
+        .avif({ quality: 50, effort: 5 })
+        .toFile(fileURLToPath(new URL(`${basename}.avif`, imagesDirectory))),
+]));
+
+const generated = [
+    ...jpegFiles.flatMap((file) => {
+        const basename = file.replace(/\.jpe?g$/i, "");
+        return [`${basename}.webp`, `${basename}.avif`];
+    }),
+    ...responsiveImages.flatMap(({ basename }) => [`${basename}.webp`, `${basename}.avif`]),
+];
 console.log(`Generated ${generated.length} optimized images in ${join("public", "assets", "images")}.`);

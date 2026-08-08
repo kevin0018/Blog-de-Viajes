@@ -22,7 +22,7 @@
 
             <article class="relative mt-12 grid overflow-hidden border-b border-spain-sand pb-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)] lg:items-stretch">
                 <figure class="relative min-h-[24rem] overflow-hidden rounded-t-[2rem] bg-spain-ink lg:min-h-[36rem] lg:rounded-l-[2rem] lg:rounded-tr-none">
-                    <img
+                    <OptimizedImage
                         :src="`${baseURL}${featuredPost.imagen}`"
                         :alt="featuredPost.alt"
                         width="960"
@@ -30,7 +30,7 @@
                         fetchpriority="high"
                         decoding="async"
                         class="absolute inset-0 h-full w-full object-cover"
-                    >
+                    />
                     <figcaption class="absolute bottom-4 left-4 z-10 rounded-full bg-spain-ink/75 px-3 py-1 text-xs text-white/75">
                         Foto de
                         <a :href="featuredPost.creditoAutorUrl" target="_blank" rel="noopener noreferrer" class="relative z-20 underline hover:text-spain-yellow">{{ featuredPost.autor }}</a>
@@ -70,7 +70,7 @@
                     :key="post.slug"
                     class="relative grid gap-6 border-b border-spain-sand py-10 sm:grid-cols-[12rem_minmax(0,1fr)_auto] sm:items-center lg:grid-cols-[16rem_minmax(0,1fr)_auto]"
                 >
-                    <img
+                    <OptimizedImage
                         :src="`${baseURL}${post.imagen}`"
                         :alt="post.alt"
                         width="480"
@@ -78,7 +78,7 @@
                         loading="lazy"
                         decoding="async"
                         class="aspect-[3/2] w-full rounded-2xl object-cover"
-                    >
+                    />
                     <div>
                         <p class="font-mono text-xs font-semibold uppercase tracking-wider text-spain-red">
                             {{ post.categoria }} · Nota {{ String(index + 2).padStart(2, "0") }}

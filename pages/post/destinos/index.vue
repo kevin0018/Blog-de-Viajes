@@ -49,7 +49,7 @@
                 class="group relative min-h-[22rem] overflow-hidden rounded-3xl border border-spain-sand/70 bg-spain-ink text-left shadow-lg transition-transform duration-300 active:scale-[0.99] md:min-h-0"
                 @click="openDestination(destino)"
             >
-                <img
+                <OptimizedImage
                     :src="`${baseURL}${destino.imagen}`"
                     :alt="destino.alt"
                     :style="{objectPosition: destino.posicionImagen}"
@@ -58,7 +58,7 @@
                     loading="lazy"
                     decoding="async"
                     class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                >
+                />
                 <div class="absolute inset-0 bg-gradient-to-t from-spain-ink via-spain-ink/25 to-transparent"/>
 
                 <div class="absolute left-5 top-5">
@@ -124,14 +124,14 @@
                 </button>
 
                 <div class="relative min-h-72 overflow-hidden lg:min-h-full">
-                    <img
+                    <OptimizedImage
                         :src="`${baseURL}${activeDestination.imagen}`"
                         :alt="activeDestination.alt"
                         :style="{objectPosition: activeDestination.posicionImagen}"
                         width="960"
                         height="960"
                         class="absolute inset-0 h-full w-full object-cover"
-                    >
+                    />
                     <div class="absolute inset-0 bg-gradient-to-t from-spain-ink/70 via-transparent to-transparent lg:bg-gradient-to-r"/>
                 </div>
 

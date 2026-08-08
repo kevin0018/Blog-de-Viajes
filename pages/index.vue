@@ -38,7 +38,7 @@
                                 class="group flex w-[82vw] max-w-80 flex-shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-spain-sand bg-spain-surface shadow-lg sm:w-80 xl:w-auto xl:max-w-none"
                             >
                                 <div class="overflow-hidden">
-                                    <img
+                                    <OptimizedImage
                                         :src="`${baseURL}${destino.imagen}`"
                                         :alt="destino.nombre"
                                         width="640"
@@ -46,7 +46,7 @@
                                         loading="lazy"
                                         decoding="async"
                                         class="h-52 w-full object-cover transition duration-500 group-hover:scale-[1.03] xl:h-56"
-                                    >
+                                    />
                                 </div>
                                 <div class="flex flex-1 flex-col p-6">
                                     <div class="mb-4 flex items-center justify-between gap-3">
@@ -95,10 +95,16 @@
                 </div>
         </section>
 
-        <section
-                class="relative flex min-h-[34rem] items-center overflow-hidden bg-cover bg-center bg-no-repeat px-4 py-20 sm:px-6 lg:min-h-[40rem]"
-                :style="{ backgroundImage: `url(${baseURL}assets/images/about.webp)` }"
-            >
+        <section class="relative flex min-h-[34rem] items-center overflow-hidden px-4 py-20 sm:px-6 lg:min-h-[40rem]">
+                <OptimizedImage
+                    :src="`${baseURL}assets/images/about.webp`"
+                    alt=""
+                    width="1920"
+                    height="1275"
+                    loading="lazy"
+                    decoding="async"
+                    class="absolute inset-0 h-full w-full object-cover object-center"
+                />
                 <div class="absolute inset-0 bg-spain-wine/65"/>
                 <div
                     class="relative z-10 mx-auto max-w-3xl text-center"

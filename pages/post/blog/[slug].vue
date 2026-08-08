@@ -22,7 +22,7 @@
             </header>
 
             <figure class="mt-12 overflow-hidden rounded-2xl border border-spain-sand bg-spain-sand/30">
-                <img
+                <OptimizedImage
                     :src="`${baseURL}${article.imagen}`"
                     :alt="article.alt"
                     width="1200"
@@ -30,7 +30,7 @@
                     fetchpriority="high"
                     decoding="async"
                     class="max-h-[36rem] w-full object-cover"
-                >
+                />
                 <figcaption class="px-5 py-3 text-xs text-spain-ink/65">
                     Foto de
                     <a

@@ -12,8 +12,14 @@
     >
         <picture class="absolute inset-0">
             <source
-                media="(max-width: 767px)"
-                :srcset="`${baseURL}assets/images/header-bg-960.webp`"
+                type="image/avif"
+                :srcset="`${baseURL}assets/images/header-bg-640.avif 640w, ${baseURL}assets/images/header-bg-960.avif 960w, ${baseURL}assets/images/header-bg-1440.avif 1440w, ${baseURL}assets/images/header-bg-1920.avif 1920w`"
+                sizes="100vw"
+            >
+            <source
+                type="image/webp"
+                :srcset="`${baseURL}assets/images/header-bg-640.webp 640w, ${baseURL}assets/images/header-bg-960.webp 960w, ${baseURL}assets/images/header-bg-1440.webp 1440w, ${baseURL}assets/images/header-bg-1920.webp 1920w`"
+                sizes="100vw"
             >
             <img
                 :src="`${baseURL}assets/images/header-bg-1920.webp`"

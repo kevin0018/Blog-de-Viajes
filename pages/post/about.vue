@@ -23,15 +23,16 @@
 
             <figure class="relative mt-16 min-h-[28rem] overflow-hidden rounded-[2rem] bg-spain-ink lg:min-h-[42rem]">
                 <picture>
-                    <source media="(max-width: 767px)" :srcset="`${baseURL}assets/images/about-960.webp`">
+                    <source type="image/avif" :srcset="`${baseURL}assets/images/about-960.avif 960w, ${baseURL}assets/images/about-1440.avif 1440w, ${baseURL}assets/images/about.avif 1920w`" sizes="100vw">
+                    <source type="image/webp" :srcset="`${baseURL}assets/images/about-960.webp 960w, ${baseURL}assets/images/about-1440.webp 1440w, ${baseURL}assets/images/about.webp 1920w`" sizes="100vw">
                     <img
-                    :src="`${baseURL}assets/images/about.webp`"
-                    alt="Persona contemplando un paisaje de montaña al atardecer"
-                    width="1920"
-                    height="1080"
-                    fetchpriority="high"
-                    decoding="async"
-                    class="absolute inset-0 h-full w-full object-cover"
+                        :src="`${baseURL}assets/images/about.webp`"
+                        alt="Persona contemplando un paisaje de montaña al atardecer"
+                        width="1920"
+                        height="1275"
+                        fetchpriority="high"
+                        decoding="async"
+                        class="absolute inset-0 h-full w-full object-cover"
                     >
                 </picture>
                 <div class="absolute inset-0 bg-gradient-to-r from-spain-ink/65 via-transparent to-transparent"/>

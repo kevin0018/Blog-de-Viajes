@@ -11,7 +11,7 @@
 
             <div class="mt-10 grid min-w-0 gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(20rem,0.8fr)] lg:items-end">
                 <figure class="relative min-h-[28rem] overflow-hidden rounded-3xl bg-spain-ink lg:min-h-[40rem]">
-                    <img
+                    <OptimizedImage
                         :src="`${baseURL}${destination.imagen}`"
                         :alt="destination.alt"
                         :style="{ objectPosition: destination.posicionImagen }"
@@ -20,7 +20,7 @@
                         fetchpriority="high"
                         decoding="async"
                         class="absolute inset-0 h-full w-full object-cover"
-                    >
+                    />
                     <div class="absolute inset-0 bg-gradient-to-t from-spain-ink/65 via-transparent to-transparent"/>
                     <figcaption class="absolute bottom-5 left-5 text-xs text-white/75">
                         Foto de
