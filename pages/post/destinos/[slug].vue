@@ -71,6 +71,10 @@
                     </li>
                 </ol>
             </section>
+
+            <div class="mt-20">
+                <TripPlanner :destination="destination"/>
+            </div>
         </div>
     </article>
 </template>

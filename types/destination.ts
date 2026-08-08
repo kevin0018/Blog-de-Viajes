@@ -1,3 +1,5 @@
+import type { ItineraryStop } from "./itinerary";
+
 export interface Destination {
     id: string;
     nombre: string;
@@ -12,6 +14,7 @@ export interface Destination {
     estancia: string;
     mejorEpoca: string;
     planes: readonly string[];
+    stops: readonly ItineraryStop[];
     creditoAutorUrl: string;
     creditoUnsplashUrl: string;
 }
