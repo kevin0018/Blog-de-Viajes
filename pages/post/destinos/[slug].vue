@@ -81,6 +81,7 @@
 
 <script setup lang="ts">
 import { findDestinationBySlug } from "~/data/destinations";
+import { toSiteUrl } from "~/utils/site";
 
 const route = useRoute();
 const { app: { baseURL } } = useRuntimeConfig();
@@ -96,7 +97,29 @@ useSeoMeta({
     description: destination.descripcion,
     ogTitle: `Guía de ${destination.nombre}`,
     ogDescription: destination.descripcion,
-    ogImage: `${baseURL}${destination.imagen}`,
+    ogImage: toSiteUrl(destination.imagen),
     ogType: "article",
+    twitterCard: "summary_large_image",
 });
+
+useJsonLd([
+    {
+        "@context": "https://schema.org",
+        "@type": "Place",
+        name: destination.nombre,
+        description: destination.descripcion,
+        image: toSiteUrl(destination.imagen),
+        containedInPlace: { "@type": "Country", name: destination.pais },
+        url: toSiteUrl(`post/destinos/${destination.id}`),
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Inicio", item: toSiteUrl() },
+            { "@type": "ListItem", position: 2, name: "Destinos", item: toSiteUrl("post/destinos") },
+            { "@type": "ListItem", position: 3, name: destination.nombre, item: toSiteUrl(`post/destinos/${destination.id}`) },
+        ],
+    },
+]);
 </script>

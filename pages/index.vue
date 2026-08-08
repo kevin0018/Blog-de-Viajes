@@ -100,7 +100,7 @@
 
         <section
                 class="relative flex min-h-[34rem] items-center overflow-hidden bg-cover bg-center bg-no-repeat px-4 py-20 sm:px-6 lg:min-h-[40rem]"
-                :style="{ backgroundImage: `url(${baseURL}assets/images/about.jpg)` }"
+                :style="{ backgroundImage: `url(${baseURL}assets/images/about.webp)` }"
             >
                 <div class="absolute inset-0 bg-spain-wine/65"/>
                 <div
@@ -111,9 +111,9 @@
                     </p>
                     <h2 class="text-4xl font-bold text-white sm:text-5xl">Sobre mí</h2>
                     <p class="mx-auto mt-6 max-w-2xl text-base leading-7 text-spain-paper/90 sm:text-lg sm:leading-8">
-                        Soy una persona apasionada por los viajes, la fotografía y la escritura.
-                        En este blog comparto experiencias, consejos y recomendaciones de los destinos
-                        que he visitado para inspirar tu próxima aventura.
+                        Soy Kevin, desarrollador de este cuaderno digital. Aquí convierto ideas de viaje
+                        en guías prácticas mientras trabajo con Nuxt, accesibilidad, contenido tipado
+                        y una herramienta para preparar rutas propias.
                     </p>
                     <nuxt-link
                         to="/post/about"
@@ -159,11 +159,31 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import { homeDestinations } from "~/data/destinations";
+import { toSiteUrl } from "~/utils/site";
 
 // Obtén el baseURL desde la configuración del entorno
 const { app: { baseURL } } = useRuntimeConfig();
 
 const destinos = homeDestinations;
+
+useSeoMeta({
+    title: "Blog de Viajes · Guías y escapadas a tu ritmo",
+    description: "Descubre destinos, lee consejos prácticos y construye un itinerario que puedes guardar y compartir.",
+    ogTitle: "Blog de Viajes · Guías y escapadas a tu ritmo",
+    ogDescription: "Destinos, lecturas y un planificador para preparar escapadas a tu ritmo.",
+    ogImage: toSiteUrl("assets/images/header-bg-1920.webp"),
+    ogType: "website",
+    twitterCard: "summary_large_image",
+});
+
+useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Blog de Viajes",
+    url: toSiteUrl(),
+    description: "Guías de ciudades, consejos de viaje y un planificador de itinerarios.",
+    author: { "@type": "Person", name: "Kevin Hernández" },
+});
 
 // Referencia al carrusel
 const carousel = ref<HTMLElement | null>(null);

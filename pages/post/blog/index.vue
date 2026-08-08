@@ -109,6 +109,7 @@
 
 <script setup lang="ts">
 import { articles } from "~/data/articles";
+import { toSiteUrl } from "~/utils/site";
 
 const { app: { baseURL } } = useRuntimeConfig();
 const posts = articles;
@@ -118,6 +119,23 @@ const remainingPosts = posts.slice(1);
 useSeoMeta({
     title: "Consejos y notas de viaje · Blog de Viajes",
     description: "Artículos prácticos para elegir destino, preparar el presupuesto y viajar con un equipaje más ligero.",
+    ogTitle: "Consejos y notas de viaje",
+    ogDescription: "Artículos prácticos para preparar viajes con mejores decisiones.",
+    ogImage: toSiteUrl(articles[0]?.imagen),
+    ogType: "website",
+    twitterCard: "summary_large_image",
+});
+
+useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Notas para viajar mejor",
+    url: toSiteUrl("post/blog"),
+    blogPost: articles.map((article) => ({
+        "@type": "BlogPosting",
+        headline: article.titulo,
+        url: toSiteUrl(`post/blog/${article.slug}`),
+    })),
 });
 </script>
 

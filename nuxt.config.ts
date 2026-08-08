@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     app: {
         baseURL: '/Blog-de-Viajes/',
         head: {
+            htmlAttrs: {lang: 'es'},
             title: 'Blog de Viajes',
             meta: [
                 {charset: 'utf-8'},
@@ -30,6 +31,7 @@ export default defineNuxtConfig({
             '/post/about',
             '/post/destinos',
             '/post/contacto',
+            '/sitemap.xml',
             ...destinationRoutes,
         ],
     },

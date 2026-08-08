@@ -79,6 +79,7 @@
 
 <script setup lang="ts">
 import { findArticleBySlug } from "~/data/articles";
+import { toSiteUrl } from "~/utils/site";
 
 const route = useRoute();
 const { app: { baseURL } } = useRuntimeConfig();
@@ -97,7 +98,30 @@ useSeoMeta({
     description: article.resumen,
     ogTitle: article.titulo,
     ogDescription: article.resumen,
-    ogImage: `${baseURL}${article.imagen}`,
+    ogImage: toSiteUrl(article.imagen),
     ogType: "article",
+    twitterCard: "summary_large_image",
 });
+
+useJsonLd([
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: article.titulo,
+        description: article.resumen,
+        image: toSiteUrl(article.imagen),
+        mainEntityOfPage: toSiteUrl(`post/blog/${article.slug}`),
+        author: { "@type": "Person", name: "Kevin Hernández" },
+        inLanguage: "es",
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Inicio", item: toSiteUrl() },
+            { "@type": "ListItem", position: 2, name: "Blog", item: toSiteUrl("post/blog") },
+            { "@type": "ListItem", position: 3, name: article.titulo, item: toSiteUrl(`post/blog/${article.slug}`) },
+        ],
+    },
+]);
 </script>

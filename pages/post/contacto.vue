@@ -46,6 +46,27 @@
     </section>
 </template>
 
+<script setup lang="ts">
+import { toSiteUrl } from "~/utils/site";
+
+useSeoMeta({
+    title: "Contacto y colaboración · Blog de Viajes",
+    description: "Consulta el código, propón un destino o contacta con Kevin Hernández a través de GitHub.",
+    ogTitle: "Contacto y colaboración",
+    ogDescription: "Código abierto, propuestas de destinos y conversación sobre el proyecto.",
+    ogImage: toSiteUrl("assets/images/header-bg-1920.webp"),
+    ogType: "website",
+    twitterCard: "summary_large_image",
+});
+
+useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contacto y colaboración",
+    url: toSiteUrl("post/contacto"),
+});
+</script>
+
 <style scoped>
 .contact-stage {
     min-height: max(100vh, 64rem);

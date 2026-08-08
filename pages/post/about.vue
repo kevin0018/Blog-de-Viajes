@@ -22,15 +22,18 @@
             </header>
 
             <figure class="relative mt-16 min-h-[28rem] overflow-hidden rounded-[2rem] bg-spain-ink lg:min-h-[42rem]">
-                <img
-                    :src="`${baseURL}assets/images/about.jpg`"
+                <picture>
+                    <source media="(max-width: 767px)" :srcset="`${baseURL}assets/images/about-960.webp`">
+                    <img
+                    :src="`${baseURL}assets/images/about.webp`"
                     alt="Persona contemplando un paisaje de montaña al atardecer"
                     width="1920"
                     height="1080"
                     fetchpriority="high"
                     decoding="async"
                     class="absolute inset-0 h-full w-full object-cover"
-                >
+                    >
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-r from-spain-ink/65 via-transparent to-transparent"/>
                 <blockquote class="absolute bottom-8 left-6 max-w-lg text-3xl font-bold leading-tight text-white sm:bottom-12 sm:left-12 sm:text-4xl">
                     “Primero entender el viaje. Después decidir qué merece estar en pantalla.”
@@ -81,6 +84,8 @@
 </template>
 
 <script setup lang="ts">
+import { toSiteUrl } from "~/utils/site";
+
 const { app: { baseURL } } = useRuntimeConfig();
 
 const process = [
@@ -92,6 +97,19 @@ const process = [
 useSeoMeta({
     title: "Sobre el proyecto · Blog de Viajes",
     description: "La historia, el proceso y las decisiones técnicas detrás de Blog de Viajes, un proyecto de Kevin Hernández.",
+    ogTitle: "Sobre Blog de Viajes",
+    ogDescription: "El proceso y las decisiones de producto detrás del proyecto.",
+    ogImage: toSiteUrl("assets/images/about.webp"),
+    ogType: "website",
+    twitterCard: "summary_large_image",
+});
+
+useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "Sobre el proyecto",
+    url: toSiteUrl("post/about"),
+    author: { "@type": "Person", name: "Kevin Hernández", url: "https://github.com/kevin0018" },
 });
 </script>
 

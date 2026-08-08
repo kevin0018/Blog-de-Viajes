@@ -218,6 +218,7 @@
 import { computed, nextTick, onMounted, onUnmounted, ref } from "vue";
 import { destinations } from "~/data/destinations";
 import type { Destination, TravelBudget, TravelSeason, TravelStyle } from "~/types/destination";
+import { toSiteUrl } from "~/utils/site";
 
 // Obtén el baseURL desde la configuración del entorno (Nuxt 3)
 const { app: { baseURL } } = useRuntimeConfig();
@@ -288,6 +289,28 @@ const destinos = computed(() => destinations.filter((destination) => {
 
     return durationMatches && seasonMatches && budgetMatches && styleMatches;
 }));
+
+useSeoMeta({
+    title: "Destinos y guías de ciudad · Blog de Viajes",
+    description: "Compara seis destinos por duración, época, nivel de gasto y estilo antes de construir tu itinerario.",
+    ogTitle: "Seis destinos, seis ritmos de viaje",
+    ogDescription: "Filtra ciudades y empieza una ruta que puedes adaptar, guardar y compartir.",
+    ogImage: toSiteUrl("assets/images/londres.webp"),
+    ogType: "website",
+    twitterCard: "summary_large_image",
+});
+
+useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Destinos",
+    url: toSiteUrl("post/destinos"),
+    mainEntity: destinations.map((destination) => ({
+        "@type": "Place",
+        name: destination.nombre,
+        url: toSiteUrl(`post/destinos/${destination.id}`),
+    })),
+});
 
 const hasActiveFilters = computed(() => Object.values(filterModels).some((filter) => filter.value !== "all"));
 const resetFilters = () => Object.values(filterModels).forEach((filter) => {

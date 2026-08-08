@@ -17,6 +17,7 @@ import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
 
 const route = useRoute();
+useCanonical();
 const contactPage = computed(() => route.path === "/post/contacto");
 const detailPage = computed(() => (
     route.path.startsWith("/post/blog/") || route.path.startsWith("/post/destinos/")

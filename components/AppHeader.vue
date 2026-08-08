@@ -13,10 +13,10 @@
         <picture class="absolute inset-0">
             <source
                 media="(max-width: 767px)"
-                :srcset="`${baseURL}assets/images/header-bg-960.jpg`"
+                :srcset="`${baseURL}assets/images/header-bg-960.webp`"
             >
             <img
-                :src="`${baseURL}assets/images/header-bg-1920.jpg`"
+                :src="`${baseURL}assets/images/header-bg-1920.webp`"
                 alt=""
                 width="1920"
                 height="1144"
