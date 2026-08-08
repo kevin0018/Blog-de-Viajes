@@ -17,6 +17,10 @@ test("introduces the travel planner without overflowing on mobile", async ({ pag
         "href",
         "/Blog-de-Viajes/destinations",
     );
+    await expect(page.locator("header.relative").getByRole("link", {name: "Inicio"})).toHaveAttribute(
+        "href",
+        "/Blog-de-Viajes/",
+    );
 
     const viewport = await page.evaluate(() => ({
         clientWidth: document.documentElement.clientWidth,

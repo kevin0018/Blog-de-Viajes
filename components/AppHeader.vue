@@ -52,8 +52,8 @@
                 </div>
 
                 <!-- Logo centrado -->
-                <a
-                    :href="localePath('/')"
+                <nuxt-link
+                    :to="localePath('/')"
                     :aria-label="$t('nav.home')"
                     class="absolute left-1/2 top-4 -translate-x-1/2 rounded-full opacity-95 transition-opacity duration-300 hover:opacity-75 lg:top-1/2 lg:-translate-y-1/2"
                 >
@@ -66,7 +66,7 @@
                         decoding="sync"
                         class="h-14 w-14 drop-shadow-sm"
                     >
-                </a>
+                </nuxt-link>
 
                 <!-- Menú de la derecha -->
                 <div class="hidden lg:flex space-x-8 items-center">
