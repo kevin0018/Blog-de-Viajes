@@ -210,9 +210,31 @@
     <transition name="sticky-nav">
         <header
             v-if="showStickyHeader"
-            class="fixed inset-x-0 top-0 z-[60] border-b border-spain-yellow/70 bg-spain-wine/95 text-white shadow-lg backdrop-blur-md"
+            class="fixed inset-x-0 top-0 z-[60] overflow-hidden border-b border-spain-yellow/70 text-white shadow-lg"
         >
-            <nav class="mx-auto flex h-16 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:px-12">
+            <picture class="absolute inset-0">
+                <source
+                    type="image/avif"
+                    :srcset="`${baseURL}assets/images/header-bg-640.avif 640w, ${baseURL}assets/images/header-bg-960.avif 960w, ${baseURL}assets/images/header-bg-1440.avif 1440w, ${baseURL}assets/images/header-bg-1920.avif 1920w`"
+                    sizes="100vw"
+                >
+                <source
+                    type="image/webp"
+                    :srcset="`${baseURL}assets/images/header-bg-640.webp 640w, ${baseURL}assets/images/header-bg-960.webp 960w, ${baseURL}assets/images/header-bg-1440.webp 1440w, ${baseURL}assets/images/header-bg-1920.webp 1920w`"
+                    sizes="100vw"
+                >
+                <img
+                    :src="`${baseURL}assets/images/header-bg-1920.webp`"
+                    alt=""
+                    width="1920"
+                    height="1144"
+                    decoding="async"
+                    class="h-full w-full object-cover object-center"
+                >
+            </picture>
+            <div class="absolute inset-0 bg-spain-ink/65 backdrop-blur-[2px]"/>
+
+            <nav class="relative mx-auto flex h-16 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:px-12">
                 <nuxt-link
                     to="/"
                     aria-label="Ir a la página de inicio"
@@ -257,7 +279,7 @@
                 <div
                     v-if="isStickyMenuOpen"
                     id="sticky-mobile-navigation"
-                    class="absolute left-0 top-full w-full border-t border-spain-yellow/30 bg-spain-wine text-white shadow-lg lg:hidden"
+                    class="relative z-10 w-full border-t border-spain-yellow/30 bg-spain-ink/90 text-white shadow-lg backdrop-blur-md lg:hidden"
                 >
                     <ul class="flex flex-col items-center gap-5 py-6 text-sm font-medium">
                         <li v-for="link in navLinks" :key="link.to">
