@@ -1,6 +1,6 @@
 {
   "brand": "Blog de Viajes",
-  "nav": {"home": "Inicio", "blog": "Blog", "about": "Sobre mí", "destinations": "Destinos", "contact": "Contacto", "open": "Abrir o cerrar la navegación", "source": "Código fuente"},
+  "nav": {"home": "Inicio", "blog": "Blog", "about": "Sobre mí", "destinations": "Destinos", "contact": "Contacto", "open": "Abrir o cerrar la navegación", "close": "Cerrar navegación", "menuKicker": "Cuaderno de ruta", "menuTitle": "¿Dónde quieres ir?", "destinationsHint": "Explora seis ciudades", "blogHint": "Consejos para viajar mejor", "aboutHint": "Conoce el proyecto", "contactHint": "Hablemos de la próxima ruta", "source": "Código fuente"},
   "language": {"label": "Idioma", "switchTo": "View in English", "short": "ES"},
   "hero": {"kicker": "Cuaderno de rutas · seis ciudades", "title1": "Traza el viaje", "title2": "antes de salir.", "copy": "Explora cada ciudad, elige tus paradas y guarda una ruta propia para llevarla contigo.", "route": "Empezar una ruta", "journal": "Leer el cuaderno", "origin": "Punto de partida", "next": "Próxima parada", "decide": "La ruta la decides tú", "discover": "Descubrir"},
   "common": {"photoBy": "Foto de", "on": "en", "days": "días", "readMore": "Leer artículo", "back": "Volver", "backTop": "Volver al inicio", "previous": "Anterior", "next": "Siguiente"},

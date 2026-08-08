@@ -35,3 +35,29 @@ test("keeps key mobile pages within the viewport", async ({page}) => {
         expect(widths.scroll, route).toBe(widths.client);
     }
 });
+
+test("uses the same touch-friendly navigation from the sticky header", async ({page}) => {
+    await page.setViewportSize({width: 390, height: 844});
+    await page.context().addCookies([{
+        name: "travel_blog_locale",
+        value: "es",
+        url: "http://127.0.0.1:3000",
+    }]);
+    await page.goto("/");
+    await page.evaluate(() => window.scrollTo(0, 900));
+    await expect(page.locator("header.fixed")).toBeVisible();
+
+    await page.locator("header.fixed").getByRole("button", {name: "Abrir o cerrar la navegación"}).click();
+    const panel = page.locator("#mobile-navigation");
+    await expect(panel).toBeVisible();
+    await expect(page.getByRole("button", {name: "Cerrar navegación"}).last()).toBeFocused();
+    await expect(panel.getByRole("link")).toHaveCount(5);
+
+    const targets = await panel.getByRole("link").evaluateAll((links) => links.map((link) => link.getBoundingClientRect().height));
+    expect(targets.every((height) => height >= 56)).toBe(true);
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("hidden");
+
+    await page.getByRole("button", {name: "Cerrar navegación"}).last().click();
+    await expect(panel).toBeHidden();
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
+});

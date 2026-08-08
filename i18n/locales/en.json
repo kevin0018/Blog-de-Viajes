@@ -1,6 +1,6 @@
 {
   "brand": "Travel Journal",
-  "nav": {"home": "Home", "blog": "Journal", "about": "About", "destinations": "Destinations", "contact": "Contact", "open": "Open or close navigation", "source": "Source code"},
+  "nav": {"home": "Home", "blog": "Journal", "about": "About", "destinations": "Destinations", "contact": "Contact", "open": "Open or close navigation", "close": "Close navigation", "menuKicker": "Route journal", "menuTitle": "Where do you want to go?", "destinationsHint": "Explore six cities", "blogHint": "Notes for better travel", "aboutHint": "Discover the project", "contactHint": "Let's plan the next route", "source": "Source code"},
   "language": {"label": "Language", "switchTo": "Ver en español", "short": "EN"},
   "hero": {"kicker": "Route journal · six cities", "title1": "Map the journey", "title2": "before you leave.", "copy": "Explore each city, choose your stops and save a route of your own to take with you.", "route": "Start a route", "journal": "Read the journal", "origin": "Starting point", "next": "Next stop", "decide": "You choose the route", "discover": "Discover"},
   "common": {"photoBy": "Photo by", "on": "on", "days": "days", "readMore": "Read article", "back": "Back", "backTop": "Back to top", "previous": "Previous", "next": "Next"},
