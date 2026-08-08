@@ -10,7 +10,7 @@ en un itinerario práctico, persistente y compartible.
 [Ver demo](https://kevin0018.github.io/Blog-de-Viajes/) ·
 [Explorar destinos](https://kevin0018.github.io/Blog-de-Viajes/destinations)
 
-[![Vista previa de Blog de Viajes](./docs/blog-de-viajes-preview.jpg)](https://kevin0018.github.io/Blog-de-Viajes/)
+[![Vista previa de Blog de Viajes](./docs/blog-de-viajes-preview-es.jpg)](https://kevin0018.github.io/Blog-de-Viajes/)
 
 ## Funcionalidades destacadas
 
