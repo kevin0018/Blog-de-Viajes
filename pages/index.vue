@@ -1,8 +1,8 @@
 <template>
     <div>
-        <section class="px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
+        <section id="destinos-home" class="scroll-mt-20 px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
                 <div class="mx-auto max-w-[90rem]">
-                    <div class="mb-9 flex flex-col gap-4 border-b border-spain-sand pb-6 lg:flex-row lg:items-end lg:justify-between">
+                    <div v-reveal class="mb-9 flex flex-col gap-4 border-b border-spain-sand pb-6 lg:flex-row lg:items-end lg:justify-between">
                         <div>
                             <h2 class="section-title text-3xl font-bold sm:text-4xl">Destinos para perderse</h2>
                         </div>
@@ -35,6 +35,7 @@
                             <article
                                 v-for="(destino, index) in destinos"
                                 :key="index"
+                                v-reveal="index * 90"
                                 class="group flex w-[82vw] max-w-80 flex-shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-spain-sand bg-spain-surface shadow-lg sm:w-80 xl:w-auto xl:max-w-none"
                             >
                                 <div class="overflow-hidden">
@@ -83,7 +84,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-8 flex justify-center lg:justify-end">
+                    <div v-reveal="180" class="mt-8 flex justify-center lg:justify-end">
                         <nuxt-link
                             to="/post/destinos"
                             class="inline-flex items-center gap-2 rounded-full bg-spain-red px-8 py-3 font-semibold text-white transition hover:bg-spain-wine"
@@ -166,6 +167,30 @@ const { app: { baseURL } } = useRuntimeConfig();
 
 const destinos = homeDestinations;
 
+const revealObservers = new WeakMap<HTMLElement, IntersectionObserver>();
+const vReveal = {
+    mounted(element: HTMLElement, binding: { value?: number }) {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        element.style.setProperty("--reveal-delay", `${binding.value ?? 0}ms`);
+        element.classList.add("reveal-pending");
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (!entry?.isIntersecting) return;
+            element.classList.add("reveal-visible");
+            observer.disconnect();
+            revealObservers.delete(element);
+        }, { threshold: 0.14 });
+
+        revealObservers.set(element, observer);
+        observer.observe(element);
+    },
+    unmounted(element: HTMLElement) {
+        revealObservers.get(element)?.disconnect();
+        revealObservers.delete(element);
+    },
+};
+
 useSeoMeta({
     title: "Blog de Viajes · Guías y escapadas a tu ritmo",
     description: "Descubre destinos, lee consejos prácticos y construye un itinerario que puedes guardar y compartir.",
@@ -229,5 +254,27 @@ onBeforeUnmount(() => {
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.reveal-pending {
+    opacity: 0;
+    transform: translateY(1.5rem);
+}
+
+.reveal-pending.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-pending,
+    .reveal-pending.reveal-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 </style>
