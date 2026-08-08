@@ -1,7 +1,11 @@
 import tailwindcss from '@tailwindcss/vite';
 import { destinations } from './data/destinations';
+import { articles } from './data/articles';
 
 const destinationRoutes = destinations.map(({ id }) => `/post/destinos/${id}`);
+const articleRoutes = articles.map(({ slug }) => `/post/blog/${slug}`);
+const staticRoutes = ['/post/blog', '/post/about', '/post/destinos', '/post/contacto'];
+const localizedRoutes = [...staticRoutes, ...destinationRoutes, ...articleRoutes];
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -10,7 +14,6 @@ export default defineNuxtConfig({
     app: {
         baseURL: '/Blog-de-Viajes/',
         head: {
-            htmlAttrs: {lang: 'es'},
             title: 'Blog de Viajes',
             meta: [
                 {charset: 'utf-8'},
@@ -27,19 +30,36 @@ export default defineNuxtConfig({
     },
     generate: {
         routes: [
-            '/post/blog',
-            '/post/about',
-            '/post/destinos',
-            '/post/contacto',
             '/sitemap.xml',
-            ...destinationRoutes,
+            ...localizedRoutes,
+            ...localizedRoutes.map((route) => `/en${route}`),
         ],
     },
     modules: [
+        '@nuxtjs/i18n',
         '@nuxt/eslint',
         '@nuxt/icon',
         '@nuxt/fonts',
     ],
+    i18n: {
+        strategy: 'prefix_except_default',
+        defaultLocale: 'es',
+        baseUrl: 'https://kevin0018.github.io',
+        langDir: 'locales',
+        locales: [
+            {code: 'es', language: 'es-ES', name: 'Español', file: 'es.json'},
+            {code: 'en', language: 'en-GB', name: 'English', file: 'en.json'},
+        ],
+        detectBrowserLanguage: {
+            useCookie: true,
+            cookieKey: 'travel_blog_locale',
+            redirectOn: 'root',
+            fallbackLocale: 'es',
+        },
+        bundle: {
+            optimizeTranslationDirective: false,
+        },
+    },
     icon: {
         serverBundle: {
             collections: ['mdi'],

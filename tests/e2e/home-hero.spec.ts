@@ -1,5 +1,13 @@
 import { expect, test } from "@playwright/test";
 
+test.beforeEach(async ({context}) => {
+    await context.addCookies([{
+        name: "travel_blog_locale",
+        value: "es",
+        url: "http://127.0.0.1:3000",
+    }]);
+});
+
 test("introduces the travel planner without overflowing on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");

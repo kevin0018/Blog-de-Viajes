@@ -6,7 +6,7 @@
         <!-- Información del blog -->
         <div class="text-center lg:text-left">
           <p class="text-sm lg:text-base">
-            Mountain icon by
+            {{ $t('footer.iconCredit') }}
             <a
               href="https://icons8.com"
               target="_blank"
@@ -14,15 +14,15 @@
               class="underline hover:text-spain-yellow"
             >Icons8</a>
           </p>
-          <p class="text-sm lg:text-base">&copy; {{ currentYear }} Blog de Viajes — Kevin Hernández</p>
+          <p class="text-sm lg:text-base">&copy; {{ currentYear }} {{ $t('footer.copyright') }}</p>
         </div>
 
         <!-- Navegación -->
         <nav class="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-8 text-center lg:text-left">
-          <nuxt-link to="/" class="text-sm lg:text-base hover:text-spain-yellow">Inicio</nuxt-link>
-          <nuxt-link to="/post/about" class="text-sm lg:text-base hover:text-spain-yellow">About</nuxt-link>
-          <nuxt-link to="/post/destinos" class="text-sm lg:text-base hover:text-spain-yellow">Destinos</nuxt-link>
-          <nuxt-link to="/post/contacto" class="text-sm lg:text-base hover:text-spain-yellow">Contacto</nuxt-link>
+          <nuxt-link :to="localePath('/')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.home') }}</nuxt-link>
+          <nuxt-link :to="localePath('/post/about')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.about') }}</nuxt-link>
+          <nuxt-link :to="localePath('/post/destinos')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.destinations') }}</nuxt-link>
+          <nuxt-link :to="localePath('/post/contacto')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.contact') }}</nuxt-link>
         </nav>
 
         <!-- Proyecto -->
@@ -32,10 +32,10 @@
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 text-sm transition-colors hover:text-spain-yellow lg:text-base"
-            aria-label="Ver el código fuente en GitHub"
+            :aria-label="$t('footer.github')"
           >
             <Icon name="mdi:github" class="h-6 w-6" />
-            Código fuente
+            {{ $t('nav.source') }}
           </a>
         </div>
       </div>
@@ -45,6 +45,7 @@
 
 <script setup>
 const currentYear = new Date().getFullYear();
+const localePath = useLocalePath();
 </script>
 
 <style scoped>

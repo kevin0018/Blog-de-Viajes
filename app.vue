@@ -18,13 +18,19 @@ import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
 
 const route = useRoute();
-useCanonical();
-const homePage = computed(() => route.path === "/");
-const contactPage = computed(() => route.path === "/post/contacto");
+const localeRoutePath = computed(() => route.path.replace(/^\/en(?=\/|$)/, "") || "/");
+const head = useLocaleHead({seo: true});
+useHead(() => ({
+    htmlAttrs: head.value.htmlAttrs,
+    link: head.value.link,
+    meta: head.value.meta,
+}));
+const homePage = computed(() => localeRoutePath.value === "/");
+const contactPage = computed(() => localeRoutePath.value === "/post/contacto");
 const detailPage = computed(() => (
-    route.path.startsWith("/post/blog/") || route.path.startsWith("/post/destinos/")
+    localeRoutePath.value.startsWith("/post/blog/") || localeRoutePath.value.startsWith("/post/destinos/")
 ));
-const compactHeader = computed(() => route.path !== "/" && !contactPage.value);
+const compactHeader = computed(() => localeRoutePath.value !== "/" && !contactPage.value);
 </script>
 
 <style>

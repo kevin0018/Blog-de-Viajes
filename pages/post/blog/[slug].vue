@@ -2,11 +2,11 @@
     <article class="bg-spain-paper px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
         <div class="mx-auto max-w-5xl">
             <nuxt-link
-                to="/post/blog"
+                :to="localePath('/post/blog')"
                 class="inline-flex items-center gap-2 font-semibold text-spain-red transition-colors hover:text-spain-wine"
             >
                 <Icon name="mdi:arrow-left" class="h-5 w-5"/>
-                Volver al blog
+                {{ $t('blog.back') }}
             </nuxt-link>
 
             <header class="mt-10 max-w-4xl">
@@ -32,7 +32,7 @@
                     class="max-h-[36rem] w-full object-cover"
                 />
                 <figcaption class="px-5 py-3 text-xs text-spain-ink/65">
-                    Foto de
+                    {{ $t('common.photoBy') }}
                     <a
                         :href="article.creditoAutorUrl"
                         target="_blank"
@@ -41,7 +41,7 @@
                     >
                         {{ article.autor }}
                     </a>
-                    en
+                    {{ $t('common.on') }}
                     <a
                         :href="article.creditoUnsplashUrl"
                         target="_blank"
@@ -78,27 +78,30 @@
 </template>
 
 <script setup lang="ts">
-import { findArticleBySlug } from "~/data/articles";
 import { toSiteUrl } from "~/utils/site";
 
 const route = useRoute();
+const localePath = useLocalePath();
+const {locale, t} = useI18n();
 const { app: { baseURL } } = useRuntimeConfig();
 const slug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug;
-const article = findArticleBySlug(slug ?? "");
+const {findArticle} = useTravelContent();
+const initialArticle = findArticle(slug ?? "");
 
-if (!article) {
+if (!initialArticle) {
     throw createError({
         statusCode: 404,
-        statusMessage: "Artículo no encontrado",
+        statusMessage: t("blog.notFound"),
     });
 }
+const article = computed(() => findArticle(slug ?? "")!);
 
 useSeoMeta({
-    title: `${article.titulo} · Blog de Viajes`,
-    description: article.resumen,
-    ogTitle: article.titulo,
-    ogDescription: article.resumen,
-    ogImage: toSiteUrl(article.imagen),
+    title: computed(() => `${article.value.titulo} · ${locale.value === "en" ? "Travel Journal" : "Blog de Viajes"}`),
+    description: computed(() => article.value.resumen),
+    ogTitle: computed(() => article.value.titulo),
+    ogDescription: computed(() => article.value.resumen),
+    ogImage: computed(() => toSiteUrl(article.value.imagen)),
     ogType: "article",
     twitterCard: "summary_large_image",
 });
@@ -107,20 +110,20 @@ useJsonLd([
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        headline: article.titulo,
-        description: article.resumen,
-        image: toSiteUrl(article.imagen),
-        mainEntityOfPage: toSiteUrl(`post/blog/${article.slug}`),
+        headline: article.value!.titulo,
+        description: article.value!.resumen,
+        image: toSiteUrl(article.value!.imagen),
+        mainEntityOfPage: toSiteUrl(`${locale.value === "en" ? "en/" : ""}post/blog/${article.value!.slug}`),
         author: { "@type": "Person", name: "Kevin Hernández" },
-        inLanguage: "es",
+        inLanguage: locale.value,
     },
     {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Inicio", item: toSiteUrl() },
-            { "@type": "ListItem", position: 2, name: "Blog", item: toSiteUrl("post/blog") },
-            { "@type": "ListItem", position: 3, name: article.titulo, item: toSiteUrl(`post/blog/${article.slug}`) },
+            { "@type": "ListItem", position: 1, name: t("nav.home"), item: toSiteUrl(locale.value === "en" ? "en" : "") },
+            { "@type": "ListItem", position: 2, name: t("nav.blog"), item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}post/blog`) },
+            { "@type": "ListItem", position: 3, name: article.value!.titulo, item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}post/blog/${article.value!.slug}`) },
         ],
     },
 ]);

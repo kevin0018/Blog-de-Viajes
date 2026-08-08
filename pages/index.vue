@@ -4,24 +4,24 @@
                 <div class="mx-auto max-w-[90rem]">
                     <div v-reveal class="mb-9 flex flex-col gap-4 border-b border-spain-sand pb-6 lg:flex-row lg:items-end lg:justify-between">
                         <div>
-                            <h2 class="section-title text-3xl font-bold sm:text-4xl">Destinos para perderse</h2>
+                            <p class="mb-2 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-spain-red">{{ $t('hero.kicker') }}</p>
+                            <h2 class="section-title text-[2.45rem] font-bold leading-[0.95] sm:text-4xl">{{ $t('home.destinationsTitle') }}</h2>
                         </div>
                         <p class="max-w-xl text-sm leading-6 text-spain-ink/70 sm:text-base">
-                            Cuatro ciudades con ritmos muy distintos. Elige una y empieza a preparar
-                            la próxima escapada.
+                            {{ $t('home.destinationsCopy') }}
                         </p>
                     </div>
 
                     <div class="relative">
                         <button
-                            aria-label="Ver destinos anteriores"
+                            :aria-label="$t('home.previousDestinations')"
                             class="absolute -left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-spain-wine p-2 text-white shadow-lg transition hover:bg-spain-yellow hover:text-spain-ink xl:hidden"
                             @click="scrollLeft"
                         >
                             <Icon name="mdi:chevron-left" class="h-6 w-6"/>
                         </button>
                         <button
-                            aria-label="Ver más destinos"
+                            :aria-label="$t('home.moreDestinations')"
                             class="absolute -right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-spain-wine p-2 text-white shadow-lg transition hover:bg-spain-yellow hover:text-spain-ink xl:hidden"
                             @click="scrollRight"
                         >
@@ -60,7 +60,7 @@
                                         {{ destino.descripcion }}
                                     </p>
                                     <p class="mt-auto border-t border-spain-sand pt-4 text-xs text-spain-ink/60">
-                                        Foto de
+                                        {{ $t('common.photoBy') }}
                                         <a
                                             :href="destino.creditoAutorUrl"
                                             target="_blank"
@@ -69,7 +69,7 @@
                                         >
                                             {{ destino.autor }}
                                         </a>
-                                        en
+                                        {{ $t('common.on') }}
                                         <a
                                             :href="destino.creditoUnsplashUrl"
                                             target="_blank"
@@ -86,10 +86,10 @@
 
                     <div v-reveal="180" class="mt-8 flex justify-center lg:justify-end">
                         <nuxt-link
-                            to="/post/destinos"
+                            :to="localePath('/post/destinos')"
                             class="inline-flex items-center gap-2 rounded-full bg-spain-red px-8 py-3 font-semibold text-white transition hover:bg-spain-wine"
                         >
-                            Todos los destinos
+                            {{ $t('home.allDestinations') }}
                             <Icon name="mdi:arrow-right" class="h-5 w-5"/>
                         </nuxt-link>
                     </div>
@@ -110,23 +110,21 @@
                 <div
                     class="relative z-10 mx-auto max-w-3xl text-center"
                 >
-                    <h2 class="text-4xl font-bold text-white sm:text-5xl">Sobre mí</h2>
+                    <h2 class="text-4xl font-bold text-white sm:text-5xl">{{ $t('home.aboutTitle') }}</h2>
                     <p class="mx-auto mt-6 max-w-2xl text-base leading-7 text-spain-paper/90 sm:text-lg sm:leading-8">
-                        Soy Kevin, desarrollador de este cuaderno digital. Aquí convierto ideas de viaje
-                        en guías prácticas mientras trabajo con Nuxt, accesibilidad, contenido tipado
-                        y una herramienta para preparar rutas propias.
+                        {{ $t('home.aboutCopy') }}
                     </p>
                     <nuxt-link
-                        to="/post/about"
+                        :to="localePath('/post/about')"
                         class="mt-8 inline-flex items-center gap-2 rounded-full bg-spain-yellow px-8 py-3 font-semibold text-spain-ink transition-colors hover:bg-spain-paper"
                     >
-                        ¿Quieres saber más?
+                        {{ $t('home.aboutCta') }}
                         <Icon name="mdi:arrow-right" class="h-5 w-5"/>
                     </nuxt-link>
                 </div>
 
                 <div class="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap text-xs text-white/70">
-                    Foto de
+                    {{ $t('common.photoBy') }}
                     <a
                         href="https://unsplash.com/es/@urban_vintage?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
                         class="underline hover:text-spain-yellow"
@@ -135,7 +133,7 @@
                     >
                         Urban Vintage
                     </a>
-                    en
+                    {{ $t('common.on') }}
                     <a
                         href="https://unsplash.com/es/fotos/fotografia-de-paisaje-de-montana-golpeada-por-los-rayos-del-sol-78A265wPiO4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
                         class="underline hover:text-spain-yellow"
@@ -149,7 +147,7 @@
 
         <button
                 v-if="mostrarBotonSubir"
-                aria-label="Volver al inicio"
+                :aria-label="$t('common.backTop')"
                 class="fixed bottom-20 right-6 bg-spain-red text-white p-4 rounded-full shadow-lg hover:bg-spain-yellow hover:text-spain-ink transition"
                 @click="scrollToTop"
             >
@@ -159,13 +157,14 @@
 </template>
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from "vue";
-import { homeDestinations } from "~/data/destinations";
 import { toSiteUrl } from "~/utils/site";
 
 // Obtén el baseURL desde la configuración del entorno
 const { app: { baseURL } } = useRuntimeConfig();
+const localePath = useLocalePath();
+const {locale} = useI18n();
 
-const destinos = homeDestinations;
+const {homeDestinations: destinos} = useTravelContent();
 
 const revealObservers = new WeakMap<HTMLElement, IntersectionObserver>();
 const vReveal = {
@@ -192,10 +191,10 @@ const vReveal = {
 };
 
 useSeoMeta({
-    title: "Blog de Viajes · Guías y escapadas a tu ritmo",
-    description: "Descubre destinos, lee consejos prácticos y construye un itinerario que puedes guardar y compartir.",
-    ogTitle: "Blog de Viajes · Guías y escapadas a tu ritmo",
-    ogDescription: "Destinos, lecturas y un planificador para preparar escapadas a tu ritmo.",
+    title: computed(() => locale.value === "en" ? "Travel Journal · Guides and escapes at your own pace" : "Blog de Viajes · Guías y escapadas a tu ritmo"),
+    description: computed(() => locale.value === "en" ? "Discover destinations, read practical advice and build an itinerary you can save and share." : "Descubre destinos, lee consejos prácticos y construye un itinerario que puedes guardar y compartir."),
+    ogTitle: computed(() => locale.value === "en" ? "Travel Journal · Guides and escapes at your own pace" : "Blog de Viajes · Guías y escapadas a tu ritmo"),
+    ogDescription: computed(() => locale.value === "en" ? "Destinations, stories and a planner for creating an escape at your own pace." : "Destinos, lecturas y un planificador para preparar escapadas a tu ritmo."),
     ogImage: toSiteUrl("assets/images/header-bg-1920.webp"),
     ogType: "website",
     twitterCard: "summary_large_image",
@@ -204,9 +203,9 @@ useSeoMeta({
 useJsonLd({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Blog de Viajes",
-    url: toSiteUrl(),
-    description: "Guías de ciudades, consejos de viaje y un planificador de itinerarios.",
+    name: locale.value === "en" ? "Travel Journal" : "Blog de Viajes",
+    url: toSiteUrl(locale.value === "en" ? "en" : ""),
+    description: locale.value === "en" ? "City guides, travel advice and an itinerary planner." : "Guías de ciudades, consejos de viaje y un planificador de itinerarios.",
     author: { "@type": "Person", name: "Kevin Hernández" },
 });
 
