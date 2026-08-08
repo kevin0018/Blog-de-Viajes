@@ -2,7 +2,7 @@
     <article class="bg-spain-paper px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
         <div class="mx-auto max-w-[90rem]">
             <nuxt-link
-                :to="localePath('/post/destinos')"
+                :to="localePath('/destinations')"
                 class="inline-flex items-center gap-2 font-semibold text-spain-red transition-colors hover:text-spain-wine"
             >
                 <Icon name="mdi:arrow-left" class="h-5 w-5"/>
@@ -113,15 +113,15 @@ useJsonLd([
         description: destination.value!.descripcion,
         image: toSiteUrl(destination.value!.imagen),
         containedInPlace: { "@type": "Country", name: destination.value!.pais },
-        url: toSiteUrl(`${locale.value === "en" ? "en/" : ""}post/destinos/${destination.value!.id}`),
+        url: toSiteUrl(`${locale.value === "en" ? "en/" : ""}destinations/${destination.value!.id}`),
     },
     {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
             { "@type": "ListItem", position: 1, name: t("nav.home"), item: toSiteUrl(locale.value === "en" ? "en" : "") },
-            { "@type": "ListItem", position: 2, name: t("nav.destinations"), item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}post/destinos`) },
-            { "@type": "ListItem", position: 3, name: destination.value!.nombre, item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}post/destinos/${destination.value!.id}`) },
+            { "@type": "ListItem", position: 2, name: t("nav.destinations"), item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}destinations`) },
+            { "@type": "ListItem", position: 3, name: destination.value!.nombre, item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}destinations/${destination.value!.id}`) },
         ],
     },
 ]);

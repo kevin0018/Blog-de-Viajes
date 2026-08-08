@@ -86,7 +86,7 @@
 
                     <div v-reveal="180" class="mt-8 flex justify-center lg:justify-end">
                         <nuxt-link
-                            :to="localePath('/post/destinos')"
+                            :to="localePath('/destinations')"
                             class="inline-flex items-center gap-2 rounded-full bg-spain-red px-8 py-3 font-semibold text-white transition hover:bg-spain-wine"
                         >
                             {{ $t('home.allDestinations') }}
@@ -115,7 +115,7 @@
                         {{ $t('home.aboutCopy') }}
                     </p>
                     <nuxt-link
-                        :to="localePath('/post/about')"
+                        :to="localePath('/about')"
                         class="mt-8 inline-flex items-center gap-2 rounded-full bg-spain-yellow px-8 py-3 font-semibold text-spain-ink transition-colors hover:bg-spain-paper"
                     >
                         {{ $t('home.aboutCta') }}

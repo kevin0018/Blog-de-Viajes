@@ -177,7 +177,7 @@
                     </ul>
 
                     <nuxt-link
-                        :to="localePath(`/post/destinos/${activeDestination.id}`)"
+                        :to="localePath(`/destinations/${activeDestination.id}`)"
                         class="mt-8 inline-flex items-center gap-2 rounded-full bg-spain-red px-6 py-3 font-semibold text-white transition-colors hover:bg-spain-wine"
                         @click="closeDestination"
                     >
@@ -303,11 +303,11 @@ useJsonLd({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Destinos",
-    url: toSiteUrl("post/destinos"),
+    url: toSiteUrl("destinations"),
     mainEntity: destinations.value.map((destination) => ({
         "@type": "Place",
         name: destination.nombre,
-        url: toSiteUrl(`post/destinos/${destination.id}`),
+        url: toSiteUrl(`destinations/${destination.id}`),
     })),
 });
 

@@ -70,11 +70,11 @@
                     </p>
                 </div>
                 <div class="flex flex-wrap gap-3">
-                    <nuxt-link :to="localePath('/post/destinos')" class="inline-flex items-center gap-2 rounded-full bg-spain-yellow px-6 py-3 font-semibold text-spain-ink transition-colors hover:bg-spain-paper">
+                    <nuxt-link :to="localePath('/destinations')" class="inline-flex items-center gap-2 rounded-full bg-spain-yellow px-6 py-3 font-semibold text-spain-ink transition-colors hover:bg-spain-paper">
                         {{ $t('about.explore') }}
                         <Icon name="mdi:arrow-right" class="h-5 w-5"/>
                     </nuxt-link>
-                    <nuxt-link :to="localePath('/post/contacto')" class="rounded-full border border-white/30 px-6 py-3 font-semibold transition-colors hover:border-white">
+                    <nuxt-link :to="localePath('/contact')" class="rounded-full border border-white/30 px-6 py-3 font-semibold transition-colors hover:border-white">
                         {{ $t('about.contact') }}
                     </nuxt-link>
                 </div>
@@ -106,7 +106,7 @@ useJsonLd({
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "Sobre el proyecto",
-    url: toSiteUrl("post/about"),
+    url: toSiteUrl("about"),
     author: { "@type": "Person", name: "Kevin Hernández", url: "https://github.com/kevin0018" },
 });
 </script>

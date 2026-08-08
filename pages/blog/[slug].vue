@@ -2,7 +2,7 @@
     <article class="bg-spain-paper px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
         <div class="mx-auto max-w-5xl">
             <nuxt-link
-                :to="localePath('/post/blog')"
+                :to="localePath('/blog')"
                 class="inline-flex items-center gap-2 font-semibold text-spain-red transition-colors hover:text-spain-wine"
             >
                 <Icon name="mdi:arrow-left" class="h-5 w-5"/>
@@ -113,7 +113,7 @@ useJsonLd([
         headline: article.value!.titulo,
         description: article.value!.resumen,
         image: toSiteUrl(article.value!.imagen),
-        mainEntityOfPage: toSiteUrl(`${locale.value === "en" ? "en/" : ""}post/blog/${article.value!.slug}`),
+        mainEntityOfPage: toSiteUrl(`${locale.value === "en" ? "en/" : ""}blog/${article.value!.slug}`),
         author: { "@type": "Person", name: "Kevin Hernández" },
         inLanguage: locale.value,
     },
@@ -122,8 +122,8 @@ useJsonLd([
         "@type": "BreadcrumbList",
         itemListElement: [
             { "@type": "ListItem", position: 1, name: t("nav.home"), item: toSiteUrl(locale.value === "en" ? "en" : "") },
-            { "@type": "ListItem", position: 2, name: t("nav.blog"), item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}post/blog`) },
-            { "@type": "ListItem", position: 3, name: article.value!.titulo, item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}post/blog/${article.value!.slug}`) },
+            { "@type": "ListItem", position: 2, name: t("nav.blog"), item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}blog`) },
+            { "@type": "ListItem", position: 3, name: article.value!.titulo, item: toSiteUrl(`${locale.value === "en" ? "en/" : ""}blog/${article.value!.slug}`) },
         ],
     },
 ]);

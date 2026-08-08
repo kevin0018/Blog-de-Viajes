@@ -6,7 +6,7 @@ export const useTravelContent = () => {
     const {locale} = useI18n();
     const articles = computed(() => locale.value === "en" ? englishArticles : spanishArticles);
     const destinations = computed(() => locale.value === "en" ? englishDestinations : spanishDestinations);
-    const homeIds = new Set(["londres", "roma", "paris", "nueva-york"]);
+    const homeIds = new Set(["london", "rome", "paris", "new-york"]);
 
     return {
         articles,

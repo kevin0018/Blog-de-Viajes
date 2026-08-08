@@ -20,9 +20,9 @@
         <!-- Navegación -->
         <nav class="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-8 text-center lg:text-left">
           <nuxt-link :to="localePath('/')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.home') }}</nuxt-link>
-          <nuxt-link :to="localePath('/post/about')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.about') }}</nuxt-link>
-          <nuxt-link :to="localePath('/post/destinos')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.destinations') }}</nuxt-link>
-          <nuxt-link :to="localePath('/post/contacto')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.contact') }}</nuxt-link>
+          <nuxt-link :to="localePath('/about')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.about') }}</nuxt-link>
+          <nuxt-link :to="localePath('/destinations')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.destinations') }}</nuxt-link>
+          <nuxt-link :to="localePath('/contact')" class="text-sm lg:text-base hover:text-spain-yellow">{{ $t('nav.contact') }}</nuxt-link>
         </nav>
 
         <!-- Proyecto -->

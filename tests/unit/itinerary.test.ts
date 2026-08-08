@@ -24,15 +24,15 @@ describe("itinerary utilities", () => {
     it("accepts only the current persisted-state schema and destination", () => {
         const saved = JSON.stringify({
             version: 1,
-            destinationId: "londres",
+            destinationId: "london",
             days: 3,
             stopIds: ["three", "one"],
             updatedAt: "2026-08-08T10:00:00.000Z",
         });
 
-        expect(parseSavedItinerary(saved, "londres", availableIds)).toEqual({ days: 3, stopIds: ["three", "one"] });
+        expect(parseSavedItinerary(saved, "london", availableIds)).toEqual({ days: 3, stopIds: ["three", "one"] });
         expect(parseSavedItinerary(saved, "paris", availableIds)).toBeNull();
-        expect(parseSavedItinerary("not-json", "londres", availableIds)).toBeNull();
+        expect(parseSavedItinerary("not-json", "london", availableIds)).toBeNull();
     });
 
     it("reorders stops without mutating the source or crossing boundaries", () => {

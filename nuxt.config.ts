@@ -2,17 +2,40 @@ import tailwindcss from '@tailwindcss/vite';
 import { destinations } from './data/destinations';
 import { articles } from './data/articles';
 
-const destinationRoutes = destinations.map(({ id }) => `/post/destinos/${id}`);
-const articleRoutes = articles.map(({ slug }) => `/post/blog/${slug}`);
-const staticRoutes = ['/post/blog', '/post/about', '/post/destinos', '/post/contacto'];
+const destinationRoutes = destinations.map(({ id }) => `/destinations/${id}`);
+const articleRoutes = articles.map(({ slug }) => `/blog/${slug}`);
+const staticRoutes = ['/blog', '/about', '/destinations', '/contact'];
 const localizedRoutes = [...staticRoutes, ...destinationRoutes, ...articleRoutes];
+const deploymentBase = '/Blog-de-Viajes';
+
+const legacyRoutes: Record<string, string> = {
+    '/post/blog': '/blog',
+    '/post/about': '/about',
+    '/post/destinos': '/destinations',
+    '/post/contacto': '/contact',
+    '/post/blog/viajar-con-presupuesto': '/blog/travel-on-a-budget',
+    '/post/blog/elegir-proximo-destino': '/blog/choose-your-next-destination',
+    '/post/blog/empacar-ligero': '/blog/pack-light',
+    '/post/destinos/paris': '/destinations/paris',
+    '/post/destinos/roma': '/destinations/rome',
+    '/post/destinos/tokio': '/destinations/tokyo',
+    '/post/destinos/londres': '/destinations/london',
+    '/post/destinos/nueva-york': '/destinations/new-york',
+    '/post/destinos/barcelona': '/destinations/barcelona',
+};
+const legacyRedirects = Object.fromEntries(
+    Object.entries(legacyRoutes).flatMap(([from, to]) => [
+        [from, {redirect: {to: `${deploymentBase}${to}`, statusCode: 301 as const}}],
+        [`/en${from}`, {redirect: {to: `${deploymentBase}/en${to}`, statusCode: 301 as const}}],
+    ]),
+);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: {enabled: true},
     app: {
-        baseURL: '/Blog-de-Viajes/',
+        baseURL: `${deploymentBase}/`,
         head: {
             title: 'Blog de Viajes',
             meta: [
@@ -33,8 +56,10 @@ export default defineNuxtConfig({
             '/sitemap.xml',
             ...localizedRoutes,
             ...localizedRoutes.map((route) => `/en${route}`),
+            ...Object.keys(legacyRedirects),
         ],
     },
+    routeRules: legacyRedirects,
     modules: [
         '@nuxtjs/i18n',
         '@nuxt/eslint',

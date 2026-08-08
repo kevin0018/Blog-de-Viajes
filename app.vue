@@ -26,9 +26,9 @@ useHead(() => ({
     meta: head.value.meta,
 }));
 const homePage = computed(() => localeRoutePath.value === "/");
-const contactPage = computed(() => localeRoutePath.value === "/post/contacto");
+const contactPage = computed(() => localeRoutePath.value === "/contact");
 const detailPage = computed(() => (
-    localeRoutePath.value.startsWith("/post/blog/") || localeRoutePath.value.startsWith("/post/destinos/")
+    localeRoutePath.value.startsWith("/blog/") || localeRoutePath.value.startsWith("/destinations/")
 ));
 const compactHeader = computed(() => localeRoutePath.value !== "/" && !contactPage.value);
 </script>

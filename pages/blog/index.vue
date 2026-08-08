@@ -54,7 +54,7 @@
                         </p>
                     </div>
                     <nuxt-link
-                        :to="localePath(`/post/blog/${featuredPost.slug}`)"
+                        :to="localePath(`/blog/${featuredPost.slug}`)"
                         :aria-label="`${$t('common.readMore')}: ${featuredPost.titulo}`"
                         class="mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-spain-yellow px-6 py-3 font-semibold text-spain-ink transition-colors after:absolute after:inset-0 after:content-[''] hover:bg-spain-paper"
                     >
@@ -95,7 +95,7 @@
                         </p>
                     </div>
                     <nuxt-link
-                        :to="localePath(`/post/blog/${post.slug}`)"
+                        :to="localePath(`/blog/${post.slug}`)"
                         :aria-label="`${$t('common.readMore')}: ${post.titulo}`"
                         class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-spain-red text-spain-red transition-colors after:absolute after:inset-0 after:content-[''] hover:bg-spain-red hover:text-white"
                     >
@@ -132,11 +132,11 @@ useJsonLd({
     "@context": "https://schema.org",
     "@type": "Blog",
     name: "Notas para viajar mejor",
-    url: toSiteUrl("post/blog"),
+    url: toSiteUrl("blog"),
     blogPost: articles.value.map((article) => ({
         "@type": "BlogPosting",
         headline: article.titulo,
-        url: toSiteUrl(`post/blog/${article.slug}`),
+        url: toSiteUrl(`blog/${article.slug}`),
     })),
 });
 </script>

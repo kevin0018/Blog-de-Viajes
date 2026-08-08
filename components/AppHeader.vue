@@ -47,8 +47,8 @@
                 class="pointer-events-auto absolute top-0 left-0 w-full flex justify-between items-center px-8 lg:px-16 py-4 text-white lg:text-xl font-medium">
                 <!-- Menú de la izquierda -->
                 <div class="hidden lg:flex space-x-8 items-center">
-                    <nuxt-link :to="localePath('/post/blog')" class="hover:text-spain-yellow">{{ $t('nav.blog') }}</nuxt-link>
-                    <nuxt-link :to="localePath('/post/about')" class="hover:text-spain-yellow">{{ $t('nav.about') }}</nuxt-link>
+                    <nuxt-link :to="localePath('/blog')" class="hover:text-spain-yellow">{{ $t('nav.blog') }}</nuxt-link>
+                    <nuxt-link :to="localePath('/about')" class="hover:text-spain-yellow">{{ $t('nav.about') }}</nuxt-link>
                 </div>
 
                 <!-- Logo centrado -->
@@ -70,8 +70,8 @@
 
                 <!-- Menú de la derecha -->
                 <div class="hidden lg:flex space-x-8 items-center">
-                    <nuxt-link :to="localePath('/post/destinos')" class="hover:text-spain-yellow">{{ $t('nav.destinations') }}</nuxt-link>
-                    <nuxt-link :to="localePath('/post/contacto')" class="hover:text-spain-yellow">{{ $t('nav.contact') }}</nuxt-link>
+                    <nuxt-link :to="localePath('/destinations')" class="hover:text-spain-yellow">{{ $t('nav.destinations') }}</nuxt-link>
+                    <nuxt-link :to="localePath('/contact')" class="hover:text-spain-yellow">{{ $t('nav.contact') }}</nuxt-link>
                     <nuxt-link :to="switchLocalePath(otherLocale)" class="rounded-full border border-white/40 px-3 py-1 font-mono text-xs" :aria-label="$t('language.switchTo')">{{ otherLocale.toUpperCase() }}</nuxt-link>
                 </div>
 
@@ -110,14 +110,14 @@
                         </p>
                         <div class="hero-actions pointer-events-auto mt-7 grid gap-3 sm:mt-9 sm:flex sm:flex-wrap">
                             <nuxt-link
-                                :to="localePath('/post/destinos')"
+                                :to="localePath('/destinations')"
                                 class="inline-flex items-center gap-2 rounded-full bg-spain-yellow px-6 py-3 font-semibold text-spain-ink transition-colors hover:bg-spain-paper focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-spain-yellow"
                             >
                                 {{ $t('hero.route') }}
                                 <Icon name="mdi:arrow-right" class="h-5 w-5"/>
                             </nuxt-link>
                             <nuxt-link
-                                :to="localePath('/post/blog')"
+                                :to="localePath('/blog')"
                                 class="inline-flex items-center rounded-full border border-white/35 px-6 py-3 font-semibold text-white transition-colors hover:border-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                             >
                                 {{ $t('hero.journal') }}
@@ -386,10 +386,10 @@ const mobileMenuPanel = ref(null);
 const mobileMenuTrigger = ref(null);
 
 const navLinks = computed(() => [
-    {label: t("nav.destinations"), hint: t("nav.destinationsHint"), icon: "mdi:map-marker-path", to: localePath("/post/destinos")},
-    {label: t("nav.blog"), hint: t("nav.blogHint"), icon: "mdi:notebook-outline", to: localePath("/post/blog")},
-    {label: t("nav.about"), hint: t("nav.aboutHint"), icon: "mdi:account-outline", to: localePath("/post/about")},
-    {label: t("nav.contact"), hint: t("nav.contactHint"), icon: "mdi:message-text-outline", to: localePath("/post/contacto")},
+    {label: t("nav.destinations"), hint: t("nav.destinationsHint"), icon: "mdi:map-marker-path", to: localePath("/destinations")},
+    {label: t("nav.blog"), hint: t("nav.blogHint"), icon: "mdi:notebook-outline", to: localePath("/blog")},
+    {label: t("nav.about"), hint: t("nav.aboutHint"), icon: "mdi:account-outline", to: localePath("/about")},
+    {label: t("nav.contact"), hint: t("nav.contactHint"), icon: "mdi:message-text-outline", to: localePath("/contact")},
 ]);
 
 const closeMobileMenu = () => {

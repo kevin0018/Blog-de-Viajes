@@ -8,7 +8,7 @@ An editorial travel experience for discovering cities and turning inspiration
 into a practical, persistent, and shareable itinerary.
 
 [Live demo](https://kevin0018.github.io/Blog-de-Viajes/) ·
-[Destination explorer](https://kevin0018.github.io/Blog-de-Viajes/post/destinos)
+[Destination explorer](https://kevin0018.github.io/Blog-de-Viajes/destinations)
 
 [![Blog de Viajes interface preview](./docs/blog-de-viajes-preview.jpg)](https://kevin0018.github.io/Blog-de-Viajes/)
 

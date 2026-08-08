@@ -15,7 +15,7 @@ test("introduces the travel planner without overflowing on mobile", async ({ pag
     await expect(page.getByRole("heading", { name: "Traza el viaje antes de salir." })).toBeVisible();
     await expect(page.getByRole("link", { name: "Empezar una ruta" })).toHaveAttribute(
         "href",
-        "/Blog-de-Viajes/post/destinos",
+        "/Blog-de-Viajes/destinations",
     );
 
     const viewport = await page.evaluate(() => ({
@@ -43,7 +43,7 @@ test("keeps the home experience still when reduced motion is requested", async (
 test("does not reset a manual scroll after opening the travel journal", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("link", { name: "Leer el cuaderno" }).click();
-    await expect(page).toHaveURL(/\/post\/blog$/);
+    await expect(page).toHaveURL(/\/blog$/);
     await expect(page.getByRole("heading", { name: "Antes de cerrar la maleta" })).toBeVisible();
 
     await page.evaluate(() => window.scrollTo(0, 600));

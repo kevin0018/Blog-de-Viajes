@@ -2,7 +2,7 @@ import type { TravelArticle } from "~/types/article";
 
 export const articles: readonly TravelArticle[] = [
     {
-        slug: "viajar-con-presupuesto",
+        slug: "travel-on-a-budget",
         titulo: "Viajar con presupuesto sin renunciar al viaje",
         resumen: "Una forma práctica de decidir en qué ahorrar y qué experiencias merece la pena conservar.",
         introduccion: "Viajar con un presupuesto limitado no consiste en elegir siempre la opción más barata. Consiste en saber qué partes del viaje te importan, ponerles una cifra y recortar aquello que apenas cambia la experiencia.",
@@ -40,7 +40,7 @@ export const articles: readonly TravelArticle[] = [
         ],
     },
     {
-        slug: "elegir-proximo-destino",
+        slug: "choose-your-next-destination",
         titulo: "Cómo elegir tu próximo destino",
         resumen: "Una guía para comparar ciudades por tiempo disponible, ritmo y tipo de experiencia.",
         introduccion: "La lista de lugares posibles suele crecer más rápido que los días de vacaciones. Elegir resulta más sencillo cuando se compara cada destino con las condiciones reales del viaje, no únicamente con sus fotografías.",
@@ -77,7 +77,7 @@ export const articles: readonly TravelArticle[] = [
         ],
     },
     {
-        slug: "empacar-ligero",
+        slug: "pack-light",
         titulo: "Empacar ligero para cualquier escapada",
         resumen: "Un sistema sencillo para llevar menos, encontrar todo rápido y adaptarte al clima.",
         introduccion: "Una maleta ligera reduce esperas, facilita los desplazamientos y deja espacio para cambiar de plan. La clave no es llevar muy poco, sino escoger prendas que funcionen juntas y objetos que resuelvan más de una necesidad.",
