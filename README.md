@@ -113,7 +113,7 @@ http://localhost:3000/Blog-de-Viajes/
 pnpm lint             # ESLint
 pnpm typecheck        # Nuxt and Vue type checking
 pnpm test             # Six unit and component tests
-pnpm test:e2e         # Five Chromium end-to-end checks
+pnpm test:e2e         # Ten Chromium end-to-end checks
 pnpm images:optimize  # Regenerate AVIF and WebP assets from source JPGs
 pnpm generate         # Generate the complete static site
 ```
