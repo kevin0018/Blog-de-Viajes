@@ -57,13 +57,6 @@
                 <div class="hidden lg:flex space-x-8 items-center">
                     <nuxt-link to="/post/destinos" class="hover:text-spain-yellow">Destinos</nuxt-link>
                     <nuxt-link to="/post/contacto" class="hover:text-spain-yellow">Contacto</nuxt-link>
-                    <!-- Redes sociales -->
-                    <a href="#" class="flex items-center hover:text-spain-yellow">
-                        <Icon name="mdi:facebook" class="h-6 w-6"/>
-                    </a>
-                    <a href="#" class="flex items-center hover:text-spain-yellow">
-                        <Icon name="mdi:instagram" class="h-6 w-6"/>
-                    </a>
                 </div>
 
                 <!-- Botón hamburguesa para móviles -->
@@ -103,16 +96,6 @@
                             <nuxt-link to="/post/contacto" class="hover:text-spain-red">Contacto</nuxt-link>
                         </li>
                     </ul>
-
-                    <!-- Redes sociales -->
-                    <div class="flex justify-center space-x-4 py-4 border-t border-spain-sand">
-                        <a href="#" class="text-spain-ink hover:text-spain-red">
-                            <Icon name="mdi:facebook" class="h-6 w-6"/>
-                        </a>
-                        <a href="#" class="text-spain-ink hover:text-spain-red">
-                            <Icon name="mdi:instagram" class="h-6 w-6"/>
-                        </a>
-                    </div>
                 </div>
             </transition>
         </div>

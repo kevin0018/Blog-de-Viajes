@@ -1,7 +1,6 @@
 <template>
     <div>
-        <main>
-            <section class="px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
+        <section class="px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
                 <div class="mx-auto max-w-[90rem]">
                     <div class="mb-9 flex flex-col gap-4 border-b border-spain-sand pb-6 lg:flex-row lg:items-end lg:justify-between">
                         <div>
@@ -97,9 +96,9 @@
                         </nuxt-link>
                     </div>
                 </div>
-            </section>
+        </section>
 
-            <section
+        <section
                 class="relative flex min-h-[34rem] items-center overflow-hidden bg-cover bg-center bg-no-repeat px-4 py-20 sm:px-6 lg:min-h-[40rem]"
                 :style="{ backgroundImage: `url(${baseURL}assets/images/about.jpg)` }"
             >
@@ -145,17 +144,16 @@
                         Unsplash
                     </a>
                 </div>
-            </section>
+        </section>
 
-            <button
+        <button
                 v-if="mostrarBotonSubir"
                 aria-label="Volver al inicio"
                 class="fixed bottom-20 right-6 bg-spain-red text-white p-4 rounded-full shadow-lg hover:bg-spain-yellow hover:text-spain-ink transition"
                 @click="scrollToTop"
             >
                 <Icon name="mdi:arrow-up" class="h-6 w-6"/>
-            </button>
-        </main>
+        </button>
     </div>
 </template>
 <script setup>

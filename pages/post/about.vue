@@ -1,26 +1,26 @@
 <template>
     <section class="py-12 px-4 bg-spain-paper">
-        <h1 class="section-title text-center text-3xl font-bold mb-8">Sobre Nosotros</h1>
+        <h1 class="section-title text-center text-3xl font-bold mb-8">Sobre mí</h1>
         <div class="max-w-4xl mx-auto text-spain-ink text-center">
             <p class="mb-6">
-                Somos un equipo apasionado por los viajes, la fotografía y la escritura. Nos encanta explorar nuevos
-                lugares, experimentar diferentes culturas y compartir nuestras aventuras con el mundo.
+                Soy Kevin, desarrollador y autor de este proyecto. Creé Blog de Viajes para reunir dos cosas que
+                disfruto: descubrir lugares nuevos y construir experiencias web cuidadas.
             </p>
             <p class="mb-6">
-                Nuestro objetivo es inspirarte a descubrir el mundo con nuestras experiencias, consejos y recursos
-                prácticos. Creemos que viajar es una forma de enriquecer la vida y crear recuerdos inolvidables.
+                Aquí convierto ideas de viaje en pequeñas guías prácticas mientras experimento con Nuxt, Vue,
+                accesibilidad y diseño responsive. Cada destino es también una oportunidad para mejorar el producto.
             </p>
             <p>
-                Gracias por ser parte de nuestra comunidad de viajeros. ¡Esperamos que encuentres inspiración en nuestro
-                blog y te unas a nosotros en esta gran aventura!
+                El proyecto continúa creciendo: el siguiente paso es transformar estas guías en escapadas que puedas
+                preparar, guardar y compartir.
             </p>
         </div>
         <div class="mt-8 flex justify-center">
             <nuxt-link
                 to="/post/contacto"
-                class="bg-spain-red text-white py-2 px-6 rounded-md hover:bg-spain-wine transition-all"
+                class="bg-spain-red text-white py-2 px-6 rounded-md transition-colors hover:bg-spain-wine"
             >
-                Contáctanos
+                Contactar
             </nuxt-link>
         </div>
         <div class="mt-12">
