@@ -192,6 +192,7 @@
             <a
                 href="https://unsplash.com/es/@v2osk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="underline hover:text-spain-yellow"
             >
                 v2osk
@@ -200,6 +201,7 @@
             <a
                 href="https://unsplash.com/es/fotos/foggy-mountain-summit-1Z2niiBPg5A?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="underline hover:text-spain-yellow"
             >
                 Unsplash
